@@ -41,19 +41,16 @@
   (setq org-startup-folded 'content);;默认折叠所有标题
   (setq org-cycle-include-plain-lists 'integrate) ;;将列表视为heading,也可以折叠
   (setq org-image-actual-width nil)
-  (setq org-export-preserve-breaks t)
+  (setq org-export-preserve-breaks t);;导出时保留原样换行
   (setq org-ellipsis " ▼")
-
   (setq org-agenda-start-with-log-mode t)
   (setq org-log-done 'time)
   (setq org-log-into-drawer t)
-
-  (setq org-agenda-files (directory-files-recursively "/media/2T/file_on_home_archlinux/schedule-2024/" "\\.org$"))
+  (setq org-agenda-files (directory-files-recursively "/media/2T/file_on_home_archlinux/schedule-2024/" "\\.org$"));;递归搜寻
   (setq org-html-validation-link nil)
 
-
   (require 'org-habit)
-  (add-to-list 'org-modules 'org-habit)
+  (add-to-list 'org-modules 'org-habit t)
   (setq org-habit-graph-column 60)
 
   (setq org-todo-keywords
@@ -71,7 +68,7 @@
     '((:startgroup)
        ; Put mutually exclusive tags here
        (:endgroup)
-       ("idea" . ?i)))
+       ("wk" . ?i)))
 
   (setq org-capture-templates
     `(("t" "Tasks / Projects")
@@ -134,12 +131,12 @@
 (use-package websocket)
 (use-package magit)
 
-(use-package mrds-mode 
+(use-package mrds-mode;;switch org-roam-db folder 
   :straight (:host github :repo "Imymirror/mrds-mode")
   :bind (("C-c n s" . mrds/roam-switch-directory))
   :config
-  (or mrds--roam-root-directory (setq mrds--roam-root-directory (file-truename "/media/2T/user-note")))
-  (setq mrds--db-cache-path (file-truename "/media/2T/user-note/org-roam-db"))
+  (or mrds--roam-root-directory (setq mrds--roam-root-directory (file-truename "/media/2T/user-note"))) ;;same as org-roam-directory
+  (setq mrds--db-cache-path (file-truename "/media/2T/user-note/org-roam-db")) ;;all sub db here
   (org-roam-db-autosync-mode 1)) ;; need to sync org roam db first
 ;;end-> org-roam
 
