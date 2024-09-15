@@ -33,7 +33,7 @@
       '(("http" . "127.0.0.1:7890")
 	    ("https" . "127.0.0.1:7890")))
 
-;; 把 Emacs 自动添加的代码放到 custom.el 中
+;; 把 Emacs 自动添加的代码放到 custom.el
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
 ;;strait.el
@@ -119,6 +119,5 @@
   (completion-category-defaults nil)
   (completion-category-overrides '((file (styles partial-completion)))))
 ;;====================================================================================
-
 ;; 这段代码放在最后, 加载 Emacs 自动设置的变量
 (if (file-exists-p custom-file) (load-file custom-file))
