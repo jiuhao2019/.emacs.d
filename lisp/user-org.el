@@ -118,7 +118,7 @@
 (use-package org-roam
   :config
   (setq org-roam-directory (file-truename "/media/2T/user-note"))
-  (setq org-roam-db-location (concat "~/org-roam-" system-name ".db"))
+  (setq org-roam-db-location (concat "/media/2T/user-note/org-roam-db/org-roam-" system-name ".db"))
   (setq find-file-visit-truename t)
   (org-roam-db-autosync-mode)
   (setq org-roam-node-display-template
