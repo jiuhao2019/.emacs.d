@@ -118,6 +118,7 @@
 (use-package org-roam
   :config
   (setq org-roam-directory (file-truename "/media/2T/user-note"))
+  (setq org-roam-db-location (concat "~/org-roam-" system-name ".db"))
   (setq find-file-visit-truename t)
   (org-roam-db-autosync-mode)
   (setq org-roam-node-display-template
@@ -138,7 +139,7 @@
   :bind (("C-c n s" . mrds/roam-switch-directory))
   :config
   (or mrds--roam-root-directory (setq mrds--roam-root-directory (file-truename "/media/2T/user-note")))
-  (setq mrds--db-cache-path (file-truename "/media/2T/user-note"))
+  (setq mrds--db-cache-path (file-truename "/media/2T/user-note/org-roam-db"))
   (org-roam-db-autosync-mode 1)) ;; need to sync org roam db first
 ;;end-> org-roam
 
