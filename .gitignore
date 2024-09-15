@@ -2,3 +2,9 @@
 /backups
 /eln-cache
 /straight
+/auto-save-list
+/var
+/elpa
+/snippets
+/transient
+org-roam.db

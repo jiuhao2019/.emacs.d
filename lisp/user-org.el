@@ -34,7 +34,6 @@
   (visual-line-mode 1))
 
 (use-package org
-  :pin org
   :commands (org-capture org-agenda)
   :hook (org-mode . efs/org-mode-setup)
   :config
@@ -51,6 +50,7 @@
 
   (setq org-agenda-files (directory-files-recursively "/media/2T/file_on_home_archlinux/schedule-2024/" "\\.org$"))
   (setq org-html-validation-link nil)
+
 
   (require 'org-habit)
   (add-to-list 'org-modules 'org-habit)
@@ -125,6 +125,7 @@
 		(propertize "${tags:10}" 'face 'org-tag)))
   (setq org-roam-database-connector 'sqlite-builtin)
   (setq org-roam-v2-ack t)
+  (require 'org-roam-protocol)
   (org-roam-setup))
 
 (use-package org-roam-ui)

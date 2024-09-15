@@ -36,11 +36,9 @@
 ;; 把 Emacs 自动添加的代码放到 custom.el 中
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
-
 ;;strait.el
 (defvar bootstrap-version)
-(let ((bootstrap-file (expand-file-name "straight/repos/straight.el/bootstrap.el"
-                      (or (bound-and-true-p straight-base-dir) user-emacs-directory)))
+(let ((bootstrap-file (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
       (bootstrap-version 7))
       (unless (file-exists-p bootstrap-file)
         (with-current-buffer
@@ -50,7 +48,25 @@
 
 (straight-use-package 'use-package) ; 用 straight.el 安装 use-package 声明的插件
 (setq straight-use-package-by-default t) ; 自动安装所有插件, 相当于加入 :straight t
+(setq use-package-compute-statistics t)
+;; performance
+;; https://emacs-lsp.github.io/lsp-mode/page/performance/
+(setq gc-cons-threshold 100000000
+      read-process-output-max (* 1024 1024))
+;; do not steal focus while doing async compilations
+(setq warning-suppress-types '((comp)))
 ;;end strait.el
+
+;;====================================================================================
+(require 'user-theme)
+(setq evil-want-C-u-scroll t)
+(require 'user-evil)
+(require 'user-ivy)
+(require 'user-org)
+(require 'org-roam-protocol)
+(require 'user-neotree)
+(require 'user-lsp)
+;;====================================================================================
 
 ;; 这段代码放在最后, 加载 Emacs 自动设置的变量
 (if (file-exists-p custom-file) (load-file custom-file))
