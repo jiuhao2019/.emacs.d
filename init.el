@@ -67,12 +67,11 @@
 (require 'user-lsp)
 (require 'user-lisp-format)
 (require 'user-valign)
-;;auto show recent commands
-(use-package amx
+
+(use-package amx ;;auto show recent commands
   :init (amx-mode))
 
-;;Cx u
-(use-package undo-tree
+(use-package undo-tree ;;Cx u
   :defer t
   :diminish undo-tree-mode
   :init (global-undo-tree-mode)
@@ -80,12 +79,10 @@
   (undo-tree-history-directory-alist '(("." . "~/undo-emacs")))
   (undo-tree-visualizer-timestamps t))
 
-;; easymotion
-(use-package avy
+(use-package avy ;; easymotion
   :config (setq avy-background t ;; 打关键字时给匹配结果加一个灰背景，更醒目
                 avy-all-windows t ;; 搜索所有 window，即所有「可视范围」
-                avy-timeout-seconds 0.3))
-;; 「关键字输入完毕」信号的触发时间
+                avy-timeout-seconds 0.3)) ;; 「关键字输入完毕」信号的触发时间
 
 (use-package highlight-symbol
   :init (highlight-symbol-mode))
@@ -96,14 +93,10 @@
   :config (setq which-key-idle-delay 0))
 (which-key-mode)
 
-;;user define functions
 (require 'user-func)
-
-;;user keybind
 (require 'user-keybind)
 
-;;记录光标位置列表
-(use-package dogears
+(use-package dogears ;;记录光标位置列表
   :hook (after-init . dogears-mode)
   :bind (:map global-map ("M-g g" . dogears-go)
               ("M-g b" . dogears-back)
@@ -113,6 +106,18 @@
   :config (setq dogears-idle 1 dogears-limit 200 dogears-position-delta 20)
   (setq dogears-functions '(find-file recenter-top-bottom other-window switch-to-buffer aw-select toggle-window-split windmove-do-window-select pager-page-down pager-page-up tab-bar-select-tab pop-to-mark-command pop-global-mark goto-last-change xref-go-back xref-find-definitions xref-find-references)))
 
+(use-package vertico ;; 竖式展开小缓冲区
+  :custom (verticle-cycle t)
+  :config (vertico-mode))
+
+(use-package marginalia ;; 更多信息
+  :config (marginalia-mode))
+
+(use-package orderless ;; 乱序补全
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-defaults nil)
+  (completion-category-overrides '((file (styles partial-completion)))))
 ;;====================================================================================
 
 ;; 这段代码放在最后, 加载 Emacs 自动设置的变量
