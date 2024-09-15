@@ -65,6 +65,54 @@
 (require 'user-org)
 (require 'user-neotree)
 (require 'user-lsp)
+(require 'user-lisp-format)
+(require 'user-valign)
+;;auto show recent commands
+(use-package amx
+  :init (amx-mode))
+
+;;Cx u
+(use-package undo-tree
+  :defer t
+  :diminish undo-tree-mode
+  :init (global-undo-tree-mode)
+  :custom (undo-tree-visualizer-diff t)
+  (undo-tree-history-directory-alist '(("." . "~/undo-emacs")))
+  (undo-tree-visualizer-timestamps t))
+
+;; easymotion
+(use-package avy
+  :config (setq avy-background t ;; 打关键字时给匹配结果加一个灰背景，更醒目
+                avy-all-windows t ;; 搜索所有 window，即所有「可视范围」
+                avy-timeout-seconds 0.3))
+;; 「关键字输入完毕」信号的触发时间
+
+(use-package highlight-symbol
+  :init (highlight-symbol-mode))
+
+(use-package which-key
+  :defer 0
+  :diminish which-key-mode
+  :config (setq which-key-idle-delay 0))
+(which-key-mode)
+
+;;user define functions
+(require 'user-func)
+
+;;user keybind
+(require 'user-keybind)
+
+;;记录光标位置列表
+(use-package dogears
+  :hook (after-init . dogears-mode)
+  :bind (:map global-map ("M-g g" . dogears-go)
+              ("M-g b" . dogears-back)
+              ("M-g f" . dogears-forward)
+              ("M-g l" . dogears-list)
+              ("M-g M-s" . dogears-sidebar))
+  :config (setq dogears-idle 1 dogears-limit 200 dogears-position-delta 20)
+  (setq dogears-functions '(find-file recenter-top-bottom other-window switch-to-buffer aw-select toggle-window-split windmove-do-window-select pager-page-down pager-page-up tab-bar-select-tab pop-to-mark-command pop-global-mark goto-last-change xref-go-back xref-find-definitions xref-find-references)))
+
 ;;====================================================================================
 
 ;; 这段代码放在最后, 加载 Emacs 自动设置的变量
