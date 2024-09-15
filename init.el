@@ -62,6 +62,7 @@
 (setq evil-want-C-u-scroll t)
 (require 'user-evil)
 (require 'user-ivy)
+(require 'user-func)
 (require 'user-org)
 (require 'user-neotree)
 (require 'user-lsp)
@@ -93,7 +94,6 @@
   :config (setq which-key-idle-delay 0))
 (which-key-mode)
 
-(require 'user-func)
 (require 'user-keybind)
 
 (use-package dogears ;;记录光标位置列表
@@ -118,6 +118,11 @@
   (completion-styles '(orderless basic))
   (completion-category-defaults nil)
   (completion-category-overrides '((file (styles partial-completion)))))
+
+;;; recently opened file
+(require 'recentf)
+(setq recentf-max-saved-items 100)
+(recentf-mode 1)
 ;;====================================================================================
 ;; 这段代码放在最后, 加载 Emacs 自动设置的变量
 (if (file-exists-p custom-file) (load-file custom-file))
