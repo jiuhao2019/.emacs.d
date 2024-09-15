@@ -63,7 +63,6 @@
 (require 'user-evil)
 (require 'user-ivy)
 (require 'user-org)
-(require 'org-roam-protocol)
 (require 'user-neotree)
 (require 'user-lsp)
 ;;====================================================================================
