@@ -46,7 +46,7 @@
   (setq org-agenda-start-with-log-mode t)
   (setq org-log-done 'time)
   (setq org-log-into-drawer t)
-  (setq org-agenda-files (directory-files-recursively "/media/2T/user-note/capture_2024" "\\.org$"));;递归搜寻
+  (setq org-agenda-files (directory-files-recursively "/media/2T/user-note/capture_2024" "\\.org.gpg$"));;递归搜寻
   (setq org-html-validation-link nil)
   ;;=========================begin: org-habit
   (require 'org-habit)
@@ -69,30 +69,30 @@
   (add-to-list 'org-capture-templates '("t" "Tasks"))
   (add-to-list 'org-capture-templates
                '("tr" "Book Reading Task" entry
-                 (file+olp "/media/2T/user-note/capture_2024/schedule.org" "Reading" "Book")
+                 (file+olp "/media/2T/user-note/capture_2024/schedule.org.gpg" "Reading" "Book")
                  "* TODO %^{书名}\n%u\n%a\n" :clock-in t :clock-resume t))
   (add-to-list 'org-capture-templates
                '("tw" "Work Task" entry
-                 (file+headline "/media/2T/user-note/capture_2024/schedule.org" "work")
+                 (file+headline "/media/2T/user-note/capture_2024/schedule.org.gpg" "work")
                  "* TODO %^{任务名}\n%u\n%a\n" :clock-in t :clock-resume t))
   (add-to-list 'org-capture-templates
-               '("j" "Journal" entry (file "/media/2T/user-note/capture_2024/journal.org")
+               '("j" "Journal" entry (file "/media/2T/user-note/capture_2024/journal.org.gpg")
 		 "* %U - %^{heading}\n  %?"))
   (add-to-list 'org-capture-templates
-               '("i" "Inbox" entry (file "/media/2T/user-note/capture_2024/inbox.org")
+               '("i" "Inbox" entry (file "/media/2T/user-note/capture_2024/inbox.org.gpg")
 		 "* %U - %^{heading} %^g\n %?\n"))
   (add-to-list 'org-capture-templates
-               '("n" "Notes" entry (file "/media/2T/user-note/capture_2024/inbox.org")
+               '("n" "Notes" entry (file "/media/2T/user-note/capture_2024/inbox.org.gpg")
 		 "* %^{heading} %t %^g\n  %?\n"))
   (add-to-list 'org-capture-templates
-               '("b" "Billing" plain (file+function "/media/2T/user-note/capture_2024/billing.org" find-month-tree)
+               '("b" "Billing" plain (file+function "/media/2T/user-note/capture_2024/billing.org.gpg" find-month-tree)
 		 " | %U | %^{类别} | %^{描述} | %^{金额} |" :kill-buffer t))
   (add-to-list 'org-capture-templates '("c" "contacts"))
   (add-to-list 'org-capture-templates
-               '("c1" "Contacts1" table-line (file "/media/2T/user-note/capture_2024/contacts.org")
+               '("c1" "Contacts1" table-line (file "/media/2T/user-note/capture_2024/contacts.org.gpg")
 		 "| %U | %^{姓名} | %^{手机号}| %^{邮箱} |"))
   (add-to-list 'org-capture-templates
-               '("c2" "Contacts2" entry (file "/media/2T/user-note/capture_2024/contacts.org")
+               '("c2" "Contacts2" entry (file "/media/2T/user-note/capture_2024/contacts.org.gpg")
 		 "* %^{姓名} %^{手机号}p %^{邮箱}p %^{住址}p\n\n  %?" :empty-lines 1))
   (add-to-list 'org-capture-templates '("p" "passwd"))
   (add-to-list 'org-capture-templates
@@ -156,6 +156,10 @@
 				    ("[#B]" . ?🅑)
 				    ("[#C]" . ?🅒)))
                             (prettify-symbols-mode)))
+(setq epa-file-cache-passphrase-for-symmetric-encryption t);;对称加密时缓存密码，不用每次打开和保存都输入
+;;关闭emacs后关闭后台gpg-agent，清除缓存的密码
+(add-hook 'kill-emacs-hook (defun personal--kill-gpg-agent ()
+                             (shell-command "pkill gpg-agent")))
 ;;=============================begin-> org-roam
 (use-package org-roam
   :config

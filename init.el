@@ -133,7 +133,7 @@
 (require 'org-crypt)
 (org-crypt-use-before-save-magic)
 (setq org-tags-exclude-from-inheritance (quote("crypt")))
-(setq org-crypt-key nil)
+(setq org-crypt-key nil);;密钥加密(非对称加密)或密码加密(对称加密)
 
 ;;让用户输入的密码不会因内存不足而换出到磁盘
 (use-package pinentry
