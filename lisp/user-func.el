@@ -51,7 +51,6 @@
     (dotimes (number 16 value)
       (setq value (concat value (random-alphanum))))))
 
-
 (defun get-or-create-password ()
   (setq password (read-string "Password: "))
   (if (string= password "")

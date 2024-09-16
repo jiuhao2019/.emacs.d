@@ -48,24 +48,18 @@
   (setq org-log-into-drawer t)
   (setq org-agenda-files (directory-files-recursively "/media/2T/file_on_home_archlinux/2024/" "\\.org$"));;递归搜寻
   (setq org-html-validation-link nil)
-
   (require 'org-habit)
   (add-to-list 'org-modules 'org-habit t)
   (setq org-habit-graph-column 60)
-
   (setq org-todo-keywords
 	'((sequence "BEGIN(t!)" "DOING(n!)" "HOLDING(h!)" "|" "DONE(d@/!)")
 	  (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "|" "COMPLETED(c)" "CANC(k@)")))
-
-
   (setq org-tag-alist
 	'((:startgroup)
 					; Put mutually exclusive tags here
 	  (:endgroup)
 	  ("wk" . ?i)))
-
   (setq org-capture-templates nil)
-
   (add-to-list 'org-capture-templates '("t" "Tasks"))
   (add-to-list 'org-capture-templates
                '("tr" "Book Reading Task" entry
@@ -77,34 +71,32 @@
                  "* TODO %^{任务名}\n%u\n%a\n" :clock-in t :clock-resume t))
   (add-to-list 'org-capture-templates
                '("j" "Journal" entry (file "/media/2T/file_on_home_archlinux/2024/journal.org")
-		 "* %U - %^{heading}\n  %?"))
+		        "* %U - %^{heading}\n  %?"))
   (add-to-list 'org-capture-templates
                '("i" "Inbox" entry (file "/media/2T/file_on_home_archlinux/2024/inbox.org")
-		 "* %U - %^{heading} %^g\n %?\n"))
+		        "* %U - %^{heading} %^g\n %?\n"))
   (add-to-list 'org-capture-templates
                '("n" "Notes" entry (file "/media/2T/file_on_home_archlinux/2024/inbox.org")
-		 "* %^{heading} %t %^g\n  %?\n"))
+		        "* %^{heading} %t %^g\n  %?\n"))
   (add-to-list 'org-capture-templates
-               '("b" "Billing" plain
-		 (file+function "/media/2T/file_on_home_archlinux/2024/billing.org" find-month-tree)
-		 " | %U | %^{类别} | %^{描述} | %^{金额} |" :kill-buffer t))
+               '("b" "Billing" plain (file+function "/media/2T/file_on_home_archlinux/2024/billing.org" find-month-tree)
+		        " | %U | %^{类别} | %^{描述} | %^{金额} |" :kill-buffer t))
   (add-to-list 'org-capture-templates '("c" "contacts"))
   (add-to-list 'org-capture-templates
                '("c1" "Contacts1" table-line (file "/media/2T/file_on_home_archlinux/2024/contacts.org")
-		 "| %U | %^{姓名} | %^{手机号}| %^{邮箱} |"))
+		        "| %U | %^{姓名} | %^{手机号}| %^{邮箱} |"))
   (add-to-list 'org-capture-templates
                '("c2" "Contacts2" entry (file "/media/2T/file_on_home_archlinux/2024/contacts.org")
-		 "* %^{姓名} %^{手机号}p %^{邮箱}p %^{住址}p\n\n  %?" :empty-lines 1))
+		        "* %^{姓名} %^{手机号}p %^{邮箱}p %^{住址}p\n\n  %?" :empty-lines 1))
   (add-to-list 'org-capture-templates
-               '("p" "Passwords" entry (file "/media/2T/file_on_home_archlinux/2024/passwords.org.cpt")
-		 "* %U - %^{title} %^G\n\n  - 用户名: %^{用户名}\n  - 密码: %(get-or-create-password)"
-		 :empty-lines 1 :kill-buffer t))
+               '("p" "Passwords" entry (file "/media/2T/file_on_home_archlinux/2024/passwd.org.gpg")
+		        "* %U - %^{title} %^G\n\n  - 用户名: %^{用户名}\n  - 密码: %(get-or-create-password)"
+		        :empty-lines 1 :kill-buffer t))
   (setq org-refile-targets
 	'(("Archive.org" :maxlevel . 1)
 	  ("Tasks.org" :maxlevel . 1)))
   ;; Save Org buffers after refiling!
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
-
   (efs/org-font-setup))
 
 (use-package org-bullets

@@ -123,6 +123,16 @@
 (require 'recentf)
 (setq recentf-max-saved-items 100)
 (recentf-mode 1)
+
+;;使能加密
+(require 'epa-file)
+(epa-file-enable)
+
+;;可以标题级别的加密
+;; (require 'org-crypt)
+;; (org-crypt-use-before-save-magic)
+;; (setq org-tags-exclude-from-inheritance (quote("crypt")))
+;; (setq org-crypt-key nil)
 ;;====================================================================================
 ;; 这段代码放在最后, 加载 Emacs 自动设置的变量
 (if (file-exists-p custom-file) (load-file custom-file))
