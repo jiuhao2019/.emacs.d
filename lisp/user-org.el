@@ -6,13 +6,13 @@
 
   ;; Set faces for heading levels
   (dolist (face '((org-level-1 . 1.1)
-                  (org-level-2 . 1.0)
+                  (org-level-2 . 0.98)
                   (org-level-3 . 0.95)
-                  (org-level-4 . 0.9)
-                  (org-level-5 . 1.0)
-                  (org-level-6 . 1.0)
-                  (org-level-7 . 1.0)
-                  (org-level-8 . 1.0)))
+                  (org-level-4 . 0.93)
+                  (org-level-5 . 0.91)
+                  (org-level-6 . 0.88)
+                  (org-level-7 . 0.85)
+                  (org-level-8 . 0.83)))
     (set-face-attribute (car face) nil :font "Fira Code Nerd Font Mono" :weight 'regular :height (cdr face)))
 
   ;; Ensure that anything that should be fixed-pitch in Org files appears that way
@@ -48,9 +48,15 @@
   (setq org-log-into-drawer t)
   (setq org-agenda-files (directory-files-recursively "/media/2T/user-note/capture_2024" "\\.org$"));;递归搜寻
   (setq org-html-validation-link nil)
+  ;;=========================begin: org-habit
   (require 'org-habit)
   (add-to-list 'org-modules 'org-habit t)
-  (setq org-habit-graph-column 60)
+  (setq org-habit-graph-column 100)
+  (setq org-habit-preceding-days 4)
+  (setq org-habit-following-days 4)
+  (setq org-habit-show-habits-only-for-today nil)
+  (setq org-habit-show-all-today t)
+  ;;=========================end
   (setq org-todo-keywords
 	'((sequence "BEGIN(t!)" "DOING(n!)" "HOLDING(h!)" "|" "DONE(d@/!)")
 	  (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "|" "COMPLETED(c)" "CANC(k@)")))
@@ -113,7 +119,6 @@
 	  ("/media/2T/user-note/note_office/vscode.org" :maxlevel . 1)
 	  ("/media/2T/user-note/note_office/windows.org" :maxlevel . 1)
 	  ("/media/2T/user-note/note_office/三电极电化学传感器.org" :maxlevel . 1)))
-
   ;; Save Org buffers after refiling!
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
   (efs/org-font-setup))
@@ -121,8 +126,7 @@
 (use-package org-bullets
   :hook (org-mode . org-bullets-mode)
   :custom
-  ;; (org-bullets-bullet-list '("◉" "○" "●" "⊙" "⊚" "◑" "◐" "◎" "○" "◊" "◇" "▶" "▷" "◆" "◇")))
-  (org-bullets-bullet-list '("◉" "○" "●" "▶" "◆" "◑" "◐" "◎" "○" "◊" "◇" "▶" "▷" "◆" "◇")))
+  (org-bullets-bullet-list '("◉" "○" "●" "▶" "◆" "◑" "◐" "◎" "○" "◊" "◇" "▶" "▷" "◆" "◇" "⊙" "⊚")))
 
 ;; Automatically tangle our Emacs.org config file when we save it
 (defun efs/org-babel-tangle-config ()
@@ -135,25 +139,24 @@
 (add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'efs/org-babel-tangle-config)))
 (add-hook 'org-mode-hook  (lambda ()
                             (setq prettify-symbols-alist
-                            '(("lambda" . ?λ)
-                              (":PROPERTIES:" . ?)
-                              (":ID:" . ?)
-                              (":END:" . ?)
-                              ("#+TITLE:" . ?)
-                              ("#+title:" . ?)
-                              ("#+AUTHOR:" . ?)
-                              ("#+BEGIN_QUOTE" . ?)
-                              ("#+END_QUOTE" . ?)
-                              ("#+RESULTS:" . ?)
-                              ("[ ]" . ?)
-                              ("[-]" . ?)
-                              ("[X]" . ?)
-                              ("[#A]" . ?🅐)
-                              ("[#B]" . ?🅑)
-                              ("[#C]" . ?🅒)))
-                              (prettify-symbols-mode)))
-
-;;begin-> org-roam
+				  '(("lambda" . ?λ)
+				    (":PROPERTIES:" . ?)
+				    (":ID:" . ?)
+				    (":END:" . ?)
+				    ("#+TITLE:" . ?)
+				    ("#+title:" . ?)
+				    ("#+AUTHOR:" . ?)
+				    ("#+BEGIN_QUOTE" . ?)
+				    ("#+END_QUOTE" . ?)
+				    ("#+RESULTS:" . ?)
+				    ("[ ]" . ?)
+				    ("[-]" . ?)
+				    ("[X]" . ?)
+				    ("[#A]" . ?🅐)
+				    ("[#B]" . ?🅑)
+				    ("[#C]" . ?🅒)))
+                            (prettify-symbols-mode)))
+;;=============================begin-> org-roam
 (use-package org-roam
   :config
   (setq org-roam-directory (file-truename "/media/2T/user-note"))
@@ -180,6 +183,6 @@
   (or mrds--roam-root-directory (setq mrds--roam-root-directory (file-truename "/media/2T/user-note"))) ;;same as org-roam-directory
   (setq mrds--db-cache-path (file-truename "/media/2T/user-note/org-roam-db")) ;;all sub db here
   (org-roam-db-autosync-mode 1)) ;; need to sync org roam db first
-;;end-> org-roam
+;;===============================end-> org-roam
 
 (provide 'user-org)
