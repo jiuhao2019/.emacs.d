@@ -28,6 +28,7 @@
       auto-save-timeout 30              ; number of seconds idle time before auto-save (default: 30)
       auto-save-interval 300)            ; number of keystrokes between auto-saves (default: 300)
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory)) ; 设定源码加载路径
+(setq load-path (cons "~/.emacs.d/lisp" load-path))
 
 (setq url-proxy-services
       '(("http" . "127.0.0.1:7890")
@@ -128,11 +129,11 @@
 (require 'epa-file)
 (epa-file-enable)
 
-;;可以标题级别的加密
-;; (require 'org-crypt)
-;; (org-crypt-use-before-save-magic)
-;; (setq org-tags-exclude-from-inheritance (quote("crypt")))
-;; (setq org-crypt-key nil)
+;;可以给标题级别内容的加密
+(require 'org-crypt)
+(org-crypt-use-before-save-magic)
+(setq org-tags-exclude-from-inheritance (quote("crypt")))
+(setq org-crypt-key nil)
 
 ;;让用户输入的密码不会因内存不足而换出到磁盘
 (use-package pinentry
