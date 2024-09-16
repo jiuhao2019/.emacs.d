@@ -133,6 +133,12 @@
 ;; (org-crypt-use-before-save-magic)
 ;; (setq org-tags-exclude-from-inheritance (quote("crypt")))
 ;; (setq org-crypt-key nil)
+
+;;让用户输入的密码不会因内存不足而换出到磁盘
+(use-package pinentry
+  :config
+  (setq epa-pinentry-mode 'loopback)
+  (pinentry-start))
 ;;====================================================================================
 ;; 这段代码放在最后, 加载 Emacs 自动设置的变量
 (if (file-exists-p custom-file) (load-file custom-file))
