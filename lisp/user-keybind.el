@@ -40,8 +40,9 @@
     "t" '(neotree-toggle :which-key "Neotree")
     "h" '(avy-goto-char-timer :which-key "Hop")
     "u" '(undo-tree-visualize :which-key "Undotree")
-    "k" '(highlight-symbol-at-point :which-key "Highlight")
-    "K" '(highlight-symbol-remove-all :which-key "Unhighlight")
-    "s" '(user-search-text-at-point :which-key "SwiperPoint")))
+    "r" '(recentf :which-key "Recentf")
+    "k" '(highlight-symbol-at-point :which-key "Highlight_toggle")
+    "K" '(highlight-symbol-remove-all :which-key "Clr_highlight")
+    "s" '(user-search-text-at-point :which-key "Swiper_Point")))
 
 (provide 'user-keybind)

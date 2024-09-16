@@ -46,7 +46,7 @@
   (setq org-agenda-start-with-log-mode t)
   (setq org-log-done 'time)
   (setq org-log-into-drawer t)
-  (setq org-agenda-files (directory-files-recursively "/media/2T/file_on_home_archlinux/2024/" "\\.org$"));;递归搜寻
+  (setq org-agenda-files (directory-files-recursively "/media/2T/user-note/capture_2024" "\\.org$"));;递归搜寻
   (setq org-html-validation-link nil)
   (require 'org-habit)
   (add-to-list 'org-modules 'org-habit t)
@@ -63,43 +63,57 @@
   (add-to-list 'org-capture-templates '("t" "Tasks"))
   (add-to-list 'org-capture-templates
                '("tr" "Book Reading Task" entry
-                 (file+olp "/media/2T/file_on_home_archlinux/2024/schedule.org" "Reading" "Book")
+                 (file+olp "/media/2T/user-note/capture_2024/schedule.org" "Reading" "Book")
                  "* TODO %^{书名}\n%u\n%a\n" :clock-in t :clock-resume t))
   (add-to-list 'org-capture-templates
                '("tw" "Work Task" entry
-                 (file+headline "/media/2T/file_on_home_archlinux/2024/schedule.org" "work")
+                 (file+headline "/media/2T/user-note/capture_2024/schedule.org" "work")
                  "* TODO %^{任务名}\n%u\n%a\n" :clock-in t :clock-resume t))
   (add-to-list 'org-capture-templates
-               '("j" "Journal" entry (file "/media/2T/file_on_home_archlinux/2024/journal.org")
+               '("j" "Journal" entry (file "/media/2T/user-note/capture_2024/journal.org")
 		 "* %U - %^{heading}\n  %?"))
   (add-to-list 'org-capture-templates
-               '("i" "Inbox" entry (file "/media/2T/file_on_home_archlinux/2024/inbox.org")
+               '("i" "Inbox" entry (file "/media/2T/user-note/capture_2024/inbox.org")
 		 "* %U - %^{heading} %^g\n %?\n"))
   (add-to-list 'org-capture-templates
-               '("n" "Notes" entry (file "/media/2T/file_on_home_archlinux/2024/inbox.org")
+               '("n" "Notes" entry (file "/media/2T/user-note/capture_2024/inbox.org")
 		 "* %^{heading} %t %^g\n  %?\n"))
   (add-to-list 'org-capture-templates
-               '("b" "Billing" plain (file+function "/media/2T/file_on_home_archlinux/2024/billing.org" find-month-tree)
+               '("b" "Billing" plain (file+function "/media/2T/user-note/capture_2024/billing.org" find-month-tree)
 		 " | %U | %^{类别} | %^{描述} | %^{金额} |" :kill-buffer t))
   (add-to-list 'org-capture-templates '("c" "contacts"))
   (add-to-list 'org-capture-templates
-               '("c1" "Contacts1" table-line (file "/media/2T/file_on_home_archlinux/2024/contacts.org")
+               '("c1" "Contacts1" table-line (file "/media/2T/user-note/capture_2024/contacts.org")
 		 "| %U | %^{姓名} | %^{手机号}| %^{邮箱} |"))
   (add-to-list 'org-capture-templates
-               '("c2" "Contacts2" entry (file "/media/2T/file_on_home_archlinux/2024/contacts.org")
+               '("c2" "Contacts2" entry (file "/media/2T/user-note/capture_2024/contacts.org")
 		 "* %^{姓名} %^{手机号}p %^{邮箱}p %^{住址}p\n\n  %?" :empty-lines 1))
   (add-to-list 'org-capture-templates '("p" "passwd"))
   (add-to-list 'org-capture-templates
-               '("p1" "Passwords@gpg" entry (file "/media/2T/file_on_home_archlinux/2024/passwd.org.gpg")
+               '("p1" "Passwords@gpg" entry (file "/media/2T/user-note/capture_2024/passwd.org.gpg")
 		 "* %U - %^{title} %^G\n\n  - 用户名: %^{用户名}\n  - 密码: %(get-or-create-password)"
 		 :empty-lines 1 :kill-buffer t))
   (add-to-list 'org-capture-templates
-               '("p2" "Passwords@cpt" entry (file "/media/2T/file_on_home_archlinux/2024/passwd.org.cpt")
+               '("p2" "Passwords@cpt" entry (file "/media/2T/user-note/capture_2024/passwd.org.cpt")
 		 "* %U - %^{title} %^G\n\n  - 用户名: %^{用户名}\n  - 密码: %(get-or-create-password)"
 		 :empty-lines 1 :kill-buffer t))
   (setq org-refile-targets
-	'(("Archive.org" :maxlevel . 1)
-	  ("Tasks.org" :maxlevel . 1)))
+	'(("/media/2T/user-note/note_office/altium_designer.org" :maxlevel . 1)
+	  ("/media/2T/user-note/note_office/c_language.org" :maxlevel . 1)
+	  ("/media/2T/user-note/note_office/emacs.org" :maxlevel . 1)
+	  ("/media/2T/user-note/note_office/git.org" :maxlevel . 1)
+	  ("/media/2T/user-note/note_office/gnu.org" :maxlevel . 1)
+	  ("/media/2T/user-note/note_office/libreoffice.org" :maxlevel . 1)
+	  ("/media/2T/user-note/note_office/linux.org" :maxlevel . 1)
+	  ("/media/2T/user-note/note_office/neovim.org" :maxlevel . 1)
+	  ("/media/2T/user-note/note_office/org-mode.org" :maxlevel . 1)
+	  ("/media/2T/user-note/note_office/proxy.org" :maxlevel . 1)
+	  ("/media/2T/user-note/note_office/samba.org" :maxlevel . 1)
+	  ("/media/2T/user-note/note_office/spi_bus.org" :maxlevel . 1)
+	  ("/media/2T/user-note/note_office/vscode.org" :maxlevel . 1)
+	  ("/media/2T/user-note/note_office/windows.org" :maxlevel . 1)
+	  ("/media/2T/user-note/note_office/三电极电化学传感器.org" :maxlevel . 1)))
+
   ;; Save Org buffers after refiling!
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
   (efs/org-font-setup))
