@@ -70,11 +70,11 @@
   (add-to-list 'org-capture-templates
                '("tr" "Book Reading Task" entry
                  (file+olp "/media/2T/user-note/capture_2024/schedule.org.gpg" "Reading" "Book")
-                 "* TODO %^{书名}\n%u\n%a\n" :clock-in t :clock-resume t))
+                 "* BEGIN %^{书名}\n%u\n%a\n" :clock-in t :clock-resume t))
   (add-to-list 'org-capture-templates
                '("tw" "Work Task" entry
                  (file+headline "/media/2T/user-note/capture_2024/schedule.org.gpg" "work")
-                 "* TODO %^{任务名}\n%u\n%a\n" :clock-in t :clock-resume t))
+                 "* BEGIN %^{任务名}\n%u\n%a\n" :clock-in t :clock-resume t))
   (add-to-list 'org-capture-templates
                '("j" "Journal" entry (file "/media/2T/user-note/capture_2024/journal.org.gpg")
 		 "* %U - %^{heading}\n  %?"))
@@ -82,7 +82,7 @@
                '("i" "Inbox" entry (file "/media/2T/user-note/capture_2024/inbox.org.gpg")
 		 "* %U - %^{heading} %^g\n %?\n"))
   (add-to-list 'org-capture-templates
-               '("n" "Notes" entry (file "/media/2T/user-note/capture_2024/inbox.org.gpg")
+               '("n" "Notes" entry (file "/media/2T/user-note/capture_2024/note.org.gpg")
 		 "* %^{heading} %t %^g\n  %?\n"))
   (add-to-list 'org-capture-templates
                '("b" "Billing" plain (file+function "/media/2T/user-note/capture_2024/billing.org.gpg" find-month-tree)
