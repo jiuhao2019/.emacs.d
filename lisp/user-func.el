@@ -16,6 +16,7 @@
       ;;调用swiper搜索该字符串
       ( swiper input-str ))))
 
+;;=======================================begin: 创建capture(消费记录类型)时统计表格数据
 (defun get-year-and-month ()
   (list (format-time-string "%Y年") (format-time-string "%m月")))
 
@@ -40,7 +41,8 @@
       (setq level (1+ level))
       (setq end (save-excursion (org-end-of-subtree t t))))
     (org-end-of-subtree)))
-
+;;=======================================end
+;;=======================================begin: 创建capture(密码类型)时输入密码为空时自动生成一个密码
 (defun random-alphanum ()
   (let* ((charset "abcdefghijklmnopqrstuvwxyz0123456789")
          (x (random 36)))
@@ -56,6 +58,6 @@
   (if (string= password "")
       (create-password)
     password))
-
+;;=======================================end
 
 (provide 'user-func)
