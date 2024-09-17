@@ -3,7 +3,7 @@
 
 (require 'on)
 
-;;========================================strait.el
+;;———————————————————————————————————————————————strait.el
 (defvar bootstrap-version)
 (let ((bootstrap-file (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
       (bootstrap-version 7))
@@ -19,7 +19,7 @@
 
 ;; do not steal focus while doing async compilations
 (setq warning-suppress-types '((comp)))
-;;==========================================end strait.el
+;;———————————————————————————————————————————————end strait.el
 
 (setopt ;; initial-major-mode 'fundamental-mode
  inhibit-startup-screen t
@@ -90,7 +90,7 @@
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
-;;======================================font
+;;———————————————————————————————————————————————font
 ;; Font setting.
 ;; `set-face-attribute' 设置默认字体
 ;; 对于中英文字体无法做到等宽和等高，两者只能取其一。相对而言，等宽更重要一些。
@@ -122,15 +122,15 @@
 ;; (set-face-attribute 'variable-pitch nil :family "TsangerJinKai02" :height 160)
 ;; (set-face-attribute 'fixed-pitch nil :family "SF Mono" :height 160)
 ;; (add-hook 'text-mode-hook #'variable-pitch-mode)
-;;======================================end font
+;;———————————————————————————————————————————————end font
 
-;;===================================proxy
+;;———————————————————————————————————————————————proxy
 (setq url-proxy-services
       '(("http" . "127.0.0.1:7890")
 	("https" . "127.0.0.1:7890")))
-;;===================================end proxy
+;;———————————————————————————————————————————————end proxy
 
-;;===================================================gcmh
+;;———————————————————————————————————————————————gcmh
 ;; Better emacs garbage collect behavior
 (use-package gcmh
   :hook (on-first-buffer . gcmh-mode)
@@ -142,14 +142,14 @@
               (gcmh-high-cons-threshold #x1000000))
 
               (advice-add 'after-focus-change-function :after 'garbage-collect)
-              ;;===================================================end gcmh
+              ;;———————————————————————————————————————————————end gcmh
 (defun switch-to-message ()
   "Quick switch to `*Message*' buffer."
   (interactive)
   (switch-to-buffer "*Messages*"))
 (global-set-key (kbd "M-g m") #'switch-to-message)
 (global-set-key (kbd "M-g s") #'scratch-buffer)
-;;====================================================================================
+;;———————————————————————————————————————————————plugin
 (require 'user-theme)
 (setq evil-want-C-u-scroll t)
 (require 'user-evil)
@@ -242,8 +242,8 @@
 
 (use-package nerd-icons-completion
   :hook (minibuffer-setup . nerd-icons-completion-mode))
-
-;;=======================================keybind,put this at end of plugin
+;;put this at end of plugin
+;;———————————————————————————————————————————————keybind
 (use-package which-key
   :defer 0
   :diminish which-key-mode
@@ -252,7 +252,7 @@
 (which-key-mode)
 
 (require 'user-keybind)
-;;================================================end keybind
-
+;;———————————————————————————————————————————————end keybind
+;;———————————————————————————————————————————————end plugin
 ;; 这段代码放在最后, 加载 Emacs 自动设置的变量
 (if (file-exists-p custom-file) (load-file custom-file))
