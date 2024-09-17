@@ -4,7 +4,7 @@
   (defhydra hydra-window (:hint nil)
     "
   | Navigation^^      | Placement^^         | Create, Delete^^          | Adjustment^^         |
-  |^^-----------------+^^-------------------+^^-------------------------+^^--------------------|
+  |^^—————————————————+^^———————————————————+^^—————————————————————————+^^————————————————————|
   | _h_: go left      | _H_: move to left   | _v_: split vertically     | _=_: balance windows |
   | _j_: go down      | _J_: move to bottom | _s_: split horizontally   | _+_: increase height |
   | _k_: go up        | _K_: move to top    | _q_: delete window        | _-_: decrease height |
@@ -32,11 +32,12 @@
   ;;  2,指定搜索引擎打开网页浏览器搜索
   (defhydra hydra-search (:hint nil)
     "
-  |^^-----------------+^^-------------------+^^------------|
-  | _m_: DoubanMovie  | _d_: DuckDuckGo |_l_: Bilibili     |
-  | _b_: DoubanBook   | _s_: Scholar    |_w_: WikiPedia_en |
-  | _z_: Zhihu        | _g_: Github     |_a_: Annas-Archvie|
-  | _o_: Google       | _y_: Youtube    |_r_: fzf-rg       |
+  |^^—————————————————+^^———————————————+^^—————————————————|
+  | _m_: DoubanMovie  | _d_: DuckDuckGo |_l_: Bilibili      |
+  | _b_: DoubanBook   | _s_: Scholar    |_w_: WikiPedia_en  |
+  | _z_: Zhihu        | _g_: Github     |_a_: Annas-Archvie |
+  | _o_: Google       | _y_: Youtube    |_r_: fzf-rg        |
+  | ^^                | ^^              |^^                 |
   "
     ("m"   my/search-doubanmovie nil :color blue)
     ("b"   my/search-doubanbook nil :color blue)
@@ -49,7 +50,27 @@
     ("l"   my/search-bilibili nil :color blue)
     ("w"   my/search-wikipedia_en nil :color blue)
     ("a"   my/search-annas-archvie nil :color blue)
-    ("r"   fzf-grep-in-dir nil :color blue)))
+    ("r"   fzf-grep-in-dir nil :color blue))
+  ;;  org-mode相关
+  (defhydra hydra-org (:hint nil)
+    "
+  |^^———————————————————————+^^—————————————————————————————+^^———————————————————————————————+ 
+  | _a_: org-agenda         | _c_: org-capture              | _d_: mrds/roam-switch-directory |
+  | _n_: org-roam-node-find | _r_: org-refile               | ^^                              |
+  | _s_: org-roam-db-sync   | _i_: org-id-get-create        | ^^                              |
+  | _u_: org-roam-ui-open   | _t_: org-toggle-inline-images | ^^                              |
+  | ^^                      | ^^                            | ^^                              |
+  "
+    ("a"   org-agenda nil :color blue)
+    ("n"   org-roam-node-find nil :color blue)
+    ("s"   org-roam-db-sync nil :color blue)
+    ("u"   org-roam-ui-open nil :color blue)
+    ("c"   org-capture nil :color blue)
+    ("r"   org-refile nil :color blue)
+    ("i"   org-id-get-create nil :color blue)
+    ("d"   mrds/roam-switch-directory nil :color blue)
+    ("t"   org-toggle-inline-images nil :color blue)))
+;;
 ;;
 (use-package general
   :after evil
@@ -66,6 +87,7 @@
     "k" '(highlight-symbol-at-point :which-key "highlight-toggle")
     "K" '(highlight-symbol-remove-all :which-key "clr-highlight")
     "f" '(fzf-find-file :which-key "find-file")
+    "o" '(hydra-org/body :which-key "org")
     "s" '(hydra-search/body :which-key "+search")))
 
 (provide 'user-keybind)

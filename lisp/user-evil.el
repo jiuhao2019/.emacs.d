@@ -46,5 +46,3 @@
                           (set-fill-column 82)))
 
 (provide 'user-evil)
-
-
