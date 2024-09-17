@@ -16,6 +16,7 @@
           (DoubanBook . "https://search.douban.com/book/subject_search?search_text=")
           (Zhihu . "https://www.zhihu.com/search?type=content&q=")
           (Google . "https://www.google.com/search?q=")
+          (DuckDuckGo . "https://duckduckgo.com/?t=h_&q=")
           (Scholar . "https://scholar.google.com/scholar?q=")
           (Github . "https://github.com/search?q=")
           (Youtube . "http://www.youtube.com/results?aq=f&oq=&search_query=")

@@ -1,7 +1,6 @@
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory)) ; 设定源码加载路径
 (add-to-list 'load-path (expand-file-name "package/on.el" user-emacs-directory)) ; 设定源码加载路径
-
-(require 'on)
+(add-to-list 'load-path (expand-file-name "package/ialign" user-emacs-directory)) ; 设定源码加载路径
 
 ;;———————————————————————————————————————————————strait.el
 (defvar bootstrap-version)
@@ -130,19 +129,24 @@
 	("https" . "127.0.0.1:7890")))
 ;;———————————————————————————————————————————————end proxy
 
+;;———————————————————————————————————————————————plugin at folder package
+(require 'on);;控制插件什么时候加载
+
+(require 'ialign)
+(global-set-key (kbd "C-x l") #'ialign)
 ;;———————————————————————————————————————————————gcmh
 ;; Better emacs garbage collect behavior
 (use-package gcmh
   :hook (on-first-buffer . gcmh-mode)
-    :custom
-      (gc-cons-percentage 0.1)
-        (gcmh-verbose nil)
-          (gcmh-idle-delay 'auto)
-            (gcmh-auto-idle-delay-factor 10)
-              (gcmh-high-cons-threshold #x1000000))
+  :custom
+  (gc-cons-percentage 0.1)
+  (gcmh-verbose nil)
+  (gcmh-idle-delay 'auto)
+  (gcmh-auto-idle-delay-factor 10)
+  (gcmh-high-cons-threshold #x1000000))
 
-              (advice-add 'after-focus-change-function :after 'garbage-collect)
-              ;;———————————————————————————————————————————————end gcmh
+(advice-add 'after-focus-change-function :after 'garbage-collect)
+;;———————————————————————————————————————————————end gcmh
 (defun switch-to-message ()
   "Quick switch to `*Message*' buffer."
   (interactive)
@@ -181,7 +185,6 @@
 
 (use-package highlight-symbol
   :init (highlight-symbol-mode))
-
 
 (use-package dogears ;;记录光标位置列表
   :hook (after-init . dogears-mode)
@@ -242,6 +245,7 @@
 
 (use-package nerd-icons-completion
   :hook (minibuffer-setup . nerd-icons-completion-mode))
+
 ;;put this at end of plugin
 ;;———————————————————————————————————————————————keybind
 (use-package which-key
