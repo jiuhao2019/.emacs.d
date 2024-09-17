@@ -58,6 +58,30 @@
   (if (string= password "")
       (create-password)
     password))
+;;=======================================begin
+;;Show/hide the trailing white-spaces in the buffer.
+;; from http://stackoverflow.com/a/11701899/634816
+(defun toggle-show-trailing-whitespace ()
+  "Toggle show-trailing-whitespace between t and nil"
+  (interactive)
+  (setq show-trailing-whitespace (not show-trailing-whitespace)))
+;;=======================================end
+;;=======================================begin
+(defun user-alternate-buffers ()
+  "Toggle between the last two buffers"
+  (interactive)
+  (switch-to-buffer (other-buffer (current-buffer) t)))
+
+(defun user-revert-buffer ()
+  "Revert the buffer to the save disk file state"
+  (interactive)
+  (revert-buffer nil t))
+
+(defun user-diff-buffer-with-file ()
+  "Compare the current modified buffer with the saved version."
+  (interactive)
+  (let ((diff-switches "-u"))
+    (diff-buffer-with-file (current-buffer))))
 ;;=======================================end
 
 (provide 'user-func)

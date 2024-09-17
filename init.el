@@ -246,6 +246,35 @@
 (use-package nerd-icons-completion
   :hook (minibuffer-setup . nerd-icons-completion-mode))
 
+(use-package ggtags)
+(add-hook 'c-mode-common-hook
+          (lambda ()
+            (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
+              (ggtags-mode 1))))
+
+(use-package imenu)
+
+;;Whenever the window scrolls a light will shine on top of your cursor so you know where it is.
+(use-package beacon
+  :ensure t
+  :config
+  (beacon-mode 1)
+  (setq beacon-push-mark 35
+        beacon-blink-when-focused t
+        beacon-color "deep sky blue"))
+
+(use-package define-word
+  :ensure t)
+
+(use-package google-translate
+  :ensure t
+  :commands google-translate-smooth-translate
+  :init
+  (setq-default google-translate-translation-directions-alist
+                '(("cn" . "en") ("en" . "cn"))
+                google-translate-show-phonetic t))
+
+;;———————————————————————————————————————————————
 ;;put this at end of plugin
 (use-package which-key
   :defer 0

@@ -2,6 +2,7 @@
  :init (load-theme 'doom-moonlight t))
 
 (use-package all-the-icons)
+(use-package all-the-icons-ivy-rich)
 
 (use-package doom-modeline
   :init 
