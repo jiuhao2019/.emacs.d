@@ -211,7 +211,7 @@
 
 ;;; recently opened file
 (require 'recentf)
-(setq recentf-max-saved-items 100)
+(setq recentf-max-saved-items 1000)
 (recentf-mode 1)
 
 ;;使能加密
@@ -247,16 +247,13 @@
   :hook (minibuffer-setup . nerd-icons-completion-mode))
 
 ;;put this at end of plugin
-;;———————————————————————————————————————————————keybind
 (use-package which-key
   :defer 0
   :diminish which-key-mode
   :hook (on-first-input . which-key-mode)
   :config (setq which-key-idle-delay 0))
 (which-key-mode)
-
 (require 'user-keybind)
-;;———————————————————————————————————————————————end keybind
 ;;———————————————————————————————————————————————end plugin
 ;; 这段代码放在最后, 加载 Emacs 自动设置的变量
 (if (file-exists-p custom-file) (load-file custom-file))
