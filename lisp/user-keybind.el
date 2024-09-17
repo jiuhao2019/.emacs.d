@@ -99,12 +99,15 @@
    [_t_] bookmark-set          
    [_j_] bookmark-jump          
    [_s_] bookmark-save  
+   [_r_] bookmark-rename  
    [_d_] bookmark-delete  
   "
     ("t"   bookmark-set nil :color blue)
     ("j"   bookmark-jump :color blue)
     ("s"   bookmark-save :color blue)
+    ("r"   bookmark-rename :color blue)
     ("d"   bookmark-delete nil :color blue))
+  ;; 
   (defhydra hydra-ztree (:hint nil)
     "
                                                                       ╭────────────┐
@@ -135,7 +138,7 @@
     ("TAB" ztree-jump-side)
     ("g" ztree-refresh-buffer)
     ("x" ztree-toggle-expand-subtree)))
-;; 
+;;
 (use-package general
   :after evil
   :config
@@ -156,7 +159,6 @@
     "w" '(hydra-window/body :which-key "+window")
     "E" '(hydra-emacs/body :which-key "+Emacs")
     "z" '(ztree-diff :which-key "ztree-diff")
-    "Z" '(hydra-ztree/body :which-key "+ztree")
     "a" '(hydra-bookmark/body :which-key "+bookmark")
     "s" '(hydra-search/body :which-key "+search")))
 
