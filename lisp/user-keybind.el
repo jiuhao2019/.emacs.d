@@ -94,6 +94,17 @@
     ("w"   toggle-show-trailing-whitespace :color blue)
     ("d"   define-word :color blue)
     ("t"   google-translate-at-point nil :color blue))
+  (defhydra hydra-bookmark (:hint nil)
+    "
+   [_t_] bookmark-set          
+   [_j_] bookmark-jump          
+   [_s_] bookmark-save  
+   [_d_] bookmark-delete  
+  "
+    ("t"   bookmark-set nil :color blue)
+    ("j"   bookmark-jump :color blue)
+    ("s"   bookmark-save :color blue)
+    ("d"   bookmark-delete nil :color blue))
   (defhydra hydra-ztree (:hint nil)
     "
                                                                       ╭────────────┐
@@ -144,7 +155,9 @@
     "o" '(hydra-org/body :which-key "+org")
     "w" '(hydra-window/body :which-key "+window")
     "E" '(hydra-emacs/body :which-key "+Emacs")
-    "z" '(hydra-master/body :which-key "+ztree")
+    "z" '(ztree-diff :which-key "ztree-diff")
+    "Z" '(hydra-ztree/body :which-key "+ztree")
+    "a" '(hydra-bookmark/body :which-key "+bookmark")
     "s" '(hydra-search/body :which-key "+search")))
 
 (provide 'user-keybind)
