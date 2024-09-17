@@ -93,7 +93,37 @@
     ("n"   neotree-toggle nil :color blue)
     ("w"   toggle-show-trailing-whitespace :color blue)
     ("d"   define-word :color blue)
-    ("t"   google-translate-at-point nil :color blue)))
+    ("t"   google-translate-at-point nil :color blue))
+  (defhydra hydra-ztree (:hint nil)
+    "
+                                                                      ╭────────────┐
+       Move      File                 Do                              │ Ztree diff │
+    ╭─────────────────────────────────────────────────────────────────┴────────────╯
+      _k_/_p_   [_C_] copy                  [_h_] toggle equal files
+      ^ ^↑^ ^   [_D_] delete                [_x_] toggle subtree
+      ^_TAB_^   [_v_] view                  [_r_] partial rescan
+      ^ ^↓^ ^   [_d_] simple diff           [_R_] full rescan
+      _j_/_n_   [_RET_] diff/expand         [_g_] refresh
+      ^ ^ ^ ^   [_SPC_] simple diff/expand
+    --------------------------------------------------------------------------------
+          "
+    ("<ESC>" nil "quit")
+    ("p" previous-line)
+    ("k" previous-line)
+    ("j" next-line)
+    ("n" next-line)
+    ("C" ztree-diff-copy)
+    ("h" ztree-diff-toggle-show-equal-files)
+    ("D" ztree-diff-delete-file)
+    ("v" ztree-diff-view-file)
+    ("d" ztree-diff-simple-diff-files)
+    ("r" ztree-diff-partial-rescan)
+    ("R" ztree-diff-full-rescan)
+    ("RET" ztree-perform-action)
+    ("SPC" ztree-perform-soft-action)
+    ("TAB" ztree-jump-side)
+    ("g" ztree-refresh-buffer)
+    ("x" ztree-toggle-expand-subtree)))
 ;; 
 (use-package general
   :after evil
@@ -114,6 +144,7 @@
     "o" '(hydra-org/body :which-key "+org")
     "w" '(hydra-window/body :which-key "+window")
     "E" '(hydra-emacs/body :which-key "+Emacs")
+    "z" '(hydra-master/body :which-key "+ztree")
     "s" '(hydra-search/body :which-key "+search")))
 
 (provide 'user-keybind)

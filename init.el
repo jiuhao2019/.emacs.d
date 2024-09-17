@@ -274,6 +274,32 @@
                 '(("cn" . "en") ("en" . "cn"))
                 google-translate-show-phonetic t))
 
+(use-package lua-mode
+  :ensure t
+  :mode ("\\.lua\\'" . lua-mode)
+  :interpreter ("lua" . lua-mode))
+
+(use-package markdown-mode
+  :ensure t
+  :mode (("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode)))
+
+(use-package pretty-mode
+  :ensure t
+  :defer t
+  :init
+  (add-hook 'prog-mode-hook 'turn-on-pretty-mode))
+
+(use-package ztree
+  :config
+  (set-face-attribute 'ztreep-diff-model-add-face  nil :foreground "deep sky blue")
+  (setq ztree-draw-unicode-lines t)
+  (bind-keys :map ztreediff-mode-map
+             ("p" . previous-line)
+             ("k" . previous-line)
+             ("j" . next-line)
+             ("n" . next-line)))
+
 ;;———————————————————————————————————————————————
 ;;put this at end of plugin
 (use-package which-key
