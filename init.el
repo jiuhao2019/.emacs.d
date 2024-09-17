@@ -1,3 +1,57 @@
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory)) ; 设定源码加载路径
+(add-to-list 'load-path (expand-file-name "package/on.el" user-emacs-directory)) ; 设定源码加载路径
+
+(require 'on)
+
+;;========================================strait.el
+(defvar bootstrap-version)
+(let ((bootstrap-file (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 7))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el" 'silent 'inhibit-cookies)
+      (goto-char (point-max)) (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
+(straight-use-package 'use-package) ; 用 straight.el 安装 use-package 声明的插件
+(setq straight-use-package-by-default t) ; 自动安装所有插件, 相当于加入 :straight t
+(setq use-package-compute-statistics t)
+
+;; do not steal focus while doing async compilations
+(setq warning-suppress-types '((comp)))
+;;==========================================end strait.el
+
+(setopt ;; initial-major-mode 'fundamental-mode
+ inhibit-startup-screen t
+ ;; (setq ring-bell-function 'ignore)
+ ring-bell-function (lambda ()
+                      (invert-face 'mode-line)
+                      (run-with-timer 0.05 nil 'invert-face 'mode-line))
+ use-file-dialog nil
+ use-dialog-box nil
+ use-short-answers t
+ read-process-output-max #x10000
+ create-lockfiles nil
+ recenter-redisplay nil
+ next-screen-context-lines 5
+ inhibit-compacting-font-caches t
+ frame-resize-pixelwise t
+ inhibit-quit nil
+ fast-but-imprecise-scrolling t
+ scroll-preserve-screen-position 'always
+ auto-save-list-file-name nil
+ history-length 1000
+ history-delete-duplicates t
+ bidi-display-reordering nil
+ read-buffer-completion-ignore-case t
+ completion-ignore-case t
+ delete-by-moving-to-trash t
+ minibuffer-prompt-properties '(read-only t cursor-intangible t face minibuffer-prompt)
+ redisplay-skip-fontification-on-input t
+ cursor-in-non-selected-windows nil)
+
+(setq-default initial-scratch-message nil)
+
 (setq inhibit-startup-message t)
 (scroll-bar-mode -1)        ; Disable visible scrollbar
 (tool-bar-mode -1)          ; Disable the toolbar
@@ -6,10 +60,6 @@
 (menu-bar-mode -1)          ; Disable the menu bar
 (column-number-mode 1)
 (setq visible-bell t)       ; Set up the visible bell
-
-(set-face-attribute 'default nil :font "Fira Code Nerd Font Mono" :height 178 :weight 'regular)
-(set-face-attribute 'fixed-pitch nil :font "Fira Code Nerd Font Mono" :height 178 :weight 'regular)
-(set-face-attribute 'variable-pitch nil :font "Fira Code Nerd Font Mono" :height 178 :weight 'regular)
 
 ;;put auto-backup-file all to one folder
 (defvar --backup-directory (concat user-emacs-directory "backups"))
@@ -27,37 +77,78 @@
       auto-save-default t               ; auto-save every buffer that visits a file
       auto-save-timeout 30              ; number of seconds idle time before auto-save (default: 30)
       auto-save-interval 300)            ; number of keystrokes between auto-saves (default: 300)
-(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory)) ; 设定源码加载路径
-(setq load-path (cons "~/.emacs.d/lisp" load-path))
-
-(setq url-proxy-services
-      '(("http" . "127.0.0.1:7890")
-	    ("https" . "127.0.0.1:7890")))
 
 ;; 把 Emacs 自动添加的代码放到 custom.el
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
-;;strait.el
-(defvar bootstrap-version)
-(let ((bootstrap-file (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 7))
-      (unless (file-exists-p bootstrap-file)
-        (with-current-buffer
-        (url-retrieve-synchronously "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el" 'silent 'inhibit-cookies)
-        (goto-char (point-max)) (eval-print-last-sexp)))
-      (load bootstrap-file nil 'nomessage))
+;; Language Environment
+(set-language-environment "UTF-8")
+(setq default-input-method nil)
 
-(straight-use-package 'use-package) ; 用 straight.el 安装 use-package 声明的插件
-(setq straight-use-package-by-default t) ; 自动安装所有插件, 相当于加入 :straight t
-(setq use-package-compute-statistics t)
-;; performance
-;; https://emacs-lsp.github.io/lsp-mode/page/performance/
-(setq gc-cons-threshold 100000000
-      read-process-output-max (* 1024 1024))
-;; do not steal focus while doing async compilations
-(setq warning-suppress-types '((comp)))
-;;end strait.el
+;; System Coding
+(prefer-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+;;======================================font
+;; Font setting.
+;; `set-face-attribute' 设置默认字体
+;; 对于中英文字体无法做到等宽和等高，两者只能取其一。相对而言，等宽更重要一些。
+;; 不等高会导致 modeline 跳动，可以在 modeline 中插入中文字体“丨”[gun]
+;; 字体搭配1: Cascadia Next SC
+;; 字体搭配2: Latin Modern Mono 和 Source Han Serif SC
+(set-face-attribute 'default nil :family "Fira Code Nerd Font Mono" :height 178)
 
+;; Unicode
+;; `set-fontset-font' 用于指定某些字符集使用特定的字体
+(set-fontset-font t 'unicode (font-spec :family "Fira Code Nerd Font Mono" :size 14) nil 'prepend)
+
+;; 设置中文字集
+;; `han': 汉字字符集，主要用于简体中文和繁体中文字符
+;; `cjk-misc': CJK（中日韩）字符集中的其他字符，包含了少量的中文、日文、韩文字符
+;; `kana': 日文假名字符集，但在处理与中文相关的文档时可能偶尔用到
+;; `bopomofo': 注音符号字符集，用于台湾地区的汉字注音
+(dolist (charset '(kana han cjk-misc bopomofo))
+    (set-fontset-font (frame-parameter nil 'font) charset
+                      (font-spec :family "Noto Sans CJK SC")))
+
+;; Emoji
+;; According to https://github.com/domtronn/all-the-icons.el
+;; Use 'prepend for the NS and Mac ports or Emacs will crash.
+(set-fontset-font t 'emoji (font-spec :family "Noto Color Emoji" :size 14) nil 'prepend)
+(set-fontset-font t 'symbol (font-spec :family "Fira Code Nerd Font Mono" :size 14) nil 'prepend)
+
+;; 除以上方法，也可以使用 `variable-pitch-mode'
+;; (set-face-attribute 'variable-pitch nil :family "TsangerJinKai02" :height 160)
+;; (set-face-attribute 'fixed-pitch nil :family "SF Mono" :height 160)
+;; (add-hook 'text-mode-hook #'variable-pitch-mode)
+;;======================================end font
+
+;;===================================proxy
+(setq url-proxy-services
+      '(("http" . "127.0.0.1:7890")
+	("https" . "127.0.0.1:7890")))
+;;===================================end proxy
+
+;;===================================================gcmh
+;; Better emacs garbage collect behavior
+(use-package gcmh
+  :hook (on-first-buffer . gcmh-mode)
+    :custom
+      (gc-cons-percentage 0.1)
+        (gcmh-verbose nil)
+          (gcmh-idle-delay 'auto)
+            (gcmh-auto-idle-delay-factor 10)
+              (gcmh-high-cons-threshold #x1000000))
+
+              (advice-add 'after-focus-change-function :after 'garbage-collect)
+              ;;===================================================end gcmh
+(defun switch-to-message ()
+  "Quick switch to `*Message*' buffer."
+  (interactive)
+  (switch-to-buffer "*Messages*"))
+(global-set-key (kbd "M-g m") #'switch-to-message)
+(global-set-key (kbd "M-g s") #'scratch-buffer)
 ;;====================================================================================
 (require 'user-theme)
 (setq evil-want-C-u-scroll t)
@@ -69,7 +160,9 @@
 (require 'user-lsp)
 (require 'user-lisp-format)
 (require 'user-valign)
-
+(require 'user-dashboard)
+(require 'user-rg)
+(require 'user-pdf-tool)
 (use-package amx ;;auto show recent commands
   :init (amx-mode))
 
@@ -89,13 +182,6 @@
 (use-package highlight-symbol
   :init (highlight-symbol-mode))
 
-(use-package which-key
-  :defer 0
-  :diminish which-key-mode
-  :config (setq which-key-idle-delay 0))
-(which-key-mode)
-
-(require 'user-keybind)
 
 (use-package dogears ;;记录光标位置列表
   :hook (after-init . dogears-mode)
@@ -140,6 +226,33 @@
   :config
   (setq epa-pinentry-mode 'loopback)
   (pinentry-start))
-;;====================================================================================
+
+(use-package fzf
+  :config
+  (setq fzf/args "-x --color bw --print-query --margin=1,0 --no-hscroll"
+        fzf/executable "fzf"
+        fzf/git-grep-args "-i --line-number %s"
+        ;; command used for `fzf-grep-*` functions
+        ;; example usage for ripgrep:
+	fzf/grep-command "rg --no-heading -nH"
+        ;;fzf/grep-command "grep -nrH"
+        ;; If nil, the fzf buffer will appear at the top of the window
+        fzf/position-bottom t
+        fzf/window-height 15))
+
+(use-package nerd-icons-completion
+  :hook (minibuffer-setup . nerd-icons-completion-mode))
+
+;;=======================================keybind,put this at end of plugin
+(use-package which-key
+  :defer 0
+  :diminish which-key-mode
+  :hook (on-first-input . which-key-mode)
+  :config (setq which-key-idle-delay 0))
+(which-key-mode)
+
+(require 'user-keybind)
+;;================================================end keybind
+
 ;; 这段代码放在最后, 加载 Emacs 自动设置的变量
 (if (file-exists-p custom-file) (load-file custom-file))
