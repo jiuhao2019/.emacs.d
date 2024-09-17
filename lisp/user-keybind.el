@@ -49,7 +49,7 @@
     ("l"   my/search-bilibili nil :color blue)
     ("w"   my/search-wikipedia_en nil :color blue)
     ("a"   my/search-annas-archvie nil :color blue)
-    ("r"   fzf-rg-in-dir nil :color blue)))
+    ("r"   fzf-grep-in-dir nil :color blue)))
 ;;
 (use-package general
   :after evil
@@ -66,7 +66,6 @@
     "k" '(highlight-symbol-at-point :which-key "highlight-toggle")
     "K" '(highlight-symbol-remove-all :which-key "clr-highlight")
     "f" '(fzf-find-file :which-key "find-file")
-    ;;"s" '(fzf-grep :which-key "rg")))
     "s" '(hydra-search/body :which-key "+search")))
 
 (provide 'user-keybind)
