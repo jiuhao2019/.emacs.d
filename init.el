@@ -243,6 +243,7 @@
               (ggtags-mode 1))))
 
 (use-package imenu)
+(add-hook 'prog-mode-hook (lambda () (imenu-add-to-menubar "Imenu")))
 
 ;;Whenever the window scrolls a light will shine on top of your cursor so you know where it is.
 (use-package beacon

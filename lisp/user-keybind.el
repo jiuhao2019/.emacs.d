@@ -155,6 +155,7 @@
     "f" '(fzf-find-file :which-key)
     "F" '(format-all-region-or-buffer :which-key)
     "c" '(comment-line :which-key )
+    "i" '(lsp-ui-imenu :which-key )
     "b" '(hydra-buffer/body :which-key "+buffer")
     "m" '(hydra-misc/body :which-key "+misc")
     "o" '(hydra-org/body :which-key "+org")
