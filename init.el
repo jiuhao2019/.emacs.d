@@ -1,6 +1,6 @@
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory)) ; 设定源码加载路径
-(add-to-list 'load-path (expand-file-name "package/on.el" user-emacs-directory)) ; 设定源码加载路径
-(add-to-list 'load-path (expand-file-name "package/ialign" user-emacs-directory)) ; 设定源码加载路径
+(add-to-list 'load-path (expand-file-name "package" user-emacs-directory)) ; 设定源码加载路径
+(add-to-list 'load-path (expand-file-name "package" user-emacs-directory)) ; 设定源码加载路径
 
 ;;———————————————————————————————————————————————strait.el
 (defvar bootstrap-version)
