@@ -51,7 +51,7 @@
   (defhydra hydra-org (:hint nil)
     "
    [_a_] org-agenda          [_c_] org-capture               [_d_] mrds/roam-switch-directory 
-   [_n_] org-roam-node-find  [_r_] org-refile                ^^                            
+   [_n_] org-roam-node-find  [_r_] org-refile                [_o_] org-html-export-to-html                           
    [_s_] org-roam-db-sync    [_i_] org-id-get-create         ^^                            
    [_u_] org-roam-ui-open    [_t_] org-toggle-inline-images  ^^                            
   "
@@ -63,6 +63,7 @@
     ("r"   org-refile nil :color blue)
     ("i"   org-id-get-create nil :color blue)
     ("d"   mrds/roam-switch-directory nil :color blue)
+    ("o"   org-html-export-to-html nil :color blue)
     ("t"   org-toggle-inline-images nil :color blue))
   ;;  org-mode相关
   (defhydra hydra-emacs (:hint nil)
