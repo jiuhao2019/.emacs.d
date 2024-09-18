@@ -46,7 +46,7 @@
   (setq org-agenda-start-with-log-mode t)
   (setq org-log-done 'time)
   (setq org-log-into-drawer t)
-  (setq org-agenda-files (directory-files-recursively "~/file_on_office_archlinux/schedule-2024" "\\.org$"));;递归搜寻
+  (setq org-agenda-files (directory-files-recursively "~/user-note" "\\.org.gpg$"));;递归搜寻
   (setq org-html-validation-link nil)
   ;;=========================begin: org-habit
   (require 'org-habit)
@@ -58,67 +58,22 @@
   (setq org-habit-show-all-today t)
   ;;=========================end
   (setq org-todo-keywords
-	'((sequence "BEGIN(t!)" "DOING(n!)" "HOLDING(h!)" "|" "DONE(d@/!)")
-	  (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "|" "COMPLETED(c)" "CANC(k@)")))
+	'((sequence "TODO(t!)" "|" "DONE(d@/!)")))
   (setq org-tag-alist
 	'((:startgroup)
 					; Put mutually exclusive tags here
 	  (:endgroup)
-	  ("wk" . ?i)))
+	  ("tag" . ?t)))
   (setq org-capture-templates nil)
-  (add-to-list 'org-capture-templates '("t" "Tasks"))
   (add-to-list 'org-capture-templates
-               '("tr" "Book Reading Task" entry
-                 (file+olp "~/file_on_office_archlinux/capture_2024/schedule.org.gpg" "Reading" "Book")
-                 "* BEGIN %^{书名}\n%u\n%a\n" :clock-in t :clock-resume t))
+               '("t" "Task" entry (file "~/user-note/capture_task.org.gpg")
+                 "* TODO %^{任务名}\n%u\n" :clock-in t :clock-resume t ))
   (add-to-list 'org-capture-templates
-               '("tw" "Work Task" entry
-                 (file+headline "~/file_on_office_archlinux/capture_2024/schedule.org.gpg" "work")
-                 "* BEGIN %^{任务名}\n%u\n%a\n" :clock-in t :clock-resume t))
-  (add-to-list 'org-capture-templates
-               '("j" "Journal" entry (file "~/file_on_office_archlinux/capture_2024/journal.org.gpg")
-		 "* %U - %^{heading}\n  %?"))
-  (add-to-list 'org-capture-templates
-               '("i" "Inbox" entry (file "~/file_on_office_archlinux/capture_2024/inbox.org.gpg")
-		 "* %U - %^{heading} %^g\n %?\n"))
-  (add-to-list 'org-capture-templates
-               '("n" "Notes" entry (file "~/file_on_office_archlinux/capture_2024/note.org.gpg")
+               '("n" "Note" entry (file "~/user-note/capture_note.org.gpg")
 		 "* %^{heading} %t %^g\n  %?\n"))
-  (add-to-list 'org-capture-templates
-               '("b" "Billing" plain (file+function "~/file_on_office_archlinux/capture_2024/billing.org.gpg" find-month-tree)
-		 " | %U | %^{类别} | %^{描述} | %^{金额} |" :kill-buffer t))
-  (add-to-list 'org-capture-templates '("c" "contacts"))
-  (add-to-list 'org-capture-templates
-               '("c1" "Contacts1" table-line (file "~/file_on_office_archlinux/capture_2024/contacts.org.gpg")
-		 "| %U | %^{姓名} | %^{手机号}| %^{邮箱} |"))
-  (add-to-list 'org-capture-templates
-               '("c2" "Contacts2" entry (file "~/file_on_office_archlinux/capture_2024/contacts.org.gpg")
-		 "* %^{姓名} %^{手机号}p %^{邮箱}p %^{住址}p\n\n  %?" :empty-lines 1))
-  (add-to-list 'org-capture-templates '("p" "passwd"))
-  (add-to-list 'org-capture-templates
-               '("p1" "Passwords@gpg" entry (file "~/file_on_office_archlinux/capture_2024/passwd.org.gpg")
-		 "* %U - %^{title} %^G\n\n  - 用户名: %^{用户名}\n  - 密码: %(get-or-create-password)"
-		 :empty-lines 1 :kill-buffer t))
-  (add-to-list 'org-capture-templates
-               '("p2" "Passwords@cpt" entry (file "~/file_on_office_archlinux/capture_2024/passwd.org.cpt")
-		 "* %U - %^{title} %^G\n\n  - 用户名: %^{用户名}\n  - 密码: %(get-or-create-password)"
-		 :empty-lines 1 :kill-buffer t))
   (setq org-refile-targets
-	'(("~/note_office/altium_designer.org" :maxlevel . 1)
-	  ("~/note_office/c_language.org" :maxlevel . 1)
-	  ("~/note_office/emacs.org" :maxlevel . 1)
-	  ("~/note_office/git.org" :maxlevel . 1)
-	  ("~/note_office/gnu.org" :maxlevel . 1)
-	  ("~/note_office/libreoffice.org" :maxlevel . 1)
-	  ("~/note_office/linux.org" :maxlevel . 1)
-	  ("~/note_office/neovim.org" :maxlevel . 1)
-	  ("~/note_office/org-mode.org" :maxlevel . 1)
-	  ("~/note_office/proxy.org" :maxlevel . 1)
-	  ("~/note_office/samba.org" :maxlevel . 1)
-	  ("~/note_office/spi_bus.org" :maxlevel . 1)
-	  ("~/note_office/vscode.org" :maxlevel . 1)
-	  ("~/note_office/windows.org" :maxlevel . 1)
-	  ("~/note_office/三电极电化学传感器.org" :maxlevel . 1)))
+	'(("~/user-note/note.org.gpg" :maxlevel . 1)
+	  ("~/user-note/schedule.org.gpg" :maxlevel . 1)))
   ;; Save Org buffers after refiling!
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
   (efs/org-font-setup))
@@ -126,7 +81,7 @@
 (use-package org-bullets
   :hook (org-mode . org-bullets-mode)
   :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "▶" "◆" "◑" "◐" "◎" "○" "◊" "◇" "▶" "▷" "◆" "◇" "⊙" "⊚")))
+  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●" "○" "●")))
 
 ;; Automatically tangle our Emacs.org config file when we save it
 (defun efs/org-babel-tangle-config ()
@@ -139,22 +94,22 @@
 (add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'efs/org-babel-tangle-config)))
 (add-hook 'org-mode-hook  (lambda ()
                             (setq prettify-symbols-alist
-				  '(("lambda" . ?λ)
-				    (":PROPERTIES:" . ?)
-				    (":ID:" . ?)
-				    (":END:" . ?)
-				    ("#+TITLE:" . ?)
-				    ("#+title:" . ?)
-				    ("#+AUTHOR:" . ?)
-				    ("#+BEGIN_QUOTE" . ?)
-				    ("#+END_QUOTE" . ?)
-				    ("#+RESULTS:" . ?)
-				    ("[ ]" . ?)
-				    ("[-]" . ?)
-				    ("[X]" . ?)
-				    ("[#A]" . ?🅐)
-				    ("[#B]" . ?🅑)
-				    ("[#C]" . ?🅒)))
+				              '(("lambda" . ?λ)
+				                (":PROPERTIES:" . ?)
+				                (":ID:" . ?)
+				                (":END:" . ?)
+				                ("#+TITLE:" . ?)
+				                ("#+title:" . ?)
+				                ("#+AUTHOR:" . ?)
+				                ("#+BEGIN_QUOTE" . ?)
+				                ("#+END_QUOTE" . ?)
+				                ("#+RESULTS:" . ?)
+				                ("[ ]" . ?)
+				                ("[-]" . ?)
+				                ("[X]" . ?)
+				                ("[#A]" . ?🅐)
+				                ("[#B]" . ?🅑)
+				                ("[#C]" . ?🅒)))
                             (prettify-symbols-mode)))
 (setq epa-file-cache-passphrase-for-symmetric-encryption t);;对称加密时缓存密码，不用每次打开和保存都输入
 ;;关闭emacs后关闭后台gpg-agent，清除缓存的密码
@@ -163,8 +118,8 @@
 ;;=============================begin-> org-roam
 (use-package org-roam
   :config
-  (setq org-roam-directory (file-truename "~/note_office"))
-  (setq org-roam-db-location (concat "~/org-roam-db/org-roam-" system-name ".db"))
+  (setq org-roam-directory (file-truename "~/user-note"))
+  (setq org-roam-db-location (concat "~/user-note/org-roam-db/org-roam-" system-name ".db"))
   (setq find-file-visit-truename t)
   (org-roam-db-autosync-mode)
   (setq org-roam-node-display-template
@@ -184,8 +139,8 @@
   :straight (:host github :repo "Imymirror/mrds-mode")
   :bind (("C-c n s" . mrds/roam-switch-directory))
   :config
-  (or mrds--roam-root-directory (setq mrds--roam-root-directory (file-truename "~/note_office"))) ;;same as org-roam-directory
-  (setq mrds--db-cache-path (file-truename "~/org-roam-db")) ;;all sub db here
+  (or mrds--roam-root-directory (setq mrds--roam-root-directory (file-truename "~/user-note"))) ;;same as org-roam-directory
+  (setq mrds--db-cache-path (file-truename "~/user-note/org-roam-db")) ;;all sub db here
   (org-roam-db-autosync-mode 1)) ;; need to sync org roam db first
 ;;===============================end-> org-roam
 

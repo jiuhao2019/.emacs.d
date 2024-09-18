@@ -97,7 +97,7 @@
 (set-keyboard-coding-system 'utf-8)
 ;;———————————————————————————————————————————————font
 ;; `set-face-attribute' 设置默认字体
-(set-face-attribute 'default nil :family "Fira Code Nerd Font Mono" :height 111)
+(set-face-attribute 'default nil :family "Fira Code Nerd Font Mono" :height 175)
 
 ;; Unicode
 ;; `set-fontset-font' 用于指定某些字符集使用特定的字体
@@ -212,6 +212,7 @@
 (org-crypt-use-before-save-magic)
 (setq org-tags-exclude-from-inheritance (quote("crypt")))
 (setq org-crypt-key nil);;密钥加密(非对称加密)或密码加密(对称加密)
+(setq epg-gpg-program "gpg2")
 
 ;;让用户输入的密码不会因内存不足而换出到磁盘
 (use-package pinentry
