@@ -46,7 +46,7 @@
   (setq org-agenda-start-with-log-mode t)
   (setq org-log-done 'time)
   (setq org-log-into-drawer t)
-  (setq org-agenda-files (directory-files-recursively "~/file_on_office_archlinux/schedule_2024" "\\.org.gpg$"));;递归搜寻
+  (setq org-agenda-files (directory-files-recursively "~/file_on_office_archlinux/schedule-2024" "\\.org.gpg$"));;递归搜寻
   (setq org-html-validation-link nil)
   ;;=========================begin: org-habit
   (require 'org-habit)
@@ -163,7 +163,7 @@
 ;;=============================begin-> org-roam
 (use-package org-roam
   :config
-  (setq org-roam-directory (file-truename "~/user-note"))
+  (setq org-roam-directory (file-truename "~/note_office"))
   (setq org-roam-db-location (concat "~/org-roam-db/org-roam-" system-name ".db"))
   (setq find-file-visit-truename t)
   (org-roam-db-autosync-mode)
@@ -184,7 +184,7 @@
   :straight (:host github :repo "Imymirror/mrds-mode")
   :bind (("C-c n s" . mrds/roam-switch-directory))
   :config
-  (or mrds--roam-root-directory (setq mrds--roam-root-directory (file-truename "~/user-note"))) ;;same as org-roam-directory
+  (or mrds--roam-root-directory (setq mrds--roam-root-directory (file-truename "~/note_office"))) ;;same as org-roam-directory
   (setq mrds--db-cache-path (file-truename "~/org-roam-db")) ;;all sub db here
   (org-roam-db-autosync-mode 1)) ;; need to sync org roam db first
 ;;===============================end-> org-roam

@@ -1,3 +1,9 @@
+;;———————————————————————————————————————————————proxy
+(setq url-proxy-services
+      '(("http" . "127.0.0.1:7890")
+        ("https" . "127.0.0.1:7890")))
+        ;;———————————————————————————————————————————————end proxy
+
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory)) ; 设定源码加载路径
 (add-to-list 'load-path (expand-file-name "package" user-emacs-directory)) ; 设定源码加载路径
 (add-to-list 'load-path (expand-file-name "package" user-emacs-directory)) ; 设定源码加载路径
@@ -96,7 +102,7 @@
 ;; 不等高会导致 modeline 跳动，可以在 modeline 中插入中文字体“丨”[gun]
 ;; 字体搭配1: Cascadia Next SC
 ;; 字体搭配2: Latin Modern Mono 和 Source Han Serif SC
-(set-face-attribute 'default nil :family "Fira Code Nerd Font Mono" :height 178)
+(set-face-attribute 'default nil :family "Fira Code Nerd Font Mono" :height 108)
 
 ;; Unicode
 ;; `set-fontset-font' 用于指定某些字符集使用特定的字体
@@ -123,13 +129,8 @@
 ;; (add-hook 'text-mode-hook #'variable-pitch-mode)
 ;;———————————————————————————————————————————————end font
 
-;;———————————————————————————————————————————————proxy
-(setq url-proxy-services
-      '(("http" . "127.0.0.1:7890")
-	("https" . "127.0.0.1:7890")))
-;;———————————————————————————————————————————————end proxy
 
-;;———————————————————————————————————————————————plugin at folder package
+;;———————————————————————————————————————————————plugin
 (require 'on);;控制插件什么时候加载
 
 (require 'ialign)
@@ -153,7 +154,7 @@
   (switch-to-buffer "*Messages*"))
 (global-set-key (kbd "M-g m") #'switch-to-message)
 (global-set-key (kbd "M-g s") #'scratch-buffer)
-;;———————————————————————————————————————————————plugin
+;;
 (require 'user-theme)
 (setq evil-want-C-u-scroll t)
 (require 'user-evil)
