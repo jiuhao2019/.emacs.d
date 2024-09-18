@@ -153,6 +153,7 @@
     "k" '(highlight-symbol-at-point :which-key)
     "K" '(highlight-symbol-remove-all :which-key)
     "f" '(fzf-find-file :which-key)
+    "F" '(format-all-region-or-buffer :which-key)
     "c" '(comment-line :which-key )
     "b" '(hydra-buffer/body :which-key "+buffer")
     "m" '(hydra-misc/body :which-key "+misc")
