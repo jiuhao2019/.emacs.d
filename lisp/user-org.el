@@ -46,7 +46,7 @@
   (setq org-agenda-start-with-log-mode t)
   (setq org-log-done 'time)
   (setq org-log-into-drawer t)
-  (setq org-agenda-files (directory-files-recursively "~/file_on_office_archlinux/schedule-2024" "\\.org.gpg$"));;递归搜寻
+  (setq org-agenda-files (directory-files-recursively "~/file_on_office_archlinux/schedule-2024" "\\.org$"));;递归搜寻
   (setq org-html-validation-link nil)
   ;;=========================begin: org-habit
   (require 'org-habit)

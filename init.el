@@ -96,13 +96,8 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 ;;———————————————————————————————————————————————font
-;; Font setting.
 ;; `set-face-attribute' 设置默认字体
-;; 对于中英文字体无法做到等宽和等高，两者只能取其一。相对而言，等宽更重要一些。
-;; 不等高会导致 modeline 跳动，可以在 modeline 中插入中文字体“丨”[gun]
-;; 字体搭配1: Cascadia Next SC
-;; 字体搭配2: Latin Modern Mono 和 Source Han Serif SC
-(set-face-attribute 'default nil :family "Fira Code Nerd Font Mono" :height 108)
+(set-face-attribute 'default nil :family "Fira Code Nerd Font Mono" :height 113)
 
 ;; Unicode
 ;; `set-fontset-font' 用于指定某些字符集使用特定的字体
@@ -114,21 +109,14 @@
 ;; `kana': 日文假名字符集，但在处理与中文相关的文档时可能偶尔用到
 ;; `bopomofo': 注音符号字符集，用于台湾地区的汉字注音
 (dolist (charset '(kana han cjk-misc bopomofo))
-    (set-fontset-font (frame-parameter nil 'font) charset
-                      (font-spec :family "Noto Sans CJK SC")))
+  (set-fontset-font (frame-parameter nil 'font) charset
+                    (font-spec :family "Noto Sans CJK SC")))
 
 ;; Emoji
 ;; According to https://github.com/domtronn/all-the-icons.el
-;; Use 'prepend for the NS and Mac ports or Emacs will crash.
 (set-fontset-font t 'emoji (font-spec :family "Noto Color Emoji" :size 14) nil 'prepend)
 (set-fontset-font t 'symbol (font-spec :family "Fira Code Nerd Font Mono" :size 14) nil 'prepend)
-
-;; 除以上方法，也可以使用 `variable-pitch-mode'
-;; (set-face-attribute 'variable-pitch nil :family "TsangerJinKai02" :height 160)
-;; (set-face-attribute 'fixed-pitch nil :family "SF Mono" :height 160)
-;; (add-hook 'text-mode-hook #'variable-pitch-mode)
 ;;———————————————————————————————————————————————end font
-
 
 ;;———————————————————————————————————————————————plugin
 (require 'on);;控制插件什么时候加载
