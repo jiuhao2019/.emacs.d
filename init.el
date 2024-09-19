@@ -97,7 +97,7 @@
 (set-keyboard-coding-system 'utf-8)
 ;;———————————————————————————————————————————————font
 ;; `set-face-attribute' 设置默认字体
-(set-face-attribute 'default nil :family "Fira Code Nerd Font Mono" :height 175)
+(set-face-attribute 'default nil :family "Fira Code Nerd Font Mono" :height 115)
 
 ;; Unicode
 ;; `set-fontset-font' 用于指定某些字符集使用特定的字体
