@@ -39,6 +39,7 @@
   :config
   (setq org-enforce-todo-dependencies t)
   (setq org-startup-folded 'content);;默认折叠所有标题
+  ;; (setq org-startup-folded 'show2levels)
   (setq org-cycle-include-plain-lists 'integrate) ;;将列表视为heading,也可以折叠
   (setq org-image-actual-width nil)
   (setq org-export-preserve-breaks t);;导出时保留原样换行
@@ -63,7 +64,7 @@
 	'((:startgroup)
 					; Put mutually exclusive tags here
 	  (:endgroup)
-	  ("tag" . ?t)))
+	  ("office" . ?o)))
   (setq org-capture-templates nil)
   (add-to-list 'org-capture-templates
                '("t" "Task" entry (file "~/user-note/capture_task.org.gpg")
