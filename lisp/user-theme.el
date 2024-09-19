@@ -1,7 +1,8 @@
 (use-package doom-themes
- :init (load-theme 'doom-moonlight t))
+  :init (load-theme 'doom-moonlight t))
 
-(use-package all-the-icons)
+(use-package all-the-icons
+  :if (display-graphic-p))
 (use-package all-the-icons-ivy-rich)
 
 (use-package doom-modeline

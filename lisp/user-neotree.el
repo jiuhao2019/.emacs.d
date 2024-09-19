@@ -1,5 +1,5 @@
 (use-package neotree)
-(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+(setq neo-theme (if (display-graphic-p) 'icons))
 (provide 'user-neotree)
 
 

@@ -52,7 +52,7 @@
     "
    [_a_] org-agenda          [_c_] org-capture               [_d_] mrds/roam-switch-directory 
    [_n_] org-roam-node-find  [_r_] org-refile                [_o_] org-html-export-to-html                           
-   [_s_] org-roam-db-sync    [_i_] org-id-get-create         ^^                            
+   [_s_] org-roam-db-sync    [_i_] org-id-get-create         [_g_] org-set-tags-command                            
    [_u_] org-roam-ui-open    [_t_] org-toggle-inline-images  ^^                            
   "
     ("a"   org-agenda nil :color blue)
@@ -64,6 +64,7 @@
     ("i"   org-id-get-create nil :color blue)
     ("d"   mrds/roam-switch-directory nil :color blue)
     ("o"   org-html-export-to-html nil :color blue)
+    ("g"   org-set-tags-command nil :color blue)
     ("t"   org-toggle-inline-images nil :color blue))
   ;;  org-mode相关
   (defhydra hydra-emacs (:hint nil)
@@ -86,7 +87,7 @@
     ("c"   user-diff-buffer-with-file nil :color blue))
   (defhydra hydra-misc (:hint nil)
     "
-   [_n_] neotree-toggle          
+   [_n_] neotree-toggle                     [_s_] scratch-buffer  
    [_w_] toggle-show-trailing-whitespace          
    [_d_] define-word  
    [_t_] google-translate-at-point  
@@ -94,6 +95,7 @@
     ("n"   neotree-toggle nil :color blue)
     ("w"   toggle-show-trailing-whitespace :color blue)
     ("d"   define-word :color blue)
+    ("s"   scratch-buffer :color blue)
     ("t"   google-translate-at-point nil :color blue))
   (defhydra hydra-bookmark (:hint nil)
     "
@@ -156,13 +158,14 @@
     "F" '(format-all-region-or-buffer :which-key)
     "c" '(comment-line :which-key )
     "i" '(lsp-ui-imenu :which-key )
+    "I" '(ialign :which-key )
     "b" '(hydra-buffer/body :which-key "+buffer")
-    "m" '(hydra-misc/body :which-key "+misc")
+    "x" '(hydra-misc/body :which-key "+misc")
     "o" '(hydra-org/body :which-key "+org")
     "w" '(hydra-window/body :which-key "+window")
     "E" '(hydra-emacs/body :which-key "+Emacs")
     "z" '(ztree-diff :which-key "ztree-diff")
-    "a" '(hydra-bookmark/body :which-key "+bookmark")
+    "m" '(hydra-bookmark/body :which-key "+bookmark")
     "s" '(hydra-search/body :which-key "+search")))
 
 (provide 'user-keybind)

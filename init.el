@@ -1,37 +1,9 @@
-;;———————————————————————————————————————————————proxy
-(setq url-proxy-services
-      '(("http" . "127.0.0.1:7890")
-        ("https" . "127.0.0.1:7890")))
-        ;;———————————————————————————————————————————————end proxy
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory)) ; 设定源码加载路径
 (add-to-list 'load-path (expand-file-name "package" user-emacs-directory)) ; 设定源码加载路径
-(add-to-list 'load-path (expand-file-name "package" user-emacs-directory)) ; 设定源码加载路径
 
-;;———————————————————————————————————————————————strait.el
-(defvar bootstrap-version)
-(let ((bootstrap-file (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 7))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el" 'silent 'inhibit-cookies)
-      (goto-char (point-max)) (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
-
-(straight-use-package 'use-package) ; 用 straight.el 安装 use-package 声明的插件
-(setq straight-use-package-by-default t) ; 自动安装所有插件, 相当于加入 :straight t
-(setq use-package-compute-statistics t)
-
-;; do not steal focus while doing async compilations
-(setq warning-suppress-types '((comp)))
-;;———————————————————————————————————————————————end strait.el
-
-(setopt ;; initial-major-mode 'fundamental-mode
+(setopt
  inhibit-startup-screen t
- ;; (setq ring-bell-function 'ignore)
- ring-bell-function (lambda ()
-                      (invert-face 'mode-line)
-                      (run-with-timer 0.05 nil 'invert-face 'mode-line))
  use-file-dialog nil
  use-dialog-box nil
  use-short-answers t
@@ -56,6 +28,15 @@
  cursor-in-non-selected-windows nil)
 
 (setq-default initial-scratch-message nil)
+(setq-default bidi-display-reordering nil)
+;;———————————————————————————————————————————————卡顿问题解决
+;;解决大文件卡顿的问题
+(setq-default bidi-display-reordering nil)
+(setq bidi-inhibit-bpa t
+      long-line-threshold 1000
+      large-hscroll-threshold 1000
+      syntax-wholeline-max 1000)
+;;———————————————————————————————————————————————end卡顿问题解决
 
 (setq inhibit-startup-message t)
 (scroll-bar-mode -1)        ; Disable visible scrollbar
@@ -63,7 +44,7 @@
 (tooltip-mode -1)           ; Disable tooltips
 (set-fringe-mode 10)        ; Give some breathing room
 (menu-bar-mode -1)          ; Disable the menu bar
-(column-number-mode 1)
+(column-number-mode -1)
 (setq visible-bell t)       ; Set up the visible bell
 
 ;;put auto-backup-file all to one folder
@@ -83,7 +64,7 @@
       auto-save-timeout 30              ; number of seconds idle time before auto-save (default: 30)
       auto-save-interval 300)            ; number of keystrokes between auto-saves (default: 300)
 
-;; 把 Emacs 自动添加的代码放到 custom.el
+;; 把Emacs自动添加的代码放到 custom.el
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
 ;; Language Environment
@@ -96,14 +77,14 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 ;;———————————————————————————————————————————————font
-;; `set-face-attribute' 设置默认字体
-(set-face-attribute 'default nil :family "Fira Code Nerd Font Mono" :height 115)
+;;默认字体
+(set-face-attribute 'default nil :family "Fira Code Nerd Font Mono" :height 175)
 
 ;; Unicode
 ;; `set-fontset-font' 用于指定某些字符集使用特定的字体
 (set-fontset-font t 'unicode (font-spec :family "Fira Code Nerd Font Mono" :size 14) nil 'prepend)
 
-;; 设置中文字集
+;; 中文字集
 ;; `han': 汉字字符集，主要用于简体中文和繁体中文字符
 ;; `cjk-misc': CJK（中日韩）字符集中的其他字符，包含了少量的中文、日文、韩文字符
 ;; `kana': 日文假名字符集，但在处理与中文相关的文档时可能偶尔用到
@@ -117,31 +98,34 @@
 (set-fontset-font t 'emoji (font-spec :family "Noto Color Emoji" :size 14) nil 'prepend)
 (set-fontset-font t 'symbol (font-spec :family "Fira Code Nerd Font Mono" :size 14) nil 'prepend)
 ;;———————————————————————————————————————————————end font
+;;———————————————————————————————————————————————proxy
+(setq url-proxy-services
+      '(("http" . "127.0.0.1:7890")
+        ("https" . "127.0.0.1:7890")))
+;;———————————————————————————————————————————————end proxy
+;;———————————————————————————————————————————————straight
+(defvar bootstrap-version)
+(let ((bootstrap-file (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 7))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el" 'silent 'inhibit-cookies)
+      (goto-char (point-max)) (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
+(straight-use-package 'use-package) ; 用 straight.el 安装 use-package
+(setq straight-use-package-by-default t) ;;自动安装所有插件, 相当于加入 :straight t
+(setq use-package-compute-statistics t)
+
+(setq warning-suppress-types '((comp)))
+;;———————————————————————————————————————————————end straight
 
 ;;———————————————————————————————————————————————plugin
 (require 'on);;控制插件什么时候加载
 
 (require 'ialign)
 (global-set-key (kbd "C-x l") #'ialign)
-;;———————————————————————————————————————————————gcmh
-;; Better emacs garbage collect behavior
-(use-package gcmh
-  :hook (on-first-buffer . gcmh-mode)
-  :custom
-  (gc-cons-percentage 0.1)
-  (gcmh-verbose nil)
-  (gcmh-idle-delay 'auto)
-  (gcmh-auto-idle-delay-factor 10)
-  (gcmh-high-cons-threshold #x1000000))
 
-(advice-add 'after-focus-change-function :after 'garbage-collect)
-;;———————————————————————————————————————————————end gcmh
-(defun switch-to-message ()
-  "Quick switch to `*Message*' buffer."
-  (interactive)
-  (switch-to-buffer "*Messages*"))
-(global-set-key (kbd "M-g m") #'switch-to-message)
-(global-set-key (kbd "M-g s") #'scratch-buffer)
 ;;
 (require 'user-theme)
 (setq evil-want-C-u-scroll t)
@@ -184,10 +168,6 @@
               ("M-g M-s" . dogears-sidebar))
   :config (setq dogears-idle 1 dogears-limit 200 dogears-position-delta 20)
   (setq dogears-functions '(find-file recenter-top-bottom other-window switch-to-buffer aw-select toggle-window-split windmove-do-window-select pager-page-down pager-page-up tab-bar-select-tab pop-to-mark-command pop-global-mark goto-last-change xref-go-back xref-find-definitions xref-find-references)))
-
-(use-package vertico ;; 竖式展开小缓冲区
-  :custom (verticle-cycle t)
-  :config (vertico-mode))
 
 (use-package marginalia ;; 更多信息
   :config (marginalia-mode))
@@ -244,15 +224,6 @@
 
 (use-package imenu)
 
-;;Whenever the window scrolls a light will shine on top of your cursor so you know where it is.
-(use-package beacon
-  :ensure t
-  :config
-  (beacon-mode 1)
-  (setq beacon-push-mark 35
-        beacon-blink-when-focused t
-        beacon-color "deep sky blue"))
-
 (use-package define-word
   :ensure t)
 
@@ -274,21 +245,13 @@
   :mode (("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode)))
 
-(use-package pretty-mode
-  :ensure t
-  :defer t
-  :init
-  (add-hook 'prog-mode-hook 'turn-on-pretty-mode))
-
 (use-package ztree
   :config
   (set-face-attribute 'ztreep-diff-model-add-face  nil :foreground "deep sky blue")
   (setq ztree-draw-unicode-lines t)
   (bind-keys :map ztreediff-mode-map
-             ("p" . previous-line)
              ("k" . previous-line)
-             ("j" . next-line)
-             ("n" . next-line)))
+             ("j" . next-line)))
 
 (use-package format-all
   :commands format-all-mode
