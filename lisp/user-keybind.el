@@ -148,7 +148,7 @@
     :prefix "SPC")
   (user/leader-keys
     "h" '(avy-goto-char-timer :which-key "hop")
-    "u" '(undo-tree-visualize :which-key)
+    "U" '(undo-tree-visualize :which-key)
     "r" '(fzf-recentf :which-key)
     "k" '(highlight-symbol-at-point :which-key)
     "K" '(highlight-symbol-remove-all :which-key)
