@@ -78,7 +78,7 @@
 (set-keyboard-coding-system 'utf-8)
 ;;———————————————————————————————————————————————font
 ;;默认字体
-(set-face-attribute 'default nil :family "Fira Code Nerd Font Mono" :height 155)
+(set-face-attribute 'default nil :family "Fira Code Nerd Font Mono" :height 115)
 
 ;; Unicode
 ;; `set-fontset-font' 用于指定某些字符集使用特定的字体
@@ -137,7 +137,6 @@
 (require 'user-lsp)
 (require 'user-lisp-format)
 (require 'user-valign)
-(require 'user-dashboard)
 (require 'user-rg)
 (require 'user-pdf-tool)
 (use-package amx ;;auto show recent commands
