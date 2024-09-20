@@ -1,4 +1,3 @@
-
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory)) ; 设定源码加载路径
 (add-to-list 'load-path (expand-file-name "package" user-emacs-directory)) ; 设定源码加载路径
 
@@ -78,7 +77,7 @@
 (set-keyboard-coding-system 'utf-8)
 ;;———————————————————————————————————————————————font
 ;;默认字体
-(set-face-attribute 'default nil :family "Fira Code Nerd Font Mono" :height 115)
+(set-face-attribute 'default nil :family "Fira Code Nerd Font Mono" :height 155)
 
 ;; Unicode
 ;; `set-fontset-font' 用于指定某些字符集使用特定的字体
