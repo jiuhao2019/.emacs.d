@@ -120,10 +120,8 @@
 ;;———————————————————————————————————————————————end straight
 
 ;;———————————————————————————————————————————————plugin
-(require 'on);;控制插件什么时候加载
-
+(require 'on)
 (require 'ialign)
-(global-set-key (kbd "C-x l") #'ialign)
 
 ;;
 (require 'user-theme)
@@ -135,13 +133,12 @@
 (require 'user-neotree)
 (require 'user-lsp)
 (require 'user-lisp-format)
-(require 'user-valign)
+(require 'user-valign);;表格里中文对齐
 (require 'user-rg)
-(require 'user-pdf-tool)
 (use-package amx ;;auto show recent commands
   :init (amx-mode))
 
-(use-package undo-tree ;;Cx u
+(use-package undo-tree
   :defer t
   :diminish undo-tree-mode
   :init (global-undo-tree-mode)
@@ -156,16 +153,6 @@
 
 (use-package highlight-symbol
   :init (highlight-symbol-mode))
-
-(use-package dogears ;;记录光标位置列表
-  :hook (after-init . dogears-mode)
-  :bind (:map global-map ("M-g g" . dogears-go)
-              ("M-g b" . dogears-back)
-              ("M-g f" . dogears-forward)
-              ("M-g l" . dogears-list)
-              ("M-g M-s" . dogears-sidebar))
-  :config (setq dogears-idle 1 dogears-limit 200 dogears-position-delta 20)
-  (setq dogears-functions '(find-file recenter-top-bottom other-window switch-to-buffer aw-select toggle-window-split windmove-do-window-select pager-page-down pager-page-up tab-bar-select-tab pop-to-mark-command pop-global-mark goto-last-change xref-go-back xref-find-definitions xref-find-references)))
 
 (use-package marginalia ;; 更多信息
   :config (marginalia-mode))
@@ -233,16 +220,6 @@
                 '(("cn" . "en") ("en" . "cn"))
                 google-translate-show-phonetic t))
 
-(use-package lua-mode
-  :ensure t
-  :mode ("\\.lua\\'" . lua-mode)
-  :interpreter ("lua" . lua-mode))
-
-(use-package markdown-mode
-  :ensure t
-  :mode (("\\.md\\'" . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode)))
-
 (use-package ztree
   :config
   (set-face-attribute 'ztreep-diff-model-add-face  nil :foreground "deep sky blue")
@@ -263,7 +240,6 @@
 (use-package which-key
   :defer 0
   :diminish which-key-mode
-  :hook (on-first-input . which-key-mode)
   :config (setq which-key-idle-delay 0))
 (which-key-mode)
 (require 'user-keybind)

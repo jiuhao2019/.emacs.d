@@ -38,11 +38,4 @@
         scroll-conservatively 9999
         scroll-step 1))
 
-;;显示最大column位置
-(use-package fill-column-indicator)
-(add-hook 'text-mode-hook (lambda ()
-                          (turn-on-auto-fill)
-                          (fci-mode)
-                          (set-fill-column 82)))
-
 (provide 'user-evil)

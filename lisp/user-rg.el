@@ -7,8 +7,6 @@
                                        (display-buffer-in-side-window)
                                        (side . right)
                                        (window-width . 0.5)))
-  ;; (rg-enable-default-bindings)
-  ;; https://github.com/dajva/rg.el/issues/142#issuecomment-1452525225
   (add-to-list 'rg-finish-functions (lambda (buffer _) (pop-to-buffer buffer))))
 
 (setopt my/browser-engines
@@ -48,6 +46,6 @@
                my/browser-engines)))
 
 (add-hook 'on-first-input-hook (lambda ()
-                                 (my/define-search-functions)))
+				 (my/define-search-functions)))
 
 (provide 'user-rg)
