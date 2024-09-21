@@ -235,6 +235,10 @@
   (setq-default format-all-formatters
                 '(("C"     (astyle "--mode=c"))
                   ("Shell" (shfmt "-i" "4" "-ci")))))
+
+(use-package drag-stuff
+  :init (drag-stuff-global-mode))
+
 ;;———————————————————————————————————————————————
 ;;put this at end of plugin
 (use-package which-key
