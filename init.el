@@ -220,14 +220,6 @@
                 '(("cn" . "en") ("en" . "cn"))
                 google-translate-show-phonetic t))
 
-(use-package ztree
-  :config
-  (set-face-attribute 'ztreep-diff-model-add-face  nil :foreground "deep sky blue")
-  (setq ztree-draw-unicode-lines t)
-  (bind-keys :map ztreediff-mode-map
-             ("k" . previous-line)
-             ("j" . next-line)))
-
 (use-package format-all
   :commands format-all-mode
   :hook (prog-mode . format-all-mode)
@@ -239,6 +231,8 @@
 (use-package drag-stuff
   :init (drag-stuff-global-mode))
 
+(use-package dirvish
+  :config (dirvish-override-dired-mode))
 ;;———————————————————————————————————————————————
 ;;put this at end of plugin
 (use-package which-key

@@ -1,33 +1,5 @@
 (use-package hydra)
 ;; 
-(defhydra hydra-ztree (:hint nil)
-  "
-                                                                      ╭────────────┐
-       Move      File                 Do                              │ Ztree diff │
-    ╭─────────────────────────────────────────────────────────────────┴────────────╯
-      _k_       [_C_] copy                  [_h_] toggle equal files
-      ^ ^↑^ ^   [_D_] delete                [_x_] toggle subtree
-      ^_TAB_^   [_v_] view                  [_r_] partial rescan
-      ^ ^↓^ ^   [_d_] simple diff           [_R_] full rescan
-      _j_       [_RET_] diff/expand         [_g_] refresh
-      ^ ^       [_SPC_] simple diff/expand
-    --------------------------------------------------------------------------------
-          "
-  ("<ESC>" nil "quit")
-  ("k" previous-line)
-  ("j" next-line)
-  ("C" ztree-diff-copy)
-  ("h" ztree-diff-toggle-show-equal-files)
-  ("D" ztree-diff-delete-file)
-  ("v" ztree-diff-view-file)
-  ("d" ztree-diff-simple-diff-files)
-  ("r" ztree-diff-partial-rescan)
-  ("R" ztree-diff-full-rescan)
-  ("RET" ztree-perform-action)
-  ("SPC" ztree-perform-soft-action)
-  ("TAB" ztree-jump-side)
-  ("g" ztree-refresh-buffer)
-  ("x" ztree-toggle-expand-subtree))
 (defhydra hydra-bookmark (:hint nil)
   "
     ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
@@ -231,7 +203,6 @@
     "o" '(hydra-org/body :which-key "+org")
     "w" '(hydra-window/body :which-key "+window")
     "h" '(hydra-help/body :which-key "+help")
-    "z" '(ztree-diff :which-key "ztree-diff")
     "m" '(hydra-bookmark/body :which-key "+bookmark")
     "d" '(hydra-drag-stuff/body :which-key "+drag-stuff")
     "s" '(hydra-search/body :which-key "+search")))

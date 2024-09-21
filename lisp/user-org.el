@@ -68,13 +68,13 @@
   (setq org-capture-templates nil)
   (add-to-list 'org-capture-templates
                '("t" "Task" entry (file "~/user-note/capture_task.org.gpg")
-                 "* TODO %^{任务名}\n%u\n" :clock-in t :clock-resume t ))
+                 "* TODO %^{heading} %^g\n %?\n"))
   (add-to-list 'org-capture-templates
                '("n" "Note" entry (file "~/user-note/capture_note.org.gpg")
-		 "* %^{heading} %t %^g\n  %?\n"))
+		 "* %^{heading} %^g\n %?\n"))
   (setq org-refile-targets
-	'(("~/user-note/note.org.gpg" :maxlevel . 1)
-	  ("~/user-note/schedule.org.gpg" :maxlevel . 1)))
+	'(("~/user-note/note.org.gpg" :maxlevel . 2)
+	  ("~/user-note/schedule.org.gpg" :maxlevel . 2)))
   ;; Save Org buffers after refiling!
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
   (efs/org-font-setup))
