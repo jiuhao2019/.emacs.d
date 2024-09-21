@@ -29,13 +29,13 @@
 (setq-default initial-scratch-message nil)
 (setq-default bidi-display-reordering nil)
 ;;———————————————————————————————————————————————卡顿问题解决
-;;解决大文件卡顿的问题
-(setq-default bidi-display-reordering nil)
-(setq bidi-inhibit-bpa t
-      long-line-threshold 1000
-      large-hscroll-threshold 1000
-      syntax-wholeline-max 1000)
-;;———————————————————————————————————————————————end卡顿问题解决
+;;如大文件卡顿，试此配置
+;; (setq-default bidi-display-reordering nil)
+;; (setq bidi-inhibit-bpa t
+;;       long-line-threshold 1000
+;;       large-hscroll-threshold 1000
+;;       syntax-wholeline-max 1000)
+;; ;;———————————————————————————————————————————————end卡顿问题解决
 
 (setq inhibit-startup-message t)
 (scroll-bar-mode -1)        ; Disable visible scrollbar
@@ -133,7 +133,7 @@
 (require 'user-neotree)
 (require 'user-lsp)
 (require 'user-lisp-format)
-(require 'user-valign);;表格里中文对齐
+;; (require 'user-valign);;能让表格里有中文的表格对齐,但是如打开的文件里表格多且大就卡顿。
 (require 'user-rg)
 (use-package amx ;;auto show recent commands
   :init (amx-mode))

@@ -30,11 +30,10 @@
   ("x" ztree-toggle-expand-subtree))
 (defhydra hydra-bookmark (:hint nil)
   "
-   [_t_] bookmark-set          
-   [_j_] bookmark-jump          
-   [_s_] bookmark-save  
-   [_r_] bookmark-rename  
-   [_d_] bookmark-delete  
+    ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
+    [_t_] bookmark-set           [_r_] bookmark-rename
+    [_j_] bookmark-jump          [_d_] bookmark-delete
+    [_s_] bookmark-save          ^^
   "
   ("t"   bookmark-set nil :color blue)
   ("j"   bookmark-jump :color blue)
@@ -44,6 +43,7 @@
 ;;-------------------------------------------------------window
 (defhydra hydra-window-go (:hint nil)
   "
+   ∈━━━━━━━━━━━━━━∋
    [_h_] go left        
    [_j_] go down        
    [_k_] go up          
@@ -56,6 +56,7 @@
   ("l"   evil-window-right))
 (defhydra hydra-window-move (:hint nil)
   "
+   ∈━━━━━━━━━━━━━━━━━━━━━━∋
    [_H_] move to left    
    [_J_] move to bottom  
    [_K_] move to top     
@@ -68,6 +69,7 @@
 ;;window
 (defhydra hydra-window-fork (:hint nil)
   "
+   ∈━━━━━━━━━━━━━━━━━━━━━━━∋
    [_v_] fork vertically       
    [_s_] fork horizontally     
   "
@@ -76,6 +78,7 @@
 ;;window
 (defhydra hydra-window-delete (:hint nil)
   "
+   ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
    [_q_] delete window         
    [_Q_] delete other windows  
    ^^                          
@@ -85,6 +88,7 @@
 ;;window
 (defhydra hydra-window-size (:hint nil)
   "
+   ∈━━━━━━━━━━━━━━━━━━━━━━━∋
    [_=_] balance windows 
    [_+_] increase height 
    [_-_] decrease height 
@@ -99,9 +103,10 @@
 ;;window
 (defhydra hydra-window (:hint nil)
   "
-   [_g_] go      [_k_] fork
-   [_m_] move    [_s_] size          
-   [_d_] delete  [_d_] delete          
+   ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
+   [_g_] +go          [_k_] +fork
+   [_m_] +move        [_s_] +size          
+   [_d_] +delete      ^^          
    ^^                   
   "
   ("g"   hydra-window-go/body nil :color blue)
@@ -114,9 +119,10 @@
 ;;  指定搜索引擎打开网页浏览器搜索
 (defhydra hydra-search-website (:hint nil)
   "
-   [_m_] douban-movie  [_o_] google   [_g_] github    [_w_] wikipedia      
-   [_b_] douban-book   [_d_] duckgo   [_y_] youtube   [_a_] annas-archive  
-   [_z_] zhihu         [_s_] scholar  [_l_] bilibili  ^^ 
+   ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
+   [_m_] douban-movie      [_o_] google        [_g_] github       [_w_] wikipedia      
+   [_b_] douban-book       [_d_] duckgo        [_y_] youtube      [_a_] annas-archive  
+   [_z_] zhihu             [_s_] scholar       [_l_] bilibili     ^^ 
   "
   ("m"   my/search-DoubanMovie nil :color blue)
   ("b"   my/search-doubanbook nil :color blue)
@@ -132,52 +138,73 @@
 ;;  fzf-rg-in-dir 指定文件夹搜索
 (defhydra hydra-search-file (:hint nil)
   "
+   ∈━━━━━━━━━━━━━∋
    [_r_] fzf-rg   
   "
   ("r"   fzf-grep-in-dir nil :color blue))
 (defhydra hydra-search (:hint nil)
   "
-   [_w_] website
-   [_f_] file 
+   ∈━━━━━━━━━━━━━━━━━━━━━∋
+   [_w_] +from website
+   [_f_] +from file 
   "
   ("w"   hydra-search-website/body nil :color blue)
   ("f"   hydra-search-file/body nil :color blue))
 ;;-------------------------------------------------------end search
-;;  org-roam相关
+;;-------------------------------------------------------begin org
+;;  org-roam
 (defhydra hydra-org-roam (:hint nil)
   "
- [_n_] org-agenda           
- [_s_] org-roam-node-find                          
- [_u_] org-roam-db-sync                          
- [_d_] org-roam-ui-open    
+   ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
+   [_i_] org-id-get-create           
+   [_n_] org-roam-node-find           
+   [_s_] org-roam-db-sync                          
+   [_u_] org-roam-ui-open                          
+   [_d_] mrds/roam-switch-directory    
 "
+  ("i"   org-id-get-create nil :color blue)
   ("n"   org-roam-node-find nil :color blue)
   ("s"   org-roam-db-sync nil :color blue)
   ("u"   org-roam-ui-open nil :color blue)
   ("d"   mrds/roam-switch-directory nil :color blue))
-;;  org-mode相关
+;;  org-agenda
+(defhydra hydra-org-agenda (:hint nil)
+  "
+   ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
+   [_a_] org-agenda           
+   [_g_] org-set-tags-command                          
+  "
+  ("a"   org-agenda nil :color blue)
+  ("g"   org-set-tags-command nil :color blue))
+;;  org-clock
+(defhydra hydra-org-clock (:hint nil)
+  "
+   ∈━━━━━━━━━━━━━━━━━━━━━━━━∋
+   [_i_] org-clock-in           
+   [_o_] org-clock-out                          
+   [_r_] org-clock-report                          
+  "
+  ("i"   org-clock-in nil :color blue)
+  ("o"   org-clock-out nil :color blue)
+  ("r"   org-clock-report nil :color blue))
 (defhydra hydra-org (:hint nil)
   "
-   [_a_] org-agenda          [_c_] org-capture               [_d_] mrds/roam-switch-directory 
-   [_n_] org-roam-node-find  [_r_] org-refile                [_o_] org-html-export-to-html                           
-   [_s_] org-roam-db-sync    [_i_] org-id-get-create         [_g_] org-set-tags-command                            
-   [_u_] org-roam-ui-open    [_t_] org-toggle-inline-images  ^^                            
-  "
-  ("R"   hydra-org-roam/body nil :color blue)
-  ("a"   org-agenda nil :color blue)
-  ("n"   org-roam-node-find nil :color blue)
-  ("s"   org-roam-db-sync nil :color blue)
-  ("u"   org-roam-ui-open nil :color blue)
-  ("c"   org-capture nil :color blue)
-  ("r"   org-refile nil :color blue)
-  ("i"   org-id-get-create nil :color blue)
-  ("d"   mrds/roam-switch-directory nil :color blue)
+   ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
+   [_t_] org-toggle-inline-images       [_p_] org-capture      [_a_] +org-agenda           
+   [_o_] org-html-export-to-html        [_r_] +org-roam        ^^    
+   [_w_] org-refile                     [_c_] +org-clock       ^^   
+"
+  ("t"   org-toggle-inline-images nil :color blue)
   ("o"   org-html-export-to-html nil :color blue)
-  ("g"   org-set-tags-command nil :color blue)
-  ("t"   org-toggle-inline-images nil :color blue))
-;;  org-mode相关
-(defhydra hydra-emacs (:hint nil)
+  ("w"   org-refile nil :color blue)
+  ("p"   org-capture nil :color blue)
+  ("r"   hydra-org-roam/body nil :color blue)
+  ("c"   hydra-org-clock/body nil :color blue)
+  ("a"   hydra-org-agenda/body nil :color blue))
+;;-------------------------------------------------------end org
+(defhydra hydra-help (:hint nil)
   "
+   ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
    [_b_] counsel-descbinds          
    [_f_] counsel-describe-function  
    [_v_] counsel-describe-variable    
@@ -189,6 +216,7 @@
   ("m"   info-display-manual nil :color blue))
 (defhydra hydra-buffer (:hint nil)
   "
+   ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
    [_a_] user-alternate-buffers          
    [_c_] user-diff-buffer-with-file  
   "
@@ -196,7 +224,8 @@
   ("c"   user-diff-buffer-with-file nil :color blue))
 (defhydra hydra-misc (:hint nil)
   "
-   [_n_] neotree-toggle                     [_s_] scratch-buffer  
+   ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
+   [_n_] neotree-toggle                       [_s_] scratch-buffer  
    [_w_] toggle-show-trailing-whitespace          
    [_d_] define-word  
    [_t_] google-translate-at-point  
@@ -214,13 +243,12 @@
     :keymaps '(normal visual)
     :prefix "SPC")
   (user/leader-keys
-    "h" '(avy-goto-char-timer :which-key "hop")
+    "j" '(avy-goto-char-timer :which-key "jump")
     "U" '(undo-tree-visualize :which-key)
     "r" '(fzf-recentf :which-key)
     "k" '(highlight-symbol-at-point :which-key)
     "K" '(highlight-symbol-remove-all :which-key)
     "f" '(fzf-find-file :which-key)
-    "F" '(format-all-region-or-buffer :which-key)
     "c" '(comment-line :which-key )
     "i" '(lsp-ui-imenu :which-key )
     "I" '(ialign :which-key )
@@ -228,7 +256,7 @@
     "x" '(hydra-misc/body :which-key "+misc")
     "o" '(hydra-org/body :which-key "+org")
     "w" '(hydra-window/body :which-key "+window")
-    "E" '(hydra-emacs/body :which-key "+Emacs")
+    "h" '(hydra-help/body :which-key "+help")
     "z" '(ztree-diff :which-key "ztree-diff")
     "m" '(hydra-bookmark/body :which-key "+bookmark")
     "s" '(hydra-search/body :which-key "+search")))
