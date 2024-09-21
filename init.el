@@ -57,8 +57,8 @@
       version-control t                 ; version numbers for backup files
       delete-old-versions t             ; delete excess backup files silently
       delete-by-moving-to-trash t
-      kept-old-versions 3               ; oldest versions to keep when a new numbered backup is made (default: 2)
-      kept-new-versions 3               ; newest versions to keep when a new numbered backup is made (default: 2)
+      kept-old-versions 5               ; oldest versions to keep when a new numbered backup is made (default: 2)
+      kept-new-versions 5               ; newest versions to keep when a new numbered backup is made (default: 2)
       auto-save-default t               ; auto-save every buffer that visits a file
       auto-save-timeout 30              ; number of seconds idle time before auto-save (default: 30)
       auto-save-interval 300)            ; number of keystrokes between auto-saves (default: 300)
@@ -122,9 +122,32 @@
 ;;———————————————————————————————————————————————plugin
 (require 'on)
 (require 'ialign)
-
 ;;
-(require 'user-theme)
+(use-package all-the-icons
+  :if (display-graphic-p))
+
+(use-package all-the-icons-ivy-rich)
+
+(use-package doom-themes
+  :config
+  ;; Global settings (defaults)
+  (setq doom-themes-enable-bold nil    ; if nil, bold is universally disabled
+        doom-themes-enable-italic nil) ; if nil, italics is universally disabled
+  (load-theme 'doom-tokyo-night t)
+
+  ;; Enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
+  ;; Enable custom neotree theme (all-the-icons must be installed!)
+  (doom-themes-neotree-config)
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config))
+
+(use-package doom-modeline
+  :init 
+  (doom-modeline-mode 1)
+  :custom 
+  ((doom-modeline-height 15)))
+
 (setq evil-want-C-u-scroll t)
 (require 'user-evil)
 (require 'user-ivy)
@@ -233,6 +256,8 @@
 
 (use-package dirvish
   :config (dirvish-override-dired-mode))
+(use-package lua-mode)
+(use-package markdown-mode)
 ;;———————————————————————————————————————————————
 ;;put this at end of plugin
 (use-package which-key

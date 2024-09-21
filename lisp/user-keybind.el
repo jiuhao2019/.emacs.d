@@ -1,6 +1,6 @@
 (use-package hydra)
 ;; 
-(defhydra hydra-bookmark (:hint nil)
+(defhydra hydra-bookmark (:hint nil )
   "
     ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
     [_t_] bookmark-set           [_r_] bookmark-rename
@@ -13,13 +13,13 @@
   ("r"   bookmark-rename :color blue)
   ("d"   bookmark-delete nil :color blue))
 ;;-------------------------------------------------------window
-(defhydra hydra-window (:hint nil)
+(defhydra hydra-window (:hint nil )
   "
    ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
    [_h_] go left     [_H_] move to left      [_s_] fork horizontally         [_=_] balance windows       
    [_j_] go down     [_J_] move to bottom    [_v_] fork vertically           [_+_] increase height       
-   [_l_] go up       [_L_] move to right     [_q_] delete window             [_-_] decrease height       
-   [_k_] go right    [_K_] move to top       [_Q_] delete other windows      [_>_] increase width        
+   [_l_] go up       [_L_] move to right     [_x_] delete window             [_-_] decrease height       
+   [_k_] go right    [_K_] move to top       [_X_] delete other windows      [_>_] increase width        
    ^^                ^^                      ^^                              [_<_] decrease width
   "
   ("h"   evil-window-left)
@@ -32,8 +32,8 @@
   ("L"   evil-window-move-far-right)
   ("s"   evil-window-split nil :color blue)
   ("v"   evil-window-vsplit nil :color blue)
-  ("q"   evil-window-delete)
-  ("Q"   delete-other-windows)
+  ("x"   evil-window-delete)
+  ("X"   delete-other-windows)
   ("+"   evil-window-increase-height)
   ("-"   evil-window-decrease-height)
   ("<"   evil-window-decrease-width)
@@ -41,7 +41,7 @@
   ("="   balance-windows))
 ;;-------------------------------------------------------end window
 ;;-------------------------------------------------------search
-(defhydra hydra-search (:hint nil)
+(defhydra hydra-search (:hint nil )
   "
    ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
    [_m_] douban-movie      [_o_] google        [_g_] github       [_w_] wikipedia      
@@ -63,7 +63,7 @@
 ;;-------------------------------------------------------end search
 ;;-------------------------------------------------------begin org
 ;;  org-roam
-(defhydra hydra-org-roam (:hint nil)
+(defhydra hydra-org-roam (:hint nil )
   "
    ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
    [_i_] org-id-get-create           
@@ -71,21 +71,21 @@
    [_s_] org-roam-db-sync                          
    [_u_] org-roam-ui-open                          
    [_d_] mrds/roam-switch-directory    
-"
+  "
   ("i"   org-id-get-create nil :color blue)
   ("n"   org-roam-node-find nil :color blue)
   ("s"   org-roam-db-sync nil :color blue)
   ("u"   org-roam-ui-open nil :color blue)
   ("d"   mrds/roam-switch-directory nil :color blue))
 ;;  org-agenda
-(defhydra hydra-org-agenda (:hint nil)
+(defhydra hydra-org-agenda (:hint nil )
   "
    ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
    [_a_] org-agenda           
   "
   ("a"   org-agenda nil :color blue))
 ;;  org-clock
-(defhydra hydra-org-clock (:hint nil)
+(defhydra hydra-org-clock (:hint nil )
   "
    ∈━━━━━━━━━━━━━━━━━━━━━━━━∋
    [_i_] org-clock-in           
@@ -96,7 +96,7 @@
   ("o"   org-clock-out nil :color blue)
   ("r"   org-clock-report nil :color blue))
 ;;  plain list
-(defhydra hydra-org-plain-list (:hint nil)
+(defhydra hydra-org-plain-list (:hint nil )
   "
    ∈━━━━━━━━━━━━━━━━━━━━━━━━∋
    [_I_] org-insert-todo-heading                          
@@ -109,14 +109,14 @@
   ("-"   org-ctrl-c-minus)
   ("d"   org-shiftmetadown))
 ;;  table
-(defhydra hydra-org-table (:hint nil)
+(defhydra hydra-org-table (:hint nil )
   "
    ∈━━━━━━━━━━━━━━━━━━━━━━━━∋
    [_c_] org-table-create                          
   "
   ("c"   org-table-create nil :color blue))
 
-(defhydra hydra-org (:hint nil)
+(defhydra hydra-org (:hint nil )
   "
    ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
    [_t_] org-toggle-inline-images       [_p_] org-capture           [_a_] +org-agenda           
@@ -136,7 +136,7 @@
   ("l"   hydra-org-plain-list/body nil :color blue)
   ("a"   hydra-org-agenda/body nil :color blue))
 ;;-------------------------------------------------------end org
-(defhydra hydra-help (:hint nil)
+(defhydra hydra-help (:hint nil )
   "
    ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
    [_b_] counsel-descbinds          
@@ -148,7 +148,7 @@
   ("f"   counsel-describe-function nil :color blue)
   ("v"   counsel-describe-variable nil :color blue)
   ("m"   info-display-manual nil :color blue))
-(defhydra hydra-buffer (:hint nil)
+(defhydra hydra-buffer (:hint nil )
   "
    ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
    [_a_] user-alternate-buffers          
@@ -156,7 +156,7 @@
   "
   ("a"   user-alternate-buffers nil :color blue)
   ("c"   user-diff-buffer-with-file nil :color blue))
-(defhydra hydra-drag-stuff (:hint nil)
+(defhydra hydra-drag-stuff (:hint nil )
   "
    ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
    [_h_] drag-stuff-left          
@@ -168,11 +168,11 @@
   ("j"   drag-stuff-down )
   ("k"   drag-stuff-up )
   ("l"   drag-stuff-right ))
-(defhydra hydra-misc (:hint nil)
+(defhydra hydra-misc (:hint nil )
   "
    ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
    [_n_] neotree-toggle                       [_s_] scratch-buffer  
-   [_w_] toggle-show-trailing-whitespace          
+   [_w_] toggle-show-trailing-whitespace      [_h_] switch-theme 
    [_d_] define-word  
    [_t_] google-translate-at-point  
   "
@@ -180,6 +180,7 @@
   ("w"   toggle-show-trailing-whitespace :color blue)
   ("d"   define-word :color blue)
   ("s"   scratch-buffer :color blue)
+  ("h"   ap/switch-theme)
   ("t"   google-translate-at-point nil :color blue))
 ;;
 (use-package general

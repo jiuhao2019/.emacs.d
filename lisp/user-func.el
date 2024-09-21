@@ -41,5 +41,23 @@
   (let ((diff-switches "-u"))
     (diff-buffer-with-file (current-buffer))))
 ;;=======================================end
+;;--------------------------------------------------------switch themes
+(defun ap/load-doom-theme (theme)
+  "Disable active themes and load a Doom theme."
+  (interactive (list (intern (completing-read "Theme: "
+                                              (->> (custom-available-themes)
+                                                   (-map #'symbol-name)
+                                                   (--select (string-prefix-p "doom-" it)))))))
+  (ap/switch-theme theme)
 
+  (set-face-foreground 'org-indent (face-background 'default)))
+
+(defun ap/switch-theme (theme)
+  "Disable active themes and load THEME."
+  (interactive (list (intern (completing-read "Theme: "
+                                              (->> (custom-available-themes)
+                                                   (-map #'symbol-name))))))
+  (mapc #'disable-theme custom-enabled-themes)
+  (load-theme theme 'no-confirm))
+;;--------------------------------------------------------end switch themes
 (provide 'user-func)
