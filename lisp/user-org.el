@@ -47,7 +47,6 @@
   (setq org-agenda-start-with-log-mode t)
   (setq org-log-done 'time)
   (setq org-log-into-drawer t)
-  (setq org-agenda-files (directory-files-recursively "~/user-note" "\\.org.gpg$"));;递归搜寻
   (setq org-html-validation-link nil)
   ;;=========================begin: org-habit
   (require 'org-habit)
@@ -58,6 +57,11 @@
   (setq org-habit-show-habits-only-for-today nil)
   (setq org-habit-show-all-today t)
   ;;=========================end
+  ;;=========================================================org-agenda
+  (setq org-agenda-files (directory-files-recursively "~/user-note" "\\.org.gpg$"));;递归搜寻
+  (setq org-agenda-custom-commands
+	'(("p" "planing" tags-todo "office")
+	  ("u" "untaged" tags-todo "-{.*}")))
   (setq org-todo-keywords
 	'((sequence "TODO(t!)" "|" "DONE(d@/!)")))
   (setq org-tag-alist
@@ -65,6 +69,7 @@
 					; Put mutually exclusive tags here
 	  (:endgroup)
 	  ("office" . ?o)))
+
   (setq org-capture-templates nil)
   (add-to-list 'org-capture-templates
                '("t" "Task" entry (file "~/user-note/capture_task.org.gpg")
@@ -72,13 +77,13 @@
   (add-to-list 'org-capture-templates
                '("n" "Note" entry (file "~/user-note/capture_note.org.gpg")
 		 "* %^{heading} %^g\n %?\n"))
+
   (setq org-refile-targets
 	'(("~/user-note/note.org.gpg" :maxlevel . 2)
 	  ("~/user-note/schedule.org.gpg" :maxlevel . 2)))
-  ;; Save Org buffers after refiling!
-  (advice-add 'org-refile :after 'org-save-all-org-buffers)
+  (advice-add 'org-refile :after 'org-save-all-org-buffers);; Save Org buffers after refiling!
   (efs/org-font-setup))
-
+;;=========================================================end org-agenda
 (use-package org-bullets
   :hook (org-mode . org-bullets-mode)
   :custom

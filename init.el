@@ -133,7 +133,7 @@
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold nil    ; if nil, bold is universally disabled
         doom-themes-enable-italic nil) ; if nil, italics is universally disabled
-  (load-theme 'doom-tokyo-night t)
+  (load-theme 'doom-one t)
 
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
@@ -258,6 +258,22 @@
   :config (dirvish-override-dired-mode))
 (use-package lua-mode)
 (use-package markdown-mode)
+(use-package hideshow
+  :ensure nil
+  :diminish hs-minor-mode
+  :bind (:map prog-mode-map
+              ("C-c TAB" . hs-toggle-hiding)
+              ("M-+" . hs-show-all))
+  :hook (prog-mode . hs-minor-mode)
+  :custom
+  (hs-special-modes-alist
+   (mapcar 'purecopy
+           '((c-mode "{" "}" "/[*/]" nil nil)
+             (c++-mode "{" "}" "/[*/]" nil nil)
+             (rust-mode "{" "}" "/[*/]" nil nil)))))
+(use-package saveplace
+  :ensure nil
+  :hook (after-init . save-place-mode))
 ;;———————————————————————————————————————————————
 ;;put this at end of plugin
 (use-package which-key
