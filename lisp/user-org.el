@@ -58,7 +58,8 @@
   (setq org-habit-show-all-today t)
   ;;=========================end
   ;;=========================================================org-agenda
-  (setq org-agenda-files (directory-files-recursively "~/user-note" "\\.org.gpg$"));;递归搜寻
+  ;; (setq org-agenda-files (directory-files-recursively "~/user-note" "\\.org.gpg$"));;递归搜寻
+  (setq org-agenda-files nil);;打开emacs后清除用来agenda的文件,每次手动添加。
   (setq org-agenda-custom-commands
 	'(("p" "office"
 	   ((tags-todo "office"
