@@ -44,7 +44,6 @@
   (setq org-image-actual-width nil)
   (setq org-export-preserve-breaks t);;导出时保留原样换行
   (setq org-ellipsis " ▼")
-  (setq org-agenda-start-with-log-mode t)
   (setq org-log-done 'time)
   (setq org-log-into-drawer t)
   (setq org-html-validation-link nil)
@@ -58,12 +57,17 @@
   (setq org-habit-show-all-today t)
   ;;=========================end
   ;;=========================================================org-agenda
+  (setq org-agenda-start-with-log-mode t)
   ;; (setq org-agenda-files (directory-files-recursively "~/user-note" "\\.org.gpg$"));;递归搜寻
   (setq org-agenda-files nil);;打开emacs后清除用来agenda的文件,每次手动添加。
   (setq org-agenda-custom-commands
-	'(("p" "office"
+	'(("p" "office todo"
 	   ((tags-todo "office"
-		       ((org-agenda-overriding-header "[ office task ]")))))))
+		       ((org-agenda-overriding-header "[ office todo task ]")))))))
+  (push '("r" "月度" ((agenda "" ((org-agenda-span 37)
+                                  (org-agenda-start-day "-30d")))))
+	org-agenda-custom-commands)
+
   (setq org-todo-keywords
 	'((sequence "TODO(t!)" "|" "DONE(d@/!)")))
   (setq org-tag-alist
