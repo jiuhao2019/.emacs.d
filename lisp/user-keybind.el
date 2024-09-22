@@ -122,7 +122,7 @@
    [_t_] org-toggle-inline-images       [_p_] org-capture                   [_a_] +org-agenda           
    [_o_] org-html-export-to-html        [_i_] org-meta-return               [_l_] +plain-list    
    [_w_] org-refile                     [_[_] org-agenda-file-to-front      [_r_] +org-roam   
-   [_g_] org-set-tags-command           ^^                                  [_c_] +org-clock
+   [_g_] org-set-tags-command           [_]_] org-remove-file                                  [_c_] +org-clock
 "
   ("T"   org-toggle-inline-images nil :color blue)
   ("o"   org-html-export-to-html nil :color blue)
