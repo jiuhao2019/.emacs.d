@@ -60,8 +60,9 @@
   ;;=========================================================org-agenda
   (setq org-agenda-files (directory-files-recursively "~/user-note" "\\.org.gpg$"));;递归搜寻
   (setq org-agenda-custom-commands
-	'(("p" "planing" tags-todo "office")
-	  ("u" "untaged" tags-todo "-{.*}")))
+	'(("p" "office"
+	   ((tags-todo "office"
+		       ((org-agenda-overriding-header "[ office task ]")))))))
   (setq org-todo-keywords
 	'((sequence "TODO(t!)" "|" "DONE(d@/!)")))
   (setq org-tag-alist
