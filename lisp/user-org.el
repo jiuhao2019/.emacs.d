@@ -144,42 +144,4 @@
   (setq mrds--db-cache-path (file-truename "~/user-note/org-roam-db")) ;;all sub db here
   (org-roam-db-autosync-mode 1)) ;; need to sync org roam db first
 ;;===============================end-> org-roam
-;;===============================appt
-;; (require 'appt)
-;; 每小时同步一次appt,并且现在就开始同步
-(run-at-time nil 3600 'org-agenda-to-appt)
-;; 更新agenda时，同步appt
-(add-hook 'org-finalize-agenda-hook 'org-agenda-to-appt)
-;; 激活提醒
-(appt-activate 1)
-;; 提前x分钟提醒
-(setq appt-message-warning-time 3)
-;; 针对不同任务，需要提前提醒的时间可能不一样，
-;; 可以通过headline的属性 APPT_WARNTIME 来单独设置,比如下面这个任务会提前1小时提醒我们:
-
-;; * 非常重要的任务
-;; :PROPERTIES:
-;; :APPT_WARNTIME: 60
-;; :END:
-
-;; 另外，appt默认每隔三分钟就弹出一次提醒，这个也太频繁了，
-;; 我们可以通过修改 apt-display-interval 来修改这个间隔时间
-(setq appt-display-interval 5)
-
-;; appt在提醒时会通过beep发声提醒我:
-(setq appt-audible t)
-
-;; (require 'notifications)
-(defun appt-disp-window-and-notification (min-to-appt current-time appt-msg)
-  (let ((title (format "%s分钟内有新的任务" min-to-appt)))
-    (notifications-notify :timeout (* appt-display-interval 60000) ;一直持续到下一次提醒
-                          :title title
-                          :body appt-msg
-                          )
-    (appt-disp-window min-to-appt current-time appt-msg))) ;同时也调用原有的提醒函数
-(setq appt-display-format 'window) ;; 只有这样才能使用自定义的通知函数
-(setq appt-disp-window-function #'appt-disp-window-and-notification)
-
-
-;;===============================end appt
 (provide 'user-org)
