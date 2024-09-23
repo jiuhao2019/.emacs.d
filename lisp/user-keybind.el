@@ -121,12 +121,20 @@
    [_c_] org-table-create                          
   "
   ("c"   org-table-create nil :color blue))
-
+;;  link
+(defhydra hydra-org-link (:hint nil )
+  "
+   ∈━━━━━━━━━━━━━━━━━━━━━━━━∋
+   [_t_] org-toggle-link-display                          
+   [_i_] org-insert-link                          
+  "
+  ("t"   org-toggle-link-display nil :color blue)
+  ("i"   org-insert-link nil :color blue))
 (defhydra hydra-org (:hint nil )
   "
    ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
    [_T_] org-toggle-inline-images       [_p_] org-capture            [_a_] +org-agenda      [_t_] +org-table        
-   [_o_] org-html-export-to-html        [_i_] org-meta-return        [_l_] +plain-list    
+   [_o_] org-html-export-to-html        [_i_] org-meta-return        [_l_] +plain-list      [_L_] +org-link 
    [_w_] org-refile                     ^^                           [_r_] +org-roam   
    [_g_] org-set-tags-command           ^^                           [_c_] +org-clock
 "
@@ -140,6 +148,7 @@
   ("r"   hydra-org-roam/body nil :color blue)
   ("c"   hydra-org-clock/body nil :color blue)
   ("l"   hydra-org-plain-list/body nil :color blue)
+  ("L"   hydra-org-link/body nil :color blue)
   ("a"   hydra-org-agenda/body nil :color blue))
 ;;-------------------------------------------------------end org
 (defhydra hydra-help (:hint nil )
