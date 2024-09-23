@@ -81,8 +81,12 @@
 (defhydra hydra-org-agenda (:hint nil )
   "
    ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
+   [_]_] org-remove-file
+   [_[_] org-agenda-file-to-front
    [_a_] org-agenda           
-  "
+  "			      
+  ("["   org-agenda-file-to-front nil :color blue)
+  ("]"   org-remove-file nil :color blue)
   ("a"   org-agenda nil :color blue))
 ;;  org-clock
 (defhydra hydra-org-clock (:hint nil )
@@ -121,8 +125,8 @@
    ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
    [_t_] org-toggle-inline-images       [_p_] org-capture                   [_a_] +org-agenda           
    [_o_] org-html-export-to-html        [_i_] org-meta-return               [_l_] +plain-list    
-   [_w_] org-refile                     [_[_] org-agenda-file-to-front      [_r_] +org-roam   
-   [_g_] org-set-tags-command           [_]_] org-remove-file               [_c_] +org-clock
+   [_w_] org-refile                     ^^                                  [_r_] +org-roam   
+   [_g_] org-set-tags-command           ^^                                  [_c_] +org-clock
 "
   ("T"   org-toggle-inline-images nil :color blue)
   ("o"   org-html-export-to-html nil :color blue)
@@ -130,8 +134,6 @@
   ("p"   org-capture nil :color blue)
   ("g"   org-set-tags-command nil :color blue)
   ("i"   org-meta-return nil :color blue)
-  ("["   org-agenda-file-to-front nil :color blue)
-  ("]"   org-remove-file nil :color blue)
   ("t"   hydra-org-table/body nil :color blue)
   ("r"   hydra-org-roam/body nil :color blue)
   ("c"   hydra-org-clock/body nil :color blue)
