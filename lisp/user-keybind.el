@@ -119,8 +119,12 @@
   "
    ∈━━━━━━━━━━━━━━━━━━━━━━━━∋
    [_c_] org-table-create                          
+   [_1_] export-to-spreadsheet                          
+   [_2_] export-to-spreadsheet_ng                          
   "
-  ("c"   org-table-create nil :color blue))
+  ("c"   org-table-create nil :color blue)
+  ("1"   org-table-export-to-spreadsheet nil :color blue)
+  ("2"   my/table-export nil :color blue))
 ;;  link
 (defhydra hydra-org-link (:hint nil )
   "
