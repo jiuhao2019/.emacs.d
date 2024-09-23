@@ -69,7 +69,7 @@
 	org-agenda-custom-commands)
 
   (setq org-todo-keywords
-	'((sequence "TODO(t!)" "|" "DONE(d@/!)")))
+	'((sequence "TODO(t)" "PROCESS(p)" "|" "FINISHED(f@/!)")))
   (setq org-tag-alist
 	'((:startgroup)
 					; Put mutually exclusive tags here
