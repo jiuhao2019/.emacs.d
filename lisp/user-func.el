@@ -60,4 +60,20 @@
   (mapc #'disable-theme custom-enabled-themes)
   (load-theme theme 'no-confirm))
 ;;--------------------------------------------------------end switch themes
+;;导出excel或csv方式1
+(defun org-table-export-to-spreadsheet (arg)
+  "Export org table to spreadsheet formats, e.g. `ods', `xls', `xlsx'."
+  (interactive "sFormat: ")
+  (let* ((source-file  (file-name-sans-extension (buffer-file-name  (current-buffer))))
+	 (csv-file (concat source-file ".csv")))
+    (org-table-export csv-file "orgtbl-to-csv")
+    (org-odt-convert csv-file arg)))
+;;导出excel或csv方式2
+(defun my/table-export ()
+  (interactive)
+  (org-table-export "/tmp/table.csv" "orgtbl-to-csv")
+  (shell-command-to-string "localc --headless --infilter=\"CSV:44,34,76,,,,,,true,,,,false\" --convert-to \"xlsx:Calc MS Excel 2007 XML:UTF8\" /tmp/table.csv --outdir /tmp/"))
+
+
+
 (provide 'user-func)
