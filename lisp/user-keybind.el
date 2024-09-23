@@ -105,12 +105,12 @@
 (defhydra hydra-org-plain-list (:hint nil )
   "
    ∈━━━━━━━━━━━━━━━━━━━━━━━━∋
-   [_I_] org-insert-todo-heading                          
+   [_i_] org-insert-todo-heading                          
    [_u_] org-shiftmetaup                          
    [_d_] org-shiftmetadown                          
    [_-_] toggle-display-style                          
   "
-  ("I"   org-insert-todo-heading nil :color blue)
+  ("i"   org-insert-todo-heading nil :color blue)
   ("u"   org-shiftmetaup)
   ("-"   org-ctrl-c-minus)
   ("d"   org-shiftmetadown))
