@@ -74,7 +74,8 @@
 	'((:startgroup)
 					; Put mutually exclusive tags here
 	  (:endgroup)
-	  ("office" . ?o)))
+	  ("office" . ?o)
+	  ("week" . ?w)))
 
   (setq org-capture-templates nil)
   (add-to-list 'org-capture-templates

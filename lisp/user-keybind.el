@@ -84,10 +84,12 @@
    [_]_] org-remove-file
    [_[_] org-agenda-file-to-front
    [_a_] org-agenda           
+   [_t_] org-todo           
   "			      
   ("["   org-agenda-file-to-front nil :color blue)
   ("]"   org-remove-file nil :color blue)
-  ("a"   org-agenda nil :color blue))
+  ("a"   org-agenda nil :color blue)
+  ("t"   org-todo nil :color blue))
 ;;  org-clock
 (defhydra hydra-org-clock (:hint nil )
   "
