@@ -46,7 +46,7 @@
    ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
    [_m_] douban-movie      [_o_] google        [_g_] github       [_w_] wikipedia      
    [_b_] douban-book       [_d_] duckgo        [_y_] youtube      [_a_] annas-archive  
-   [_z_] zhihu             [_s_] scholar       [_l_] bilibili     ^^ 
+   [_z_] zhihu             [_s_] scholar       [_l_] bilibili     [_r_] fzf-grep-in-dir 
   "
   ("m"   my/search-DoubanMovie nil :color blue)
   ("b"   my/search-doubanbook nil :color blue)
