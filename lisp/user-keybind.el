@@ -129,9 +129,11 @@
 (defhydra hydra-org-link (:hint nil )
   "
    ∈━━━━━━━━━━━━━━━━━━━━━━━━∋
+   [_o_] org-open-at-point                          
    [_t_] org-toggle-link-display                          
    [_i_] org-insert-link                          
   "
+  ("o"   org-open-at-point nil :color blue)
   ("t"   org-toggle-link-display nil :color blue)
   ("i"   org-insert-link nil :color blue))
 (defhydra hydra-org (:hint nil )
