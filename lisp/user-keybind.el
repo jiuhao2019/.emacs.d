@@ -81,14 +81,16 @@
 (defhydra hydra-org-agenda (:hint nil )
   "
    ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
-   [_]_] org-remove-file
-   [_[_] org-agenda-file-to-front
+   [_]_] org-remove-file                [_s_] org-schedule
+   [_[_] org-agenda-file-to-front       [_d_] org-deadline
    [_a_] org-agenda           
    [_t_] org-todo           
   "			      
   ("["   org-agenda-file-to-front nil :color blue)
   ("]"   org-remove-file nil :color blue)
   ("a"   org-agenda nil :color blue)
+  ("s"   org-schedule nil :color blue)
+  ("d"   org-deadline nil :color blue)
   ("t"   org-todo nil :color blue))
 ;;  org-clock
 (defhydra hydra-org-clock (:hint nil )
