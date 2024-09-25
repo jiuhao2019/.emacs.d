@@ -131,7 +131,7 @@
    ∈━━━━━━━━━━━━━━━━━━━━━━━━∋
    [_o_] org-open-at-point                          
    [_t_] org-toggle-link-display                          
-   [_i_] org-insert-link                          
+   [_i_] org-insert-or-edit-link                          
   "
   ("o"   org-open-at-point nil :color blue)
   ("t"   org-toggle-link-display nil :color blue)
