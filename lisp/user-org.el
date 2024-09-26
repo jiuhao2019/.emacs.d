@@ -5,14 +5,14 @@
                              (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
 
   ;; Set faces for heading levels
-  (dolist (face '((org-level-1 . 1.1)
-                  (org-level-2 . 0.98)
-                  (org-level-3 . 0.95)
-                  (org-level-4 . 0.93)
-                  (org-level-5 . 0.91)
-                  (org-level-6 . 0.88)
-                  (org-level-7 . 0.85)
-                  (org-level-8 . 0.83)))
+  (dolist (face '((org-level-1 . 1.3)
+                  (org-level-2 . 1.15)
+                  (org-level-3 . 1.15)
+                  (org-level-4 . 1.15)
+                  (org-level-5 . 1.15)
+                  (org-level-6 . 1.15)
+                  (org-level-7 . 1.15)
+                  (org-level-8 . 1.15)))
     (set-face-attribute (car face) nil :font "Fira Code Nerd Font Mono" :weight 'regular :height (cdr face)))
 
   ;; Ensure that anything that should be fixed-pitch in Org files appears that way
