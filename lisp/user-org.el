@@ -141,7 +141,6 @@
 
 (use-package mrds-mode;;switch org-roam-db folder 
   :straight (:host github :repo "Imymirror/mrds-mode")
-  :bind (("C-c n s" . mrds/roam-switch-directory))
   :config
   (or mrds--roam-root-directory (setq mrds--roam-root-directory (file-truename "~/user-note"))) ;;same as org-roam-directory
   (setq mrds--db-cache-path (file-truename "~/user-note/org-roam-db")) ;;all sub db here
