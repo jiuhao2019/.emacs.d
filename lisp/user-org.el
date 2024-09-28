@@ -5,7 +5,7 @@
                              (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
 
   ;; Set faces for heading levels
-  (dolist (face '((org-level-1 . 1.3)
+  (dolist (face '((org-level-1 . 1.21)
                   (org-level-2 . 1.15)
                   (org-level-3 . 1.15)
                   (org-level-4 . 1.15)
@@ -47,15 +47,6 @@
   (setq org-log-done 'time)
   (setq org-log-into-drawer t)
   (setq org-html-validation-link nil)
-  ;;=========================begin: org-habit
-  (require 'org-habit)
-  (add-to-list 'org-modules 'org-habit t)
-  (setq org-habit-graph-column 100)
-  (setq org-habit-preceding-days 4)
-  (setq org-habit-following-days 4)
-  (setq org-habit-show-habits-only-for-today nil)
-  (setq org-habit-show-all-today t)
-  ;;=========================end
   ;;=========================================================org-agenda
   (setq org-agenda-start-with-log-mode t)
   ;; (setq org-agenda-files (directory-files-recursively "~/user-note" "\\.org.gpg$"));;递归搜寻
