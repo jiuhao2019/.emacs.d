@@ -77,7 +77,7 @@
 (set-keyboard-coding-system 'utf-8)
 ;;———————————————————————————————————————————————font
 ;;默认字体
-(set-face-attribute 'default nil :family "Fira Code Nerd Font Mono" :height 165)
+(set-face-attribute 'default nil :family "Fira Code Nerd Font Mono" :height 115)
 
 ;; Unicode
 ;; `set-fontset-font' 用于指定某些字符集使用特定的字体
@@ -133,7 +133,7 @@
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold nil    ; if nil, bold is universally disabled
         doom-themes-enable-italic nil) ; if nil, italics is universally disabled
-  (load-theme 'doom-one t)
+  (load-theme 'doom-gruvbox t)
 
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
