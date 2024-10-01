@@ -122,33 +122,7 @@
 ;;———————————————————————————————————————————————plugin
 (require 'on)
 (require 'ialign)
-
-;;此包安装后，记得手动安装 M-x  all-the-icons-install-fonts
-(use-package all-the-icons
-  :if (display-graphic-p))
-
-(use-package all-the-icons-ivy-rich)
-
-(use-package doom-themes
-  :config
-  ;; Global settings (defaults)
-  (setq doom-themes-enable-bold nil    ; if nil, bold is universally disabled
-        doom-themes-enable-italic nil) ; if nil, italics is universally disabled
-  (load-theme 'doom-gruvbox t)
-
-  ;; Enable flashing mode-line on errors
-  (doom-themes-visual-bell-config)
-  ;; Enable custom neotree theme (all-the-icons must be installed!)
-  (doom-themes-neotree-config)
-  ;; Corrects (and improves) org-mode's native fontification.
-  (doom-themes-org-config))
-
-(use-package doom-modeline
-  :init 
-  (doom-modeline-mode 1)
-  :custom 
-  ((doom-modeline-height 15)))
-
+(require 'user-theme)
 (setq evil-want-C-u-scroll t)
 (require 'user-evil)
 (require 'user-ivy)
@@ -251,14 +225,18 @@
   (setq-default format-all-formatters
                 '(("C"     (astyle "--mode=c"))
                   ("Shell" (shfmt "-i" "4" "-ci")))))
-
+;;移动字符块
 (use-package drag-stuff
   :init (drag-stuff-global-mode))
 
+;;文件浏览
 (use-package dirvish
   :config (dirvish-override-dired-mode))
+
 (use-package lua-mode)
 (use-package markdown-mode)
+
+;;折叠大括号块
 (use-package hideshow
   :ensure nil
   :diminish hs-minor-mode
@@ -272,6 +250,8 @@
            '((c-mode "{" "}" "/[*/]" nil nil)
              (c++-mode "{" "}" "/[*/]" nil nil)
              (rust-mode "{" "}" "/[*/]" nil nil)))))
+
+;;记住每个buffer离开时光标位置
 (use-package saveplace
   :ensure nil
   :hook (after-init . save-place-mode))
