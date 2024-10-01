@@ -198,7 +198,7 @@
    ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
    [_n_] neotree-toggle                       [_s_] scratch-buffer  
    [_w_] toggle-show-trailing-whitespace      [_h_] switch-theme 
-   [_d_] define-word  
+   [_d_] define-word                          [_v_] valign-mode 
    [_t_] google-translate-at-point  
   "
   ("n"   neotree-toggle nil :color blue)
@@ -206,6 +206,7 @@
   ("d"   define-word :color blue)
   ("s"   scratch-buffer :color blue)
   ("h"   ap/switch-theme)
+  ("v"   valign-mode nil :color blue)
   ("t"   google-translate-at-point nil :color blue))
 ;;
 (use-package general

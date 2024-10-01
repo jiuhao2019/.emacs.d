@@ -156,8 +156,7 @@
 (require 'user-neotree)
 (require 'user-lsp)
 (require 'user-lisp-format)
-(require 'user-valign)
-;; (require 'user-valign);;能让表格里有中文的表格对齐,但是如打开的文件里表格多且大就卡顿。
+(require 'user-valign);;能让表格里有中文的表格对齐,但是如打开的文件里表格多且大就卡顿。
 (require 'user-rg)
 (use-package amx ;;auto show recent commands
   :init (amx-mode))
