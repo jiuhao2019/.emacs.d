@@ -66,13 +66,15 @@
 (defhydra hydra-org-roam (:hint nil )
   "
    ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
-   [_i_] org-id-get-create           
+   [_c_] org-id-get-create           
+   [_i_] org-roam-node-insert           
    [_n_] org-roam-node-find           
    [_s_] org-roam-db-sync                          
    [_u_] org-roam-ui-open                          
    [_d_] mrds/roam-switch-directory    
   "
-  ("i"   org-id-get-create nil :color blue)
+  ("c"   org-id-get-create nil :color blue)
+  ("i"   org-roam-node-insert nil :color blue)
   ("n"   org-roam-node-find nil :color blue)
   ("s"   org-roam-db-sync nil :color blue)
   ("u"   org-roam-ui-open nil :color blue)
