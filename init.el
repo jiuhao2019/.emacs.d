@@ -122,7 +122,8 @@
 ;;———————————————————————————————————————————————plugin
 (require 'on)
 (require 'ialign)
-;;
+
+;;此包安装后，记得手动安装 M-x  all-the-icons-install-fonts
 (use-package all-the-icons
   :if (display-graphic-p))
 

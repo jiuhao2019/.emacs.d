@@ -70,10 +70,10 @@
 
   (setq org-capture-templates nil)
   (add-to-list 'org-capture-templates
-               '("t" "Task" entry (file "~/user-note/capture_task.org.gpg")
+               '("t" "Task" entry (file "~/user-note/capture.org")
                  "* TODO %^{heading} %^g\n %?\n"))
   (add-to-list 'org-capture-templates
-               '("n" "Note" entry (file "~/user-note/capture_note.org.gpg")
+               '("n" "Note" entry (file "~/user-note/capture.org")
 		 "* %^{heading} %^g\n %?\n"))
 
   (setq org-refile-targets
@@ -131,6 +131,12 @@
 		(propertize "${tags:10}" 'face 'org-tag)))
   (setq org-roam-database-connector 'sqlite-builtin)
   (setq org-roam-v2-ack t)
+  ;;设置默认新节点名称不含时间戳
+  (setq org-roam-capture-templates
+	'(("d" "default" plain "%?"
+           :if-new (file+head "${slug}.org" "#+TITLE: ${title}\n")
+           :empty-lines 1
+           :unnarrowed  t)))
   (require 'org-roam-protocol)
   (org-roam-setup))
 
