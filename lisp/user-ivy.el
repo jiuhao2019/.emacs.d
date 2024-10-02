@@ -7,7 +7,6 @@
   (counsel-mode 1))
 
 (use-package ivy
-  :diminish
   :bind (("C-s" . swiper)
          :map ivy-minibuffer-map
          ("TAB" . ivy-alt-done)
@@ -23,7 +22,6 @@
   ;; delete M-x ^
   (with-eval-after-load 'counsel
     (setq ivy-initial-inputs-alist nil)))
-
 
 (use-package ivy-rich
   :after ivy
@@ -50,6 +48,6 @@
   ([remap describe-variable] . counsel-describe-variable)
   ([remap describe-key] . helpful-key))
 
-(use-package ivy-hydra)
+(use-package ivy-hydra )
 
 (provide 'user-ivy)

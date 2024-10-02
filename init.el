@@ -28,6 +28,8 @@
 
 (setq-default initial-scratch-message nil)
 (setq-default bidi-display-reordering nil)
+;; Emacs "updates" its ui more often than it needs to, so slow it down slightly
+(setq idle-update-delay 1.0)  ; default is 0.5
 ;;———————————————————————————————————————————————卡顿问题解决
 ;;如大文件卡顿，试此配置
 ;; (setq-default bidi-display-reordering nil)
@@ -137,7 +139,6 @@
   :init (amx-mode))
 
 (use-package undo-tree
-  :defer t
   :init (global-undo-tree-mode)
   :custom (undo-tree-visualizer-diff t)
   (undo-tree-history-directory-alist '(("." . "~/undo-emacs")))
@@ -161,20 +162,14 @@
   (completion-category-overrides '((file (styles partial-completion)))))
 
 ;;; recently opened file
-(require 'recentf)
-(setq recentf-max-saved-items 1000)
-(recentf-mode 1)
+(use-package recentf
+  :config
+  (setq recentf-max-saved-items 1000)
+  (recentf-mode 1))
 
 ;;使能加密
 (require 'epa-file)
-(epa-file-enable)
-
-;;可以给标题级别内容的加密
-(require 'org-crypt)
-(org-crypt-use-before-save-magic)
-(setq org-tags-exclude-from-inheritance (quote("crypt")))
-(setq org-crypt-key nil);;密钥加密(非对称加密)或密码加密(对称加密)
-(setq epg-gpg-program "gpg2")
+  (epa-file-enable)
 
 ;;让用户输入的密码不会因内存不足而换出到磁盘
 (use-package pinentry
@@ -198,19 +193,15 @@
 (use-package nerd-icons-completion
   :hook (minibuffer-setup . nerd-icons-completion-mode))
 
-(use-package ggtags)
+(use-package ggtags )
 (add-hook 'c-mode-common-hook
           (lambda ()
             (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
               (ggtags-mode 1))))
 
-(use-package imenu)
-
-(use-package define-word
-  :ensure t)
+(use-package imenu )
 
 (use-package google-translate
-  :ensure t
   :commands google-translate-smooth-translate
   :init
   (setq-default google-translate-translation-directions-alist
@@ -237,7 +228,6 @@
 
 ;;折叠大括号块
 (use-package hideshow
-  :ensure nil
   :hook (prog-mode . hs-minor-mode)
   :custom
   (hs-special-modes-alist
@@ -248,12 +238,10 @@
 
 ;;记住每个buffer离开时光标位置
 (use-package saveplace
-  :ensure nil
   :hook (after-init . save-place-mode))
 ;;———————————————————————————————————————————————
 ;;put this at end of plugin
 (use-package which-key
-  :defer 0
   :config (setq which-key-idle-delay 0))
 (which-key-mode)
 

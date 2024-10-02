@@ -140,10 +140,10 @@
   (require 'org-roam-protocol)
   (org-roam-setup))
 
-(use-package org-roam-ui)
-(use-package simple-httpd)
-(use-package websocket)
-(use-package magit)
+(use-package org-roam-ui )
+(use-package simple-httpd )
+(use-package websocket )
+(use-package magit )
 
 (use-package mrds-mode;;switch org-roam-db folder 
   :straight (:host github :repo "Imymirror/mrds-mode")

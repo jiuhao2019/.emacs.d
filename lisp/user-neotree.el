@@ -1,6 +1,7 @@
-(use-package neotree)
-(setq neo-theme (if (display-graphic-p) 'icons))
-(setq neo-window-fixed-size nil)
+(use-package neotree
+  :config
+  (setq neo-theme (if (display-graphic-p) 'icons))
+  (setq neo-window-fixed-size nil))
 
 (provide 'user-neotree)
 

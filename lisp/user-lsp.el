@@ -15,13 +15,13 @@
   ("C-c l s" . lsp-ivy-workspace-symbol)) ;; 可快速搜索工作区内的符号（类名、函数名、变量名等）
 
 (use-package lsp-ui
-   :config
-   (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
-   (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
-   (setq lsp-ui-doc-position 'top))
+  :config
+  (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
+  (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
+  (setq lsp-ui-doc-position 'top))
 
 (use-package lsp-ivy
-   :after (lsp-mode))
+  :after (lsp-mode))
 
 (use-package company
   :ensure t
@@ -35,47 +35,45 @@
   (setq company-transformers '(company-sort-by-occurrence))) ; 根据选择的频率进行排序，读者如果不喜欢可以去掉
 
 (use-package company-box
-   :ensure t
-   :if window-system
-   :hook (company-mode . company-box-mode))
+  :ensure t
+  :if window-system
+  :hook (company-mode . company-box-mode))
 
 (use-package yasnippet
-   :ensure t
-   :hook
-   (prog-mode . yas-minor-mode)
-   :config
-   (yas-reload-all)
-   ;; add company-yasnippet to company-backends
-   (defun company-mode/backend-with-yas (backend)
-     (if (and (listp backend) (member 'company-yasnippet backend))
+  :ensure t
+  :hook
+  (prog-mode . yas-minor-mode)
+  :config
+  (yas-reload-all)
+  ;; add company-yasnippet to company-backends
+  (defun company-mode/backend-with-yas (backend)
+    (if (and (listp backend) (member 'company-yasnippet backend))
         backend
-     (append (if (consp backend) backend (list backend))
-     '(:with company-yasnippet))))
-     (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
-       ;; unbind <TAB> completion
-       (define-key yas-minor-mode-map [(tab)]        nil)
-       (define-key yas-minor-mode-map (kbd "TAB")    nil)
-       (define-key yas-minor-mode-map (kbd "<tab>")  nil)
-   :bind
-   (:map yas-minor-mode-map ("S-<tab>" . yas-expand)))
+      (append (if (consp backend) backend (list backend))
+	      '(:with company-yasnippet))))
+  (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
+  ;; unbind <TAB> completion
+  (define-key yas-minor-mode-map [(tab)]        nil)
+  (define-key yas-minor-mode-map (kbd "TAB")    nil)
+  (define-key yas-minor-mode-map (kbd "<tab>")  nil)
+  :bind
+  (:map yas-minor-mode-map ("S-<tab>" . yas-expand)))
                    
 (use-package yasnippet-snippets
-   :ensure t
-   :after yasnippet)
+  :ensure t
+  :after yasnippet)
 
 (use-package projectile
-   :diminish projectile-mode
-   :config
-   (projectile-mode)
-   (setq projectile-mode-line "Projectile")
-   (setq projectile-track-known-projects-automatically nil)
-   :custom ((projectile-completion-system 'ivy))
-   :bind-keymap
-   ("C-c p" . projectile-command-map))
+  :config
+  (projectile-mode)
+  (setq projectile-mode-line "Projectile")
+  (setq projectile-track-known-projects-automatically nil)
+  :custom ((projectile-completion-system 'ivy))
+  :bind-keymap
+  ("C-c p" . projectile-command-map))
 
 (use-package counsel-projectile
   :after projectile
   :config (counsel-projectile-mode))
-
 
 (provide 'user-lsp)
