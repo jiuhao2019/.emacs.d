@@ -138,7 +138,6 @@
 
 (use-package undo-tree
   :defer t
-  :diminish undo-tree-mode
   :init (global-undo-tree-mode)
   :custom (undo-tree-visualizer-diff t)
   (undo-tree-history-directory-alist '(("." . "~/undo-emacs")))
@@ -239,10 +238,6 @@
 ;;折叠大括号块
 (use-package hideshow
   :ensure nil
-  :diminish hs-minor-mode
-  :bind (:map prog-mode-map
-              ("C-c TAB" . hs-toggle-hiding)
-              ("M-+" . hs-show-all))
   :hook (prog-mode . hs-minor-mode)
   :custom
   (hs-special-modes-alist
@@ -259,7 +254,6 @@
 ;;put this at end of plugin
 (use-package which-key
   :defer 0
-  :diminish which-key-mode
   :config (setq which-key-idle-delay 0))
 (which-key-mode)
 
