@@ -182,30 +182,30 @@
   ("l"   drag-stuff-right ))
 (defhydra hydra-misc (:hint nil )
   "
-   [_n_] neotree-toggle                  [_s_] scratch-buffer       [_S_] hs-show-all  [_c_] comment-line              [_K_] highlight-symbol-remove-all
-   [_w_] toggle-show-trailing-whitespace [_h_] switch-theme         [_H_] hs-hide-all  [_j_] avy-goto-char-timer       [_f_] fzf-find-file
-   [_d_] define-word                     [_v_] valign-mode          [_m_] lsp-ui-imenu [_u_] undo-tree-visualize       [_r_] fzf-recentf
-   [_t_] google-translate-at-point       [_<TAB>_] hs-toggle-hiding [_i_] ialign       [_k_] highlight-symbol-at-point
+   [_n_] neotree-toggle                  [_s_] scratch-buffer       [_h_] hs-show-all   [_c_] comment-line                [_F_] fzf-find-file
+   [_w_] toggle-show-trailing-whitespace [_e_] switch-theme         [_H_] hs-hide-all   [_u_] undo-tree-visualize         [_f_] fzf-recentf                 
+   [_j_] avy-goto-char-timer             [_v_] valign-mode          [_m_] lsp-ui-imenu  [_K_] highlight-symbol-remove-all [_i_] ialign   
+   [_t_] google-translate-at-point       [_<TAB>_] hs-toggle-hiding [_M_] counsel-imenu [_k_] highlight-symbol-at-point
   "
   ("n"   neotree-toggle nil :color blue)
   ("w"   toggle-show-trailing-whitespace nil :color blue)
-  ("d"   define-word nil :color blue)
   ("s"   scratch-buffer nil :color blue)
-  ("h"   ap/switch-theme)
-  ("v"   valign-mode nil :color blue)
+  ("e"   ap/switch-theme)
+  ("v"   valign-mode nil :color blue);;表格里有中文也能对齐
   ("m"   lsp-ui-imenu nil :color blue )
+  ("M"   counsel-imenu nil :color blue )
   ("i"   ialign nil :color blue )
   ("c"   comment-line :color blue )
   ("<TAB>" hs-toggle-hiding nil :color blue ) ;;折叠光标处所在的大括号
-  ("S" hs-show-all nil :color blue ) ;;展开所有大括号
-  ("H" hs-hide-all nil :color blue ) ;;折叠所有大括号
-  ("j" avy-goto-char-timer nil :color blue )
-  ("u" undo-tree-visualize nil :color blue)
-  ("k" highlight-symbol-at-point nil :color blue)
-  ("K" highlight-symbol-remove-all nil :color blue)
-  ("f" fzf-find-file nil :color blue)
-  ("r" fzf-recentf nil :color blue)
-  ("t" google-translate-at-point nil :color blue))
+  ("h"   hs-show-all nil :color blue ) ;;展开所有大括号
+  ("H"   hs-hide-all nil :color blue ) ;;折叠所有大括号
+  ("j"   avy-goto-char-timer nil :color blue );;easymotion
+  ("u"   undo-tree-visualize nil :color blue)
+  ("k"   highlight-symbol-at-point nil :color blue)
+  ("K"   highlight-symbol-remove-all nil :color blue)
+  ("F"   fzf-find-file nil :color blue)
+  ("f"   fzf-recentf nil :color blue)
+  ("t"   google-translate-at-point nil :color blue))
 ;;
 (use-package general
   :after evil
