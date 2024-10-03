@@ -196,10 +196,10 @@
 (defhydra hydra-misc (:hint nil )
   "
    ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
-   [_n_] neotree-toggle                    [_s_] scratch-buffer      [_S_] hs-show-all 
-   [_w_] toggle-show-trailing-whitespace   [_h_] switch-theme        [_H_] hs-hide-all
-   [_d_] define-word                       [_v_] valign-mode 
-   [_t_] google-translate-at-point         [_<TAB>_] hs-toggle-hiding  
+   [_n_] neotree-toggle                   [_s_] scratch-buffer        [_S_] hs-show-all  [_c_] comment-line 
+   [_w_] toggle-show-trailing-whitespace  [_h_] switch-theme          [_H_] hs-hide-all
+   [_d_] define-word                      [_v_] valign-mode           [_m_] lsp-ui-imenu 
+   [_t_] google-translate-at-point        [_<TAB>_] hs-toggle-hiding  [_i_] ialign 
   "
   ("n"   neotree-toggle nil :color blue)
   ("w"   toggle-show-trailing-whitespace nil :color blue)
@@ -207,6 +207,9 @@
   ("s"   scratch-buffer nil :color blue)
   ("h"   ap/switch-theme)
   ("v"   valign-mode nil :color blue)
+  ("m"   lsp-ui-imenu nil :color blue )
+  ("i"   ialign nil :color blue )
+  ("c"   comment-line :color blue )
   ("<TAB>" hs-toggle-hiding nil :color blue ) ;;折叠光标处所在的大括号
   ("S" hs-show-all nil :color blue ) ;;展开所有大括号
   ("H" hs-hide-all nil :color blue ) ;;折叠所有大括号
@@ -221,13 +224,10 @@
   (user/leader-keys
     "j" '(avy-goto-char-timer :which-key "jump")
     "u" '(undo-tree-visualize :which-key)
-    "r" '(fzf-recentf :which-key)
     "k" '(highlight-symbol-at-point :which-key)
     "K" '(highlight-symbol-remove-all :which-key)
     "f" '(fzf-find-file :which-key)
-    "c" '(comment-line :which-key )
-    "i" '(lsp-ui-imenu :which-key )
-    "I" '(ialign :which-key )
+    "r" '(fzf-recentf :which-key)
     "b" '(hydra-buffer/body :which-key "+buffer")
     "x" '(hydra-misc/body :which-key "+misc")
     "o" '(hydra-org/body :which-key "+org")
