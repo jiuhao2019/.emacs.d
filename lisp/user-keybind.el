@@ -2,13 +2,13 @@
 ;; 
 (defhydra hydra-bookmark (:hint nil )
   "
-    [_t_] bookmark-set  [_r_] bookmark-rename
+    [_s_] bookmark-set  [_r_] bookmark-rename
     [_j_] bookmark-jump [_d_] bookmark-delete
-    [_s_] bookmark-save ^^
+    [_w_] bookmark-save ^^
   "
-  ("t"   bookmark-set nil :color blue)
+  ("s"   bookmark-set nil :color blue)
   ("j"   bookmark-jump nil :color blue)
-  ("s"   bookmark-save nil :color blue)
+  ("w"   bookmark-save nil :color blue)
   ("r"   bookmark-rename nil :color blue)
   ("d"   bookmark-delete nil :color blue))
 ;;-------------------------------------------------------window
@@ -184,16 +184,16 @@
   "
    [_n_] neotree-toggle                  [_s_] scratch-buffer       [_h_] hs-show-all   [_c_] comment-line                [_F_] fzf-find-file
    [_w_] toggle-show-trailing-whitespace [_e_] switch-theme         [_H_] hs-hide-all   [_u_] undo-tree-visualize         [_f_] fzf-recentf                 
-   [_j_] avy-goto-char-timer             [_v_] valign-mode          [_m_] lsp-ui-imenu  [_K_] highlight-symbol-remove-all [_i_] ialign   
-   [_t_] google-translate-at-point       [_<TAB>_] hs-toggle-hiding [_M_] counsel-imenu [_k_] highlight-symbol-at-point
+   [_j_] avy-goto-char-timer             [_v_] valign-mode          [_M_] lsp-ui-imenu  [_K_] highlight-symbol-remove-all [_i_] ialign   
+   [_t_] google-translate-at-point       [_<TAB>_] hs-toggle-hiding [_m_] counsel-imenu [_k_] highlight-symbol-at-point
   "
   ("n"   neotree-toggle nil :color blue)
   ("w"   toggle-show-trailing-whitespace nil :color blue)
   ("s"   scratch-buffer nil :color blue)
   ("e"   ap/switch-theme)
   ("v"   valign-mode nil :color blue);;表格里有中文也能对齐
-  ("m"   lsp-ui-imenu nil :color blue )
-  ("M"   counsel-imenu nil :color blue )
+  ("M"   lsp-ui-imenu nil :color blue )
+  ("m"   counsel-imenu nil :color blue )
   ("i"   ialign nil :color blue )
   ("c"   comment-line :color blue )
   ("<TAB>" hs-toggle-hiding nil :color blue ) ;;折叠光标处所在的大括号
