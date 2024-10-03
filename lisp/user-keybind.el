@@ -2,10 +2,9 @@
 ;; 
 (defhydra hydra-bookmark (:hint nil )
   "
-    ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
-    [_t_] bookmark-set           [_r_] bookmark-rename
-    [_j_] bookmark-jump          [_d_] bookmark-delete
-    [_s_] bookmark-save          ^^
+    [_t_] bookmark-set  [_r_] bookmark-rename
+    [_j_] bookmark-jump [_d_] bookmark-delete
+    [_s_] bookmark-save ^^
   "
   ("t"   bookmark-set nil :color blue)
   ("j"   bookmark-jump nil :color blue)
@@ -15,12 +14,11 @@
 ;;-------------------------------------------------------window
 (defhydra hydra-window (:hint nil )
   "
-   ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
-   [_h_] go left     [_H_] move to left      [_s_] fork horizontally         [_=_] balance windows       
-   [_j_] go down     [_J_] move to bottom    [_v_] fork vertically           [_+_] increase height       
-   [_l_] go up       [_L_] move to right     [_x_] delete window             [_-_] decrease height       
-   [_k_] go right    [_K_] move to top       [_X_] delete other windows      [_>_] increase width        
-   ^^                ^^                      ^^                              [_<_] decrease width
+   [_h_] go left  [_H_] move to left   [_s_] fork horizontally    [_=_] balance windows       
+   [_j_] go down  [_J_] move to bottom [_v_] fork vertically      [_+_] increase height       
+   [_l_] go up    [_L_] move to right  [_x_] delete window        [_-_] decrease height       
+   [_k_] go right [_K_] move to top    [_X_] delete other windows [_>_] increase width        
+   ^^             ^^                   ^^                         [_<_] decrease width
   "
   ("h"   evil-window-left)
   ("j"   evil-window-down)
@@ -43,10 +41,9 @@
 ;;-------------------------------------------------------search
 (defhydra hydra-search (:hint nil )
   "
-   ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
-   [_m_] douban-movie      [_o_] google        [_g_] github       [_w_] wikipedia      
-   [_b_] douban-book       [_d_] duckgo        [_y_] youtube      [_a_] annas-archive  
-   [_z_] zhihu             [_s_] scholar       [_l_] bilibili     [_r_] fzf-grep-in-dir 
+   [_m_] douban-movie [_o_] google  [_g_] github   [_w_] wikipedia      
+   [_b_] douban-book  [_d_] duckgo  [_y_] youtube  [_a_] annas-archive  
+   [_z_] zhihu        [_s_] scholar [_l_] bilibili [_r_] fzf-grep-in-dir 
   "
   ("m"   my/search-DoubanMovie nil :color blue)
   ("b"   my/search-doubanbook nil :color blue)
@@ -65,7 +62,6 @@
 ;;  org-roam
 (defhydra hydra-org-roam (:hint nil )
   "
-   ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
    [_c_] org-id-get-create           
    [_i_] org-roam-node-insert           
    [_n_] org-roam-node-find           
@@ -82,11 +78,10 @@
 ;;  org-agenda
 (defhydra hydra-org-agenda (:hint nil )
   "
-   ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
-   [_]_] org-remove-file                [_s_] org-schedule
-   [_[_] org-agenda-file-to-front       [_d_] org-deadline
-   [_a_] org-agenda           
-   [_t_] org-todo           
+   [_]_] org-remove-file          [_s_] org-schedule
+   [_[_] org-agenda-file-to-front [_d_] org-deadline
+   [_a_] org-agenda               ^^ 
+   [_t_] org-todo                 ^^ 
   "			      
   ("["   org-agenda-file-to-front nil :color blue)
   ("]"   org-remove-file nil :color blue)
@@ -97,7 +92,6 @@
 ;;  org-clock
 (defhydra hydra-org-clock (:hint nil )
   "
-   ∈━━━━━━━━━━━━━━━━━━━━━━━━∋
    [_i_] org-clock-in           
    [_o_] org-clock-out                          
    [_r_] org-clock-report                          
@@ -108,7 +102,6 @@
 ;;  plain list
 (defhydra hydra-org-plain-list (:hint nil )
   "
-   ∈━━━━━━━━━━━━━━━━━━━━━━━━∋
    [_i_] org-insert-todo-heading                          
    [_u_] org-shiftmetaup                          
    [_d_] org-shiftmetadown                          
@@ -121,7 +114,6 @@
 ;;  table
 (defhydra hydra-org-table (:hint nil )
   "
-   ∈━━━━━━━━━━━━━━━━━━━━━━━━∋
    [_c_] org-table-create                          
    [_1_] export-to-spreadsheet                          
    [_2_] export-to-spreadsheet_ng                          
@@ -132,7 +124,6 @@
 ;;  link
 (defhydra hydra-org-link (:hint nil )
   "
-   ∈━━━━━━━━━━━━━━━━━━━━━━━━∋
    [_o_] org-open-at-point                          
    [_t_] org-toggle-link-display                          
    [_i_] org-insert-or-edit-link                          
@@ -142,11 +133,10 @@
   ("i"   org-insert-link nil :color blue))
 (defhydra hydra-org (:hint nil )
   "
-   ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
-   [_T_] org-toggle-inline-images       [_p_] org-capture            [_a_] +org-agenda      [_t_] +org-table        
-   [_o_] org-html-export-to-html        [_i_] org-meta-return        [_l_] +plain-list      [_L_] +org-link 
-   [_w_] org-refile                     ^^                           [_r_] +org-roam   
-   [_g_] org-set-tags-command           ^^                           [_c_] +org-clock
+   [_T_] org-toggle-inline-images [_p_] org-capture     [_a_] +org-agenda [_t_] +org-table        
+   [_o_] org-html-export-to-html  [_i_] org-meta-return [_l_] +plain-list [_L_] +org-link 
+   [_w_] org-refile               ^^                    [_r_] +org-roam   ^^ 
+   [_g_] org-set-tags-command     ^^                    [_c_] +org-clock  ^^
 "
   ("T"   org-toggle-inline-images nil :color blue)
   ("o"   org-html-export-to-html nil :color blue)
@@ -163,7 +153,6 @@
 ;;-------------------------------------------------------end org
 (defhydra hydra-help (:hint nil )
   "
-   ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
    [_b_] counsel-descbinds          
    [_f_] counsel-describe-function  
    [_v_] counsel-describe-variable    
@@ -175,7 +164,6 @@
   ("m"   info-display-manual nil :color blue))
 (defhydra hydra-buffer (:hint nil )
   "
-   ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
    [_a_] user-alternate-buffers          
    [_c_] user-diff-buffer-with-file  
   "
@@ -183,7 +171,6 @@
   ("c"   user-diff-buffer-with-file nil :color blue))
 (defhydra hydra-drag-stuff (:hint nil )
   "
-   ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
    [_h_] drag-stuff-left          
    [_j_] drag-stuff-down  
    [_k_] drag-stuff-up  
@@ -195,11 +182,10 @@
   ("l"   drag-stuff-right ))
 (defhydra hydra-misc (:hint nil )
   "
-   ∈━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━∋
-   [_n_] neotree-toggle                   [_s_] scratch-buffer        [_S_] hs-show-all  [_c_] comment-line 
-   [_w_] toggle-show-trailing-whitespace  [_h_] switch-theme          [_H_] hs-hide-all
-   [_d_] define-word                      [_v_] valign-mode           [_m_] lsp-ui-imenu 
-   [_t_] google-translate-at-point        [_<TAB>_] hs-toggle-hiding  [_i_] ialign 
+   [_n_] neotree-toggle                  [_s_] scratch-buffer       [_S_] hs-show-all  [_c_] comment-line              [_K_] highlight-symbol-remove-all
+   [_w_] toggle-show-trailing-whitespace [_h_] switch-theme         [_H_] hs-hide-all  [_j_] avy-goto-char-timer       [_f_] fzf-find-file
+   [_d_] define-word                     [_v_] valign-mode          [_m_] lsp-ui-imenu [_u_] undo-tree-visualize       [_r_] fzf-recentf
+   [_t_] google-translate-at-point       [_<TAB>_] hs-toggle-hiding [_i_] ialign       [_k_] highlight-symbol-at-point
   "
   ("n"   neotree-toggle nil :color blue)
   ("w"   toggle-show-trailing-whitespace nil :color blue)
@@ -213,7 +199,13 @@
   ("<TAB>" hs-toggle-hiding nil :color blue ) ;;折叠光标处所在的大括号
   ("S" hs-show-all nil :color blue ) ;;展开所有大括号
   ("H" hs-hide-all nil :color blue ) ;;折叠所有大括号
-  ("t"   google-translate-at-point nil :color blue))
+  ("j" avy-goto-char-timer nil :color blue )
+  ("u" undo-tree-visualize nil :color blue)
+  ("k" highlight-symbol-at-point nil :color blue)
+  ("K" highlight-symbol-remove-all nil :color blue)
+  ("f" fzf-find-file nil :color blue)
+  ("r" fzf-recentf nil :color blue)
+  ("t" google-translate-at-point nil :color blue))
 ;;
 (use-package general
   :after evil
@@ -222,12 +214,6 @@
     :keymaps '(normal visual)
     :prefix "SPC")
   (user/leader-keys
-    "j" '(avy-goto-char-timer :which-key "jump")
-    "u" '(undo-tree-visualize :which-key)
-    "k" '(highlight-symbol-at-point :which-key)
-    "K" '(highlight-symbol-remove-all :which-key)
-    "f" '(fzf-find-file :which-key)
-    "r" '(fzf-recentf :which-key)
     "b" '(hydra-buffer/body :which-key "+buffer")
     "x" '(hydra-misc/body :which-key "+misc")
     "o" '(hydra-org/body :which-key "+org")
