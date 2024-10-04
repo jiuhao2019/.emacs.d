@@ -239,6 +239,19 @@
 ;;记住每个buffer离开时光标位置
 (use-package saveplace
   :hook (after-init . save-place-mode))
+
+;; A modern Packages Menu
+(use-package paradox
+  :init
+  (setq paradox-execute-asynchronously t
+        paradox-github-token t
+        paradox-display-star-count nil)
+  ;; Replace default `list-packages'
+  (defun my-paradox-enable (&rest _)
+    "Enable paradox, overriding the default package-menu."
+    (paradox-enable))
+  (advice-add #'list-packages :before #'my-paradox-enable))
+
 ;;———————————————————————————————————————————————
 ;;put this at end of plugin
 (use-package which-key

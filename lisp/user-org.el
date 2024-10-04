@@ -133,9 +133,8 @@
   (setq org-roam-v2-ack t)
   ;;设置默认新节点名称不含时间戳
   (setq org-roam-capture-templates
-	'(("d" "default" plain "%?"
-           :if-new (file+head "${slug}.org" "#+TITLE: ${title}\n")
-           :empty-lines 1
+	'(("d" "default" plain "%?" :target
+	   (file+head "${slug}.org" "#+title: ${title}\n")
            :unnarrowed  t)))
   (require 'org-roam-protocol)
   (org-roam-setup))
