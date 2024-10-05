@@ -185,7 +185,7 @@
    [_n_] neotree-toggle                  [_s_] scratch-buffer       [_h_] hs-show-all   [_c_] comment-line                [_F_] fzf-find-file
    [_w_] toggle-show-trailing-whitespace [_e_] switch-theme         [_H_] hs-hide-all   [_u_] undo-tree-visualize         [_f_] fzf-recentf                 
    [_j_] avy-goto-char-timer             [_v_] valign-mode          [_M_] lsp-ui-imenu  [_K_] highlight-symbol-remove-all [_i_] ialign   
-   [_t_] google-translate-at-point       [_<TAB>_] hs-toggle-hiding [_m_] counsel-imenu [_k_] highlight-symbol-at-point
+   [_t_] google-translate-at-point       [_<TAB>_] hs-toggle-hiding [_m_] counsel-imenu [_k_] highlight-symbol-at-point   [_r_] toggle-truncate-lines
   "
   ("n"   neotree-toggle nil :color blue)
   ("w"   toggle-show-trailing-whitespace nil :color blue)
@@ -205,6 +205,7 @@
   ("K"   highlight-symbol-remove-all nil :color blue)
   ("F"   fzf-find-file nil :color blue)
   ("f"   fzf-recentf nil :color blue)
+  ("r"   toggle-truncate-lines nil :color blue)
   ("t"   google-translate-at-point nil :color blue))
 ;;
 (use-package general
