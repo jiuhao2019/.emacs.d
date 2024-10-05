@@ -65,6 +65,7 @@
       auto-save-timeout 30              ; number of seconds idle time before auto-save (default: 30)
       auto-save-interval 300)            ; number of keystrokes between auto-saves (default: 300)
 
+
 ;; 把Emacs自动添加的代码放到 custom.el
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
