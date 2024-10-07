@@ -1,6 +1,3 @@
-;; 先设置背景，避免闪烁。
-;; (custom-set-faces
-;;  '(default ((t (:background "black" :foreground "#137D11")))))
 
 (setq gc-cons-threshold most-positive-fixnum)
 ;; 上面代码的含义是只在空闲时进行 GC ，最大程度避免 GC 停顿导致的卡顿
