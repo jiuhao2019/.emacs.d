@@ -183,9 +183,9 @@
 ;;使能加密
 (require 'epa-file
   :config
-  (epa-file-enable)
   (setq epg-gpg-program "gpg2"))
 
+  (epa-file-enable)
 ;;让用户输入的密码不会因内存不足而换出到磁盘
 (use-package pinentry
   :config
