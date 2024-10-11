@@ -92,7 +92,7 @@
 (set-keyboard-coding-system 'utf-8)
 ;;———————————————————————————————————————————————font
 ;;默认字体
-(set-face-attribute 'default nil :family "Fira Code Nerd Font Mono" :height 175)
+(set-face-attribute 'default nil :family "Fira Code Nerd Font Mono" :height 115)
 
 ;; Unicode
 ;; `set-fontset-font' 用于指定某些字符集使用特定的字体
@@ -181,8 +181,10 @@
   (recentf-mode 1))
 
 ;;使能加密
-(require 'epa-file)
+(require 'epa-file
+  :config
   (epa-file-enable)
+  (setq epg-gpg-program "gpg2"))
 
 ;;让用户输入的密码不会因内存不足而换出到磁盘
 (use-package pinentry
