@@ -30,14 +30,14 @@
 (setq-default bidi-display-reordering nil)
 ;; Emacs "updates" its ui more often than it needs to, so slow it down slightly
 (setq idle-update-delay 1.0)  ; default is 0.5
-;;———————————————————————————————————————————————卡顿问题解决
+
 ;;如大文件卡顿，试此配置
 ;; (setq-default bidi-display-reordering nil)
 ;; (setq bidi-inhibit-bpa t
 ;;       long-line-threshold 1000
 ;;       large-hscroll-threshold 1000
 ;;       syntax-wholeline-max 1000)
-;; ;;———————————————————————————————————————————————end卡顿问题解决
+
 
 (setq inhibit-startup-message t)
 (scroll-bar-mode -1)        ; Disable visible scrollbar
@@ -72,11 +72,7 @@
      (float-time (time-since time))))
 
 (defvar k-gc-timer
-  (run-with-idle-timer 15 t
-		       (lambda ()
-                         (message "Garbage Collector has run for %.06fsec"
-                                  (k-time (garbage-collect))))))
-
+  (run-with-idle-timer 15 t (lambda () (message "Garbage Collector has run for %.03fsec" (k-time (garbage-collect))))))
 
 ;; 把Emacs自动添加的代码放到 custom.el
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
