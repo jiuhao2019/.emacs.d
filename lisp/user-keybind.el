@@ -130,11 +130,17 @@
   ("o"   org-open-at-point nil :color blue)
   ("t"   org-toggle-link-display nil :color blue)
   ("i"   org-insert-link nil :color blue))
+;;  block
+(defhydra hydra-org-block (:hint nil )
+  "
+  [_i_] org-insert-structure-template
+  "
+  ("i"   org-insert-structure-template nil :color blue))
 (defhydra hydra-org (:hint nil )
   "
   [_T_] org-toggle-inline-images [_p_] org-capture     [_a_] +org-agenda [_t_] +org-table
   [_o_] org-html-export-to-html  [_i_] org-meta-return [_l_] +plain-list [_L_] +org-link
-  [_w_] org-refile               ^^                    [_r_] +org-roam   ^^
+  [_w_] org-refile               ^^                    [_r_] +org-roam   [_b_] +org-block
   [_g_] org-set-tags-command     ^^                    [_c_] +org-clock  ^^
   "
   ("T"   org-toggle-inline-images nil :color blue)
@@ -148,6 +154,7 @@
   ("c"   hydra-org-clock/body nil :color blue)
   ("l"   hydra-org-plain-list/body nil :color blue)
   ("L"   hydra-org-link/body nil :color blue)
+  ("b"   hydra-org-block/body nil :color blue)
   ("a"   hydra-org-agenda/body nil :color blue))
 ;;-------------------------------------------------------end org
 (defhydra hydra-help (:hint nil )
