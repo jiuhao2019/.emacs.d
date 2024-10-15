@@ -1,0 +1,2 @@
+(image-type-available-p 'imagemagick)
+exit
