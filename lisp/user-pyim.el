@@ -34,8 +34,8 @@
 ;; (pyim-default-scheme 'cangjie)
 
 ;; 设置 pyim 是否使用云拼音
-(setq pyim-cloudim 'baidu)
-(setq pyim-cloudim 'google)
+;;(setq pyim-cloudim 'baidu)
+;;(setq pyim-cloudim 'google)
 
 ;; 设置 pyim 探针
 ;; 设置 pyim 探针设置，这是 pyim 高级功能设置，可以实现 *无痛* 中英文切换 :-)
@@ -54,7 +54,7 @@
 ;;                 pyim-probe-punctuation-after-punctuation))
 
 ;; 开启代码搜索中文功能（比如拼音，五笔码等）
-(pyim-isearch-mode 1)
+;;(pyim-isearch-mode 1)
 
 
 (provide 'user-pyim)
