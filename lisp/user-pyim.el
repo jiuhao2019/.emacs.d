@@ -5,8 +5,10 @@
 (use-package pyim-basedict)
 (require 'pyim-cregexp-utils)
 ;; 如果使用 popup page tooltip, 就需要加载 popup 包。
-;; (require 'popup nil t)
-;; (setq pyim-page-tooltip 'popup)
+;;(use-package popup)
+;;(setq pyim-page-tooltip 'popup)
+(use-package popon)
+(setq pyim-page-tooltip 'popon)
 
 ;; 如果使用 pyim-dregcache dcache 后端，就需要加载 pyim-dregcache 包。
 ;; (require 'pyim-dregcache)
