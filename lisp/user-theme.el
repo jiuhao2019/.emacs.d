@@ -2,8 +2,6 @@
 (use-package all-the-icons
   :if (display-graphic-p))
 
-(use-package all-the-icons-ivy-rich)
-
 (use-package doom-modeline
   :init 
   (doom-modeline-mode 1)
@@ -11,23 +9,24 @@
   ((doom-modeline-height 15)))
 
 ;;doom themes
-;; (use-package doom-themes
-;;   :config
-;;   ;; Global settings (defaults)
-;;   (setq doom-themes-enable-bold nil    ; if nil, bold is universally disabled
-;;         doom-themes-enable-italic nil) ; if nil, italics is universally disabled
-;;   (load-theme 'doom-gruvbox t)
+(use-package doom-themes
+  :config
+  ;; Global settings (defaults)
+  (setq doom-themes-enable-bold nil    ; if nil, bold is universally disabled
+        doom-themes-enable-italic nil) ; if nil, italics is universally disabled
+  (load-theme 'doom-moonlight t)
 
-;;   ;; Enable flashing mode-line on errors
-;;   (doom-themes-visual-bell-config)
-;;   ;; Enable custom neotree theme (all-the-icons must be installed!)
-;;   (doom-themes-neotree-config)
-;;   ;; Corrects (and improves) org-mode's native fontification.
-;;   (doom-themes-org-config))
+  ;; Enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
+  ;; Enable custom neotree theme (all-the-icons must be installed!)
+  (doom-themes-neotree-config)
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config))
 
 ;;gruvbox theme
-(use-package gruvbox-theme
-  :config
-  (load-theme 'gruvbox-dark-hard t))
+;; (use-package gruvbox-theme
+;;   :config
+;;   (load-theme 'gruvbox-dark-hard t))
 
+;;
 (provide 'user-theme)
