@@ -136,7 +136,7 @@
   "
   [_n_] neotree-toggle                  [_S_] scratch-buffer [_c_] comment-line        [_a_] toggle-truncate-lines             
   [_w_] toggle-show-trailing-whitespace [_e_] switch-theme   [_u_] undo-tree-visualize [_s_] fzf-grep-in-dir
-  [_j_] avy-goto-char-timer             [_v_] valign-mode    [_r_] fzf-recentf
+  [_j_] avy-goto-char-timer             [_v_] valign-mode    [_r_] fzf-recentf         [_i_] aggressive-indent-indent-defun
   [_t_] google-translate-at-point       [_m_] counsel-imenu  [_f_] fzf-find-file  
   "
   ("n"   neotree-toggle nil :color blue)
@@ -152,6 +152,7 @@
   ("r"   fzf-recentf nil :color blue)
   ("a"   toggle-truncate-lines nil :color blue)
   ("t"   google-translate-at-point nil :color blue)
+  ("i"   aggressive-indent-indent-defun nil :color blue)
   ("s"   fzf-grep-in-dir nil :color blue))
 ;;
 (use-package general

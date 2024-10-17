@@ -123,7 +123,7 @@
 (require 'user-neotree)
 (require 'user-lsp)
 (require 'user-lisp-format)
-(require 'user-valign);;能让表格里有中文的表格对齐,但是如打开的文件里表格多且大就卡顿。
+(require 'user-valign);;能让表格里有中文的表格对齐,表格太大就卡顿(需设置较小表格size)。
 (require 'user-pyim)
 (use-package amx ;;auto show recent commands
   :init (amx-mode))
@@ -173,9 +173,6 @@
         fzf/position-bottom t
         fzf/window-height 15))
 
-(use-package nerd-icons-completion
-  :hook (minibuffer-setup . nerd-icons-completion-mode))
-
 (use-package ggtags )
 (add-hook 'c-mode-common-hook
           (lambda ()
@@ -196,13 +193,6 @@
   (setq-default format-all-formatters
                 '(("C"     (astyle "--mode=c"))
                   ("Shell" (shfmt "-i" "4" "-ci")))))
-
-(use-package lua-mode)
-(use-package markdown-mode)
-
-;;记住每个buffer离开时光标位置
-(use-package saveplace
-  :hook (after-init . save-place-mode))
 
 ;;———————————————————————————————————————————————
 ;;put this at end of plugin
