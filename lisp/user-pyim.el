@@ -1,6 +1,7 @@
 (use-package pyim)
 (use-package pyim-basedict)
 (require 'pyim-cregexp-utils)
+
 ;; 使用 popup
 (use-package popon)
 (setq pyim-page-tooltip 'popon)
@@ -17,11 +18,6 @@
 
 ;; 设置 pyim 默认使用的输入法策略。
 (pyim-default-scheme 'quanpin)
-;; (pyim-default-scheme 'wubi)
-;; (pyim-default-scheme 'cangjie)
 
-;; 设置 pyim 是否使用云拼音
-;;(setq pyim-cloudim 'baidu)
-;;(setq pyim-cloudim 'google)
 
 (provide 'user-pyim)

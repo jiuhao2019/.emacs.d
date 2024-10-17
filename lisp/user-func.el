@@ -16,14 +16,6 @@
       ;;调用swiper搜索该字符串
       ( swiper input-str ))))
 
-;;=======================================begin
-;;Show/hide the trailing white-spaces in the buffer.
-;; from http://stackoverflow.com/a/11701899/634816
-(defun toggle-show-trailing-whitespace ()
-  "Toggle show-trailing-whitespace between t and nil"
-  (interactive)
-  (setq show-trailing-whitespace (not show-trailing-whitespace)))
-;;=======================================end
 ;;--------------------------------------------------------switch themes
 (defun ap/load-doom-theme (theme)
   "Disable active themes and load a Doom theme."

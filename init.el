@@ -1,5 +1,7 @@
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory)) ; 设定用户源码加载路径
 
+(load-theme 'wombat t)
+
 (setopt
  inhibit-startup-screen t
  use-file-dialog nil
@@ -111,7 +113,6 @@
 ;;———————————————————————————————————————————————end use-package
 
 ;;———————————————————————————————————————————————plugin
-(require 'user-theme)
 (setq evil-want-C-u-scroll t)
 (require 'user-evil)
 (require 'user-ivy)

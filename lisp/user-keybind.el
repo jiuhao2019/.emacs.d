@@ -134,21 +134,18 @@
 ;;-------------------------------------------------------end org
 (defhydra hydra-misc (:hint nil )
   "
-  [_n_] neotree-toggle                  [_S_] scratch-buffer        [_c_] comment-line                     
-  [_w_] toggle-show-trailing-whitespace [_e_] switch-theme          [_u_] undo-tree-visualize 
-  [_j_] avy-goto-char-timer             [_v_] valign-mode           [_i_] aggressive-indent-indent-defun
-  [_m_] counsel-imenu                   [_a_] toggle-truncate-lines [_r_] recentf                    
+  [_n_] neotree-toggle      [_c_] comment-line        [_i_] aggressive-indent-indent-defun           
+  [_e_] switch-theme        [_u_] undo-tree-visualize 
+  [_j_] avy-goto-char-timer [_v_] valign-mode           
+  [_m_] counsel-imenu       [_r_] recentf                    
   "
   ("n"   neotree-toggle nil :color blue)
-  ("w"   toggle-show-trailing-whitespace nil :color blue)
-  ("S"   scratch-buffer nil :color blue)
   ("e"   ap/switch-theme)
   ("v"   valign-mode nil :color blue);;表格里有中文也能对齐
   ("m"   counsel-imenu nil :color blue )
   ("c"   comment-line :color blue )
   ("j"   avy-goto-char-timer nil :color blue );;easymotion
   ("u"   undo-tree-visualize nil :color blue)
-  ("a"   toggle-truncate-lines nil :color blue)
   ("r"   recentf nil :color blue)
   ("i"   aggressive-indent-indent-defun nil :color blue))
 ;;
