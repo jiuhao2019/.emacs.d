@@ -161,27 +161,11 @@
   (setq epa-pinentry-mode 'loopback)
   (pinentry-start))
 
-(use-package fzf
-  :config
-  (setq fzf/args "-x --color bw --print-query --margin=1,0 --no-hscroll"
-        fzf/executable "fzf"
-        fzf/git-grep-args "-i --line-number %s"
-	fzf/grep-command "rg --no-heading -nH"
-        fzf/position-bottom t
-        fzf/window-height 15))
-
 (use-package ggtags )
 (add-hook 'c-mode-common-hook
           (lambda ()
             (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
               (ggtags-mode 1))))
-
-(use-package google-translate
-  :commands google-translate-smooth-translate
-  :init
-  (setq-default google-translate-translation-directions-alist
-                '(("cn" . "en") ("en" . "cn"))
-                google-translate-show-phonetic t))
 
 (use-package format-all
   :commands format-all-mode
