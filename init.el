@@ -139,9 +139,6 @@
                 avy-all-windows t ;; 搜索所有 window，即所有「可视范围」
                 avy-timeout-seconds 0.3)) ;; 「关键字输入完毕」信号的触发时间
 
-(use-package highlight-symbol
-  :init (highlight-symbol-mode))
-
 (use-package marginalia ;; 更多信息
   :config (marginalia-mode))
 

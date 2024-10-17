@@ -38,27 +38,6 @@
   (">"   evil-window-increase-width)
   ("="   balance-windows))
 ;;-------------------------------------------------------end window
-;;-------------------------------------------------------search
-(defhydra hydra-search (:hint nil )
-  "
-  [_m_] douban-movie [_o_] google        [_g_] github
-  [_b_] douban-book  [_d_] duckgo        [_y_] youtube
-  [_z_] zhihu        [_s_] scholar       [_l_] bilibili
-  [_w_] wikipedia    [_a_] annas-archive [_r_] fzf-grep-in-dir
-  "
-  ("m"   my/search-DoubanMovie nil :color blue)
-  ("b"   my/search-doubanbook nil :color blue)
-  ("z"   my/search-zhihu nil :color blue)
-  ("o"   my/search-google nil :color blue)
-  ("d"   my/search-duckduckgo nil :color blue)
-  ("s"   my/search-scholar nil :color blue)
-  ("g"   my/search-github nil :color blue)
-  ("y"   my/search-youtube nil :color blue)
-  ("l"   my/search-bilibili nil :color blue)
-  ("w"   my/search-wikipedia_en nil :color blue)
-  ("a"   my/search-annas-archvie nil :color blue)
-  ("r"   fzf-grep-in-dir nil :color blue))
-;;-------------------------------------------------------end search
 ;;-------------------------------------------------------begin org
 ;;  org-roam
 (defhydra hydra-org-roam (:hint nil )
@@ -153,55 +132,27 @@
   ("b"   hydra-org-block/body nil :color blue)
   ("a"   hydra-org-agenda/body nil :color blue))
 ;;-------------------------------------------------------end org
-(defhydra hydra-help (:hint nil )
-  "
-  [_b_] counsel-descbinds
-  [_f_] counsel-describe-function
-  [_v_] counsel-describe-variable
-  [_m_] info-display-manual
-  "
-  ("b"   counsel-descbinds nil :color blue)
-  ("f"   counsel-describe-function nil :color blue)
-  ("v"   counsel-describe-variable nil :color blue)
-  ("m"   info-display-manual nil :color blue))
-(defhydra hydra-drag-stuff (:hint nil )
-  "
-  [_h_] drag-stuff-left
-  [_j_] drag-stuff-down
-  [_k_] drag-stuff-up
-  [_l_] drag-stuff-right
-  "
-  ("h"   drag-stuff-left )
-  ("j"   drag-stuff-down )
-  ("k"   drag-stuff-up )
-  ("l"   drag-stuff-right ))
 (defhydra hydra-misc (:hint nil )
   "
-  [_n_] neotree-toggle                  [_s_] scratch-buffer       [_h_] hs-show-all   [_c_] comment-line                [_f_] fzf-find-file
-  [_w_] toggle-show-trailing-whitespace [_e_] switch-theme         [_H_] hs-hide-all   [_u_] undo-tree-visualize         [_r_] fzf-recentf
-  [_j_] avy-goto-char-timer             [_v_] valign-mode          [_M_] lsp-ui-imenu  [_K_] highlight-symbol-remove-all [_i_] ialign
-  [_t_] google-translate-at-point       [_<TAB>_] hs-toggle-hiding [_m_] counsel-imenu [_k_] highlight-symbol-at-point   [_a_] toggle-truncate-lines
+  [_n_] neotree-toggle                  [_S_] scratch-buffer [_c_] comment-line        [_a_] toggle-truncate-lines             
+  [_w_] toggle-show-trailing-whitespace [_e_] switch-theme   [_u_] undo-tree-visualize [_s_] fzf-grep-in-dir
+  [_j_] avy-goto-char-timer             [_v_] valign-mode    [_r_] fzf-recentf
+  [_t_] google-translate-at-point       [_m_] counsel-imenu  [_f_] fzf-find-file  
   "
   ("n"   neotree-toggle nil :color blue)
   ("w"   toggle-show-trailing-whitespace nil :color blue)
-  ("s"   scratch-buffer nil :color blue)
+  ("S"   scratch-buffer nil :color blue)
   ("e"   ap/switch-theme)
   ("v"   valign-mode nil :color blue);;表格里有中文也能对齐
-  ("M"   lsp-ui-imenu nil :color blue )
   ("m"   counsel-imenu nil :color blue )
-  ("i"   ialign nil :color blue )
   ("c"   comment-line :color blue )
-  ("<TAB>" hs-toggle-hiding nil :color blue ) ;;折叠光标处所在的大括号
-  ("h"   hs-show-all nil :color blue ) ;;展开所有大括号
-  ("H"   hs-hide-all nil :color blue ) ;;折叠所有大括号
   ("j"   avy-goto-char-timer nil :color blue );;easymotion
   ("u"   undo-tree-visualize nil :color blue)
-  ("k"   highlight-symbol-at-point nil :color blue)
-  ("K"   highlight-symbol-remove-all nil :color blue)
   ("f"   fzf-find-file nil :color blue)
   ("r"   fzf-recentf nil :color blue)
   ("a"   toggle-truncate-lines nil :color blue)
-  ("t"   google-translate-at-point nil :color blue))
+  ("t"   google-translate-at-point nil :color blue)
+  ("s"   fzf-grep-in-dir nil :color blue))
 ;;
 (use-package general
   :after evil
@@ -213,9 +164,6 @@
     "x" '(hydra-misc/body :which-key "+misc")
     "o" '(hydra-org/body :which-key "+org")
     "w" '(hydra-window/body :which-key "+window")
-    "h" '(hydra-help/body :which-key "+help")
-    "m" '(hydra-bookmark/body :which-key "+bookmark")
-    "d" '(hydra-drag-stuff/body :which-key "+drag-stuff")
-    "s" '(hydra-search/body :which-key "+search")))
+    "m" '(hydra-bookmark/body :which-key "+bookmark")))
 
 (provide 'user-keybind)
