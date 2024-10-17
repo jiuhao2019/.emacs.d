@@ -63,31 +63,29 @@
 ;;  org-roam
 (defhydra hydra-org-roam (:hint nil )
   "
-  [_c_] org-id-get-create    [_u_] org-roam-ui-open
-  [_i_] org-roam-node-insert [_d_] mrds/roam-switch-directory
+  [_c_] org-id-get-create 
+  [_i_] org-roam-node-insert
   [_n_] org-roam-node-find
   [_s_] org-roam-db-sync
   "
   ("c"   org-id-get-create nil :color blue)
   ("i"   org-roam-node-insert nil :color blue)
   ("n"   org-roam-node-find nil :color blue)
-  ("s"   org-roam-db-sync nil :color blue)
-  ("u"   org-roam-ui-open nil :color blue)
-  ("d"   mrds/roam-switch-directory nil :color blue))
+  ("s"   org-roam-db-sync nil :color blue))
 ;;  org-agenda
 (defhydra hydra-org-agenda (:hint nil )
-  "
+"
   [_]_] org-remove-file          [_s_] org-schedule
   [_[_] org-agenda-file-to-front [_d_] org-deadline
   [_a_] org-agenda               ^^
   [_t_] org-todo                 ^^
   "
-  ("["   org-agenda-file-to-front nil :color blue)
-  ("]"   org-remove-file nil :color blue)
-  ("a"   org-agenda nil :color blue)
-  ("s"   org-schedule nil :color blue)
-  ("d"   org-deadline nil :color blue)
-  ("t"   org-todo nil :color blue))
+("["   org-agenda-file-to-front nil :color blue)
+("]"   org-remove-file nil :color blue)
+("a"   org-agenda nil :color blue)
+("s"   org-schedule nil :color blue)
+("d"   org-deadline nil :color blue)
+("t"   org-todo nil :color blue))
 ;;  org-clock
 (defhydra hydra-org-clock (:hint nil )
   "
@@ -138,17 +136,15 @@
   ("i"   org-insert-structure-template nil :color blue))
 (defhydra hydra-org (:hint nil )
   "
-  [_T_] org-toggle-inline-images [_p_] org-capture     [_a_] +org-agenda [_t_] +org-table
-  [_o_] org-html-export-to-html  [_i_] org-meta-return [_l_] +plain-list [_L_] +org-link
-  [_w_] org-refile               ^^                    [_r_] +org-roam   [_b_] +org-block
-  [_g_] org-set-tags-command     ^^                    [_c_] +org-clock  ^^
+  [_T_] org-toggle-inline-images [_a_] +org-agenda [_t_] +org-table
+  [_o_] org-html-export-to-html  [_l_] +plain-list [_L_] +org-link
+  [_i_] org-meta-return          [_r_] +org-roam   [_b_] +org-block
+  [_g_] org-set-tags-command     [_c_] +org-clock  ^^
   "
   ("T"   org-toggle-inline-images nil :color blue)
   ("o"   org-html-export-to-html nil :color blue)
-  ("w"   org-refile nil :color blue)
-  ("p"   org-capture nil :color blue)
-  ("g"   org-set-tags-command nil :color blue)
   ("i"   org-meta-return nil :color blue)
+  ("g"   org-set-tags-command nil :color blue)
   ("t"   hydra-org-table/body nil :color blue)
   ("r"   hydra-org-roam/body nil :color blue)
   ("c"   hydra-org-clock/body nil :color blue)

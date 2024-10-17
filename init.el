@@ -1,15 +1,14 @@
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory)) ; 设定源码加载路径
-(add-to-list 'load-path (expand-file-name "package" user-emacs-directory)) ; 设定源码加载路径
 
 (setopt
  inhibit-startup-screen t
  use-file-dialog nil
  use-dialog-box nil
  use-short-answers t
- read-process-output-max #x10000
+ read-process-output-max #x100
  create-lockfiles nil
  recenter-redisplay nil
- next-screen-context-lines 5
+ next-screen-context-lines 1
  inhibit-compacting-font-caches t
  frame-resize-pixelwise t
  inhibit-quit nil
@@ -30,14 +29,6 @@
 (setq-default bidi-display-reordering nil)
 ;; Emacs "updates" its ui more often than it needs to, so slow it down slightly
 (setq idle-update-delay 1.0)  ; default is 0.5
-
-;;如大文件卡顿，试此配置
-;; (setq-default bidi-display-reordering nil)
-;; (setq bidi-inhibit-bpa t
-;;       long-line-threshold 1000
-;;       large-hscroll-threshold 1000
-;;       syntax-wholeline-max 1000)
-
 
 (setq inhibit-startup-message t)
 (scroll-bar-mode -1)        ; Disable visible scrollbar
@@ -65,21 +56,11 @@
       auto-save-timeout 30              ; number of seconds idle time before auto-save (default: 30)
       auto-save-interval 300)            ; number of keystrokes between auto-saves (default: 300)
 
-(defmacro k-time (&rest body)
-  "Measure and return the time it takes evaluating BODY."
-  `(let ((time (current-time)))
-     ,@body
-     (float-time (time-since time))))
-
-(defvar k-gc-timer
-  (run-with-idle-timer 15 t (lambda () (message "Garbage Collector has run for %.03fsec" (k-time (garbage-collect))))))
-
 ;; 把Emacs自动添加的代码放到 custom.el
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
 ;; Language Environment
 (set-language-environment "UTF-8")
-(setq default-input-method nil)
 
 ;; System Coding
 (prefer-coding-system 'utf-8)
@@ -113,26 +94,28 @@
       '(("http" . "127.0.0.1:7890")
         ("https" . "127.0.0.1:7890")))
 ;;———————————————————————————————————————————————end proxy
-;;———————————————————————————————————————————————straight
-(defvar bootstrap-version)
-(let ((bootstrap-file (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 7))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el" 'silent 'inhibit-cookies)
-      (goto-char (point-max)) (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
+;;———————————————————————————————————————————————use-package
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/"))
 
-(straight-use-package 'use-package) ; 用 straight.el 安装 use-package
-(setq straight-use-package-by-default t) ;;自动安装所有插件, 相当于加入 :straight t
-(setq use-package-compute-statistics t)
+(package-initialize)
+(unless package-archive-contents
+  (package-refresh-contents))
+
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+(require 'use-package)
+
+;; Automatically install packages when not in Guix
+(setq use-package-always-ensure t)
 
 (setq warning-suppress-types '((comp)))
-;;———————————————————————————————————————————————end straight
+;;———————————————————————————————————————————————end use-package
 
 ;;———————————————————————————————————————————————plugin
-(require 'on)
-(require 'ialign)
+;;(require 'on)
+;;(require 'ialign)
 (require 'user-theme)
 (setq evil-want-C-u-scroll t)
 (require 'user-evil)
@@ -174,7 +157,7 @@
 ;;; recently opened file
 (use-package recentf
   :config
-  (setq recentf-max-saved-items 1000)
+  (setq recentf-max-saved-items 10)
   (recentf-mode 1))
 
 ;;使能加密
@@ -193,11 +176,7 @@
   (setq fzf/args "-x --color bw --print-query --margin=1,0 --no-hscroll"
         fzf/executable "fzf"
         fzf/git-grep-args "-i --line-number %s"
-        ;; command used for `fzf-grep-*` functions
-        ;; example usage for ripgrep:
 	fzf/grep-command "rg --no-heading -nH"
-        ;;fzf/grep-command "grep -nrH"
-        ;; If nil, the fzf buffer will appear at the top of the window
         fzf/position-bottom t
         fzf/window-height 15))
 
