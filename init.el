@@ -55,7 +55,7 @@
       auto-save-default t               ; auto-save every buffer that visits a file
       auto-save-timeout 30              ; number of seconds idle time before auto-save (default: 30)
       auto-save-interval 300)            ; number of keystrokes between auto-saves (default: 300)
-
+(setq warning-suppress-types '((comp)))
 ;; 把Emacs自动添加的代码放到 custom.el
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
@@ -106,11 +106,8 @@
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 (require 'use-package)
-
-;; Automatically install packages when not in Guix
 (setq use-package-always-ensure t)
 
-(setq warning-suppress-types '((comp)))
 ;;———————————————————————————————————————————————end use-package
 
 ;;———————————————————————————————————————————————plugin
