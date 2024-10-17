@@ -1,4 +1,4 @@
-(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory)) ; 设定源码加载路径
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory)) ; 设定用户源码加载路径
 
 (setopt
  inhibit-startup-screen t
@@ -124,7 +124,6 @@
 (require 'user-lsp)
 (require 'user-lisp-format)
 (require 'user-valign);;能让表格里有中文的表格对齐,但是如打开的文件里表格多且大就卡顿。
-(require 'user-rg)
 (require 'user-pyim)
 (use-package amx ;;auto show recent commands
   :init (amx-mode))
@@ -185,8 +184,6 @@
           (lambda ()
             (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
               (ggtags-mode 1))))
-
-(use-package imenu )
 
 (use-package google-translate
   :commands google-translate-smooth-translate

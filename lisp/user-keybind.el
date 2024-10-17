@@ -164,13 +164,6 @@
   ("f"   counsel-describe-function nil :color blue)
   ("v"   counsel-describe-variable nil :color blue)
   ("m"   info-display-manual nil :color blue))
-(defhydra hydra-buffer (:hint nil )
-  "
-  [_a_] user-alternate-buffers
-  [_c_] user-diff-buffer-with-file
-  "
-  ("a"   user-alternate-buffers nil :color blue)
-  ("c"   user-diff-buffer-with-file nil :color blue))
 (defhydra hydra-drag-stuff (:hint nil )
   "
   [_h_] drag-stuff-left
@@ -217,7 +210,6 @@
     :keymaps '(normal visual)
     :prefix "SPC")
   (user/leader-keys
-    "b" '(hydra-buffer/body :which-key "+buffer")
     "x" '(hydra-misc/body :which-key "+misc")
     "o" '(hydra-org/body :which-key "+org")
     "w" '(hydra-window/body :which-key "+window")

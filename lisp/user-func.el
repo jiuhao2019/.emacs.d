@@ -24,23 +24,6 @@
   (interactive)
   (setq show-trailing-whitespace (not show-trailing-whitespace)))
 ;;=======================================end
-;;=======================================begin
-(defun user-alternate-buffers ()
-  "Toggle between the last two buffers"
-  (interactive)
-  (switch-to-buffer (other-buffer (current-buffer) t)))
-
-(defun user-revert-buffer ()
-  "Revert the buffer to the save disk file state"
-  (interactive)
-  (revert-buffer nil t))
-
-(defun user-diff-buffer-with-file ()
-  "Compare the current modified buffer with the saved version."
-  (interactive)
-  (let ((diff-switches "-u"))
-    (diff-buffer-with-file (current-buffer))))
-;;=======================================end
 ;;--------------------------------------------------------switch themes
 (defun ap/load-doom-theme (theme)
   "Disable active themes and load a Doom theme."
@@ -74,6 +57,5 @@
   (org-table-export "/tmp/table.csv" "orgtbl-to-csv")
   (shell-command-to-string "localc --headless --infilter=\"CSV:44,34,76,,,,,,true,,,,false\" --convert-to \"xlsx:Calc MS Excel 2007 XML:UTF8\" /tmp/table.csv --outdir /tmp/"))
 
-
-
+;;
 (provide 'user-func)
