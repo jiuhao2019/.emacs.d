@@ -118,7 +118,6 @@
 (require 'user-ivy)
 (require 'user-func)
 (require 'user-org)
-(require 'user-neotree)
 (require 'user-lsp)
 (require 'user-lisp-format)
 (require 'user-valign);;能让表格里有中文的表格对齐,表格太大就卡顿(需设置较小表格size)。
