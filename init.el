@@ -114,8 +114,6 @@
 ;;———————————————————————————————————————————————end use-package
 
 ;;———————————————————————————————————————————————plugin
-;;(require 'on)
-;;(require 'ialign)
 (require 'user-theme)
 (setq evil-want-C-u-scroll t)
 (require 'user-evil)
@@ -163,7 +161,6 @@
 ;;使能加密
 (require 'epa-file)
 (epa-file-enable)
-(setq epg-gpg-program "gpg2")
 
 ;;让用户输入的密码不会因内存不足而换出到磁盘
 (use-package pinentry
@@ -205,42 +202,13 @@
   (setq-default format-all-formatters
                 '(("C"     (astyle "--mode=c"))
                   ("Shell" (shfmt "-i" "4" "-ci")))))
-;;移动字符块
-(use-package drag-stuff
-  :init (drag-stuff-global-mode))
-
-;;文件浏览
-(use-package dirvish
-  :config (dirvish-override-dired-mode))
 
 (use-package lua-mode)
 (use-package markdown-mode)
 
-;;折叠大括号块
-(use-package hideshow
-  :hook (prog-mode . hs-minor-mode)
-  :custom
-  (hs-special-modes-alist
-   (mapcar 'purecopy
-           '((c-mode "{" "}" "/[*/]" nil nil)
-             (c++-mode "{" "}" "/[*/]" nil nil)
-             (rust-mode "{" "}" "/[*/]" nil nil)))))
-
 ;;记住每个buffer离开时光标位置
 (use-package saveplace
   :hook (after-init . save-place-mode))
-
-;; A modern Packages Menu
-(use-package paradox
-  :init
-  (setq paradox-execute-asynchronously t
-        paradox-github-token t
-        paradox-display-star-count nil)
-  ;; Replace default `list-packages'
-  (defun my-paradox-enable (&rest _)
-    "Enable paradox, overriding the default package-menu."
-    (paradox-enable))
-  (advice-add #'list-packages :before #'my-paradox-enable))
 
 ;;———————————————————————————————————————————————
 ;;put this at end of plugin
