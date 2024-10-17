@@ -137,7 +137,7 @@
   [_n_] neotree-toggle                  [_S_] scratch-buffer        [_c_] comment-line                     
   [_w_] toggle-show-trailing-whitespace [_e_] switch-theme          [_u_] undo-tree-visualize 
   [_j_] avy-goto-char-timer             [_v_] valign-mode           [_i_] aggressive-indent-indent-defun
-  [_m_] counsel-imenu                   [_a_] toggle-truncate-lines                     
+  [_m_] counsel-imenu                   [_a_] toggle-truncate-lines [_r_] recentf                    
   "
   ("n"   neotree-toggle nil :color blue)
   ("w"   toggle-show-trailing-whitespace nil :color blue)
@@ -149,6 +149,7 @@
   ("j"   avy-goto-char-timer nil :color blue );;easymotion
   ("u"   undo-tree-visualize nil :color blue)
   ("a"   toggle-truncate-lines nil :color blue)
+  ("r"   recentf nil :color blue)
   ("i"   aggressive-indent-indent-defun nil :color blue))
 ;;
 (use-package general
