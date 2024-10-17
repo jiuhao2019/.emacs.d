@@ -123,8 +123,6 @@
 (require 'user-lisp-format)
 (require 'user-valign);;能让表格里有中文的表格对齐,表格太大就卡顿(需设置较小表格size)。
 (require 'user-pyim)
-(use-package amx ;;auto show recent commands
-  :init (amx-mode))
 
 (use-package undo-tree
   :init (global-undo-tree-mode)
