@@ -135,11 +135,13 @@
 (defhydra hydra-misc (:hint nil )
   "
   [_n_] neotree-toggle      [_c_] comment-line        [_i_] aggressive-indent-indent-defun           
-  [_e_] switch-theme        [_u_] undo-tree-visualize 
-  [_j_] avy-goto-char-timer [_v_] valign-mode           
+  [_e_] switch-theme        [_u_] undo-tree-visualize [_S_] counsel-rg-at-point
+  [_j_] avy-goto-char-timer [_v_] valign-mode         [_s_] rgrep 
   [_m_] counsel-imenu       [_r_] recentf                    
   "
   ("n"   neotree-toggle nil :color blue)
+  ("s"   rgrep nil :color blue)
+  ("S"   user/counsel-rg-at-point nil :color blue)
   ("e"   ap/switch-theme)
   ("v"   valign-mode nil :color blue);;表格里有中文也能对齐
   ("m"   counsel-imenu nil :color blue )

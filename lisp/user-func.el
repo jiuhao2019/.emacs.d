@@ -1,5 +1,5 @@
-(defun user-search-text-at-point (str &optional from to)
-  "搜索当前文件里text,可以先v选中,或者默认光标处单词"
+(defun user/counsel-rg-at-point (str &optional from to)
+  "搜索text,先v选中,或者默认光标处单词"
   (interactive
    ;; 判断当前是否选中了一个region，如果选中则获取region的起、始位置，并赋值给from、to；如果没有选中region则获取当前单词的起、始位置并赋值给from、to
    (if (use-region-p)
@@ -14,7 +14,7 @@
 	(setq input-str str)
       (setq input-str (buffer-substring-no-properties from to))
       ;;调用swiper搜索该字符串
-      ( swiper input-str ))))
+      ( counsel-rg input-str ))))
 
 ;;--------------------------------------------------------switch themes
 (defun ap/load-doom-theme (theme)
