@@ -1,11 +1,11 @@
 (use-package hydra )
-;; 
+;;-------------------------------------------------------bookmark
 (defhydra hydra-bookmark (:hint nil )
   "
-[_s_] add    [_d_] delete
-[_j_] jump   ^^
-[_w_] save   ^^
-[_r_] rename ^^
+[_s_] add      [_d_] delete
+[_j_] jump     ^^
+[_w_] save     ^^
+[_r_] rename   ^^
 "
   ("s"   bookmark-set nil :color blue)
   ("j"   bookmark-jump nil :color blue)
@@ -15,10 +15,10 @@
 ;;-------------------------------------------------------window
 (defhydra hydra-window (:hint nil )
   "
-[_h_] go left  [_H_] move to left   [_s_] fork to right    [_+_] increase height [_=_] balance wind
-[_j_] go down  [_J_] move to bottom [_v_] fork to below    [_-_] decrease height ^^
-[_l_] go up    [_L_] move to right  [_x_] delete win       [_>_] increase width  ^^
-[_k_] go right [_K_] move to top    [_X_] delete other win [_<_] decrease width  ^^
+[_h_] go left    [_H_] move to left     [_s_] fork to right      [_+_] increase height [_=_] balance wind
+[_j_] go down    [_J_] move to bottom   [_v_] fork to below      [_-_] decrease height ^^
+[_l_] go up      [_L_] move to right    [_x_] delete win         [_>_] increase width  ^^
+[_k_] go right   [_K_] move to top      [_X_] delete other win   [_<_] decrease width  ^^
 "
   ("h"   evil-window-left)
   ("j"   evil-window-down)
@@ -37,8 +37,7 @@
   ("<"   evil-window-decrease-width)
   (">"   evil-window-increase-width)
   ("="   balance-windows))
-;;-------------------------------------------------------end window
-;;-------------------------------------------------------begin org
+;;-------------------------------------------------------org
 ;;  org-roam
 (defhydra hydra-org-roam (:hint nil )
   "
@@ -54,10 +53,10 @@
 ;;  org-agenda
 (defhydra hydra-org-agenda (:hint nil )
   "
-[_]_] rm file source  [_s_] add schedule date
-[_[_] add file source [_d_] add deadline date
-[_a_] open agenda     ^^
-[_t_] todo state      ^^
+[_]_] rm file source    [_s_] add schedule date
+[_[_] add file source   [_d_] add deadline date
+[_a_] open agenda       ^^
+[_t_] todo state        ^^
 "
   ("["   org-agenda-file-to-front nil :color blue)
   ("]"   org-remove-file nil :color blue)
@@ -115,10 +114,10 @@
   ("i"   org-insert-structure-template nil :color blue))
 (defhydra hydra-org (:hint nil )
   "
-[_T_] on/off images [_a_] +agenda [_t_] +table
-[_o_] export html   [_l_] +list   [_L_] +link
-[_i_] meta return   [_r_] +roam   [_b_] +block
-[_g_] set tags      [_c_] +clock  ^^
+[_T_] on/off images   [_a_] +agenda   [_t_] +table
+[_o_] export html     [_l_] +list     [_L_] +link
+[_i_] meta return     [_r_] +roam     [_b_] +block
+[_g_] set tags        [_c_] +clock    ^^
 "
   ("T"   org-toggle-inline-images nil :color blue)
   ("o"   org-html-export-to-html nil :color blue)
@@ -131,13 +130,13 @@
   ("L"   hydra-org-link/body nil :color blue)
   ("b"   hydra-org-block/body nil :color blue)
   ("a"   hydra-org-agenda/body nil :color blue))
-;;-------------------------------------------------------end org
+;;-------------------------------------------------------misc
 (defhydra hydra-misc (:hint nil )
   "
-[_c_] comment    [_d_] dired     [_i_] indent lisp at point           
-[_e_] theme      [_u_] undo tree [_S_] rg-at-point
-[_j_] easymotion [_v_] valign    [_s_] rg 
-[_m_] imenu      [_r_] recentf   ^^                    
+[_c_] comment      [_d_] dired       [_i_] indent lisp at point           
+[_e_] theme        [_u_] undo tree   [_S_] rg-at-point
+[_j_] easymotion   [_v_] valign      [_s_] rg 
+[_m_] imenu        [_r_] recentf     ^^                    
 "
   ("d"   dired nil :color blue)
   ("s"   rgrep nil :color blue)
