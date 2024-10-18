@@ -1,12 +1,5 @@
-
-(defun efs/org-mode-setup ()
-  (org-indent-mode)
-  (variable-pitch-mode 1)
-  (visual-line-mode 1))
-
 (use-package org
   :commands (org-capture org-agenda)
-  :hook (org-mode . efs/org-mode-setup)
   :config
   (setq org-enforce-todo-dependencies t)
   (setq org-startup-folded 'content);;默认折叠所有标题
@@ -17,7 +10,9 @@
   (setq org-log-done 'time)
   (setq org-log-into-drawer t)
   (setq org-html-validation-link nil)
-  ;;=========================================================org-agenda
+  (setq epa-file-cache-passphrase-for-symmetric-encryption t);;对称加密时缓存密码，不用每次打开和保存都输入
+
+  ;;
   (setq org-agenda-start-with-log-mode t)
   ;; (setq org-agenda-files (directory-files-recursively "~/user-note" "\\.org.gpg$"));;递归搜寻
   (setq org-agenda-files nil);;打开emacs后清除用来agenda的文件,每次手动添加。
@@ -28,7 +23,6 @@
   (push '("r" "月度" ((agenda "" ((org-agenda-span 37)
                                   (org-agenda-start-day "-30d")))))
 	org-agenda-custom-commands)
-
   (setq org-todo-keywords
 	'((sequence "TODO(t)" "PROCESS(p)" "|" "FINISHED(f@/!)" "DONE(d@/!)")))
   (setq org-tag-alist
@@ -37,18 +31,14 @@
 	  (:endgroup)
 	  ("office" . ?o)
 	  ("week" . ?w)))
-
   (setq org-capture-templates nil))
-;;=========================================================end org-agenda
+
+;;
 (use-package org-bullets
   :hook (org-mode . org-bullets-mode)
   :custom
   (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●" "○" "●")))
 
-(setq epa-file-cache-passphrase-for-symmetric-encryption t);;对称加密时缓存密码，不用每次打开和保存都输入
-;;关闭emacs后关闭后台gpg-agent，清除缓存的密码
-(add-hook 'kill-emacs-hook (defun personal--kill-gpg-agent ()
-                             (shell-command "pkill gpg-agent")))
 ;;
 (use-package org-roam
   :config
@@ -66,8 +56,14 @@
 	'(("d" "default" plain "%?" :target
 	   (file+head "${slug}.org" "#+title: ${title}\n")
            :unnarrowed  t)))
-  (require 'org-roam-protocol)
-  (org-roam-setup))
+  (require 'org-roam-protocol))
+
+
+;;关闭emacs后关闭后台gpg-agent，清除缓存的密码
+(add-hook 'kill-emacs-hook (defun personal-kill-gpg-agent ()
+                             (shell-command "pkill gpg-agent")))
+(add-hook 'org-mode-hook (defun user/org-mode-setup() (org-indent-mode) (variable-pitch-mode 1)))
+(add-hook 'org-mode-hook (defun user/truncate-line() (setq truncate-lines t)))
 
 ;;
 (provide 'user-org)
