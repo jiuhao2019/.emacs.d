@@ -2,11 +2,11 @@
 ;; 
 (defhydra hydra-bookmark (:hint nil )
   "
-  [_s_] bookmark-set    [_d_] bookmark-delete
-  [_j_] bookmark-jump   ^^
-  [_w_] bookmark-save   ^^
-  [_r_] bookmark-rename ^^
-  "
+[_s_] add    [_d_] delete
+[_j_] jump   ^^
+[_w_] save   ^^
+[_r_] rename ^^
+"
   ("s"   bookmark-set nil :color blue)
   ("j"   bookmark-jump nil :color blue)
   ("w"   bookmark-save nil :color blue)
@@ -15,11 +15,11 @@
 ;;-------------------------------------------------------window
 (defhydra hydra-window (:hint nil )
   "
-  [_h_] go left  [_H_] move to left   [_s_] fork horizontally     [_+_] increase height [_=_] balance windows
-  [_j_] go down  [_J_] move to bottom [_v_] fork vertically       [_-_] decrease height ^^
-  [_l_] go up    [_L_] move to right  [_x_] delete window         [_>_] increase width  ^^
-  [_k_] go right [_K_] move to top    [_X_] delete other windows  [_<_] decrease width  ^^
-  "
+[_h_] go left  [_H_] move to left   [_s_] fork to right    [_+_] increase height [_=_] balance wind
+[_j_] go down  [_J_] move to bottom [_v_] fork to below    [_-_] decrease height ^^
+[_l_] go up    [_L_] move to right  [_x_] delete win       [_>_] increase width  ^^
+[_k_] go right [_K_] move to top    [_X_] delete other win [_<_] decrease width  ^^
+"
   ("h"   evil-window-left)
   ("j"   evil-window-down)
   ("k"   evil-window-up)
@@ -42,47 +42,47 @@
 ;;  org-roam
 (defhydra hydra-org-roam (:hint nil )
   "
-  [_c_] org-id-get-create 
-  [_i_] org-roam-node-insert
-  [_n_] org-roam-node-find
-  [_s_] org-roam-db-sync
-  "
+[_c_] org-id-get-create 
+[_i_] node insert
+[_n_] node find/create
+[_s_] db sync
+"
   ("c"   org-id-get-create nil :color blue)
   ("i"   org-roam-node-insert nil :color blue)
   ("n"   org-roam-node-find nil :color blue)
   ("s"   org-roam-db-sync nil :color blue))
 ;;  org-agenda
 (defhydra hydra-org-agenda (:hint nil )
-"
-  [_]_] org-remove-file          [_s_] org-schedule
-  [_[_] org-agenda-file-to-front [_d_] org-deadline
-  [_a_] org-agenda               ^^
-  [_t_] org-todo                 ^^
   "
-("["   org-agenda-file-to-front nil :color blue)
-("]"   org-remove-file nil :color blue)
-("a"   org-agenda nil :color blue)
-("s"   org-schedule nil :color blue)
-("d"   org-deadline nil :color blue)
-("t"   org-todo nil :color blue))
+[_]_] rm file source  [_s_] add schedule date
+[_[_] add file source [_d_] add deadline date
+[_a_] open agenda     ^^
+[_t_] todo state      ^^
+"
+  ("["   org-agenda-file-to-front nil :color blue)
+  ("]"   org-remove-file nil :color blue)
+  ("a"   org-agenda nil :color blue)
+  ("s"   org-schedule nil :color blue)
+  ("d"   org-deadline nil :color blue)
+  ("t"   org-todo nil :color blue))
 ;;  org-clock
 (defhydra hydra-org-clock (:hint nil )
   "
-  [_i_] org-clock-in
-  [_o_] org-clock-out
-  [_r_] org-clock-report
-  "
+[_i_] org-clock-in
+[_o_] org-clock-out
+[_r_] org-clock-report
+"
   ("i"   org-clock-in nil :color blue)
   ("o"   org-clock-out nil :color blue)
   ("r"   org-clock-report nil :color blue))
 ;;  plain list
 (defhydra hydra-org-plain-list (:hint nil )
   "
-  [_i_] org-insert-todo-heading
-  [_u_] org-shiftmetaup
-  [_d_] org-shiftmetadown
-  [_-_] toggle-display-style
-  "
+[_i_] insert
+[_u_] shift up
+[_d_] shift down
+[_-_] toggle display style
+"
   ("i"   org-insert-todo-heading nil :color blue)
   ("u"   org-shiftmetaup)
   ("-"   org-ctrl-c-minus)
@@ -90,36 +90,36 @@
 ;;  table
 (defhydra hydra-org-table (:hint nil )
   "
-  [_c_] org-table-create
-  [_1_] export-to-spreadsheet
-  [_2_] export-to-spreadsheet_ng
-  "
+[_c_] create
+[_1_] export csv
+[_2_] export csv_ng
+"
   ("c"   org-table-create nil :color blue)
   ("1"   org-table-export-to-spreadsheet nil :color blue)
   ("2"   my/table-export nil :color blue))
 ;;  link
 (defhydra hydra-org-link (:hint nil )
   "
-  [_o_] org-open-at-point
-  [_t_] org-toggle-link-display
-  [_i_] org-insert-or-edit-link
-  "
+[_o_] open
+[_t_] toggle link display
+[_i_] insert or edit
+"
   ("o"   org-open-at-point nil :color blue)
   ("t"   org-toggle-link-display nil :color blue)
   ("i"   org-insert-link nil :color blue))
 ;;  block
 (defhydra hydra-org-block (:hint nil )
   "
-  [_i_] org-insert-structure-template
-  "
+[_i_] insert block
+"
   ("i"   org-insert-structure-template nil :color blue))
 (defhydra hydra-org (:hint nil )
   "
-  [_T_] org-toggle-inline-images [_a_] +org-agenda [_t_] +org-table
-  [_o_] org-html-export-to-html  [_l_] +plain-list [_L_] +org-link
-  [_i_] org-meta-return          [_r_] +org-roam   [_b_] +org-block
-  [_g_] org-set-tags-command     [_c_] +org-clock  ^^
-  "
+[_T_] on/off images [_a_] +agenda [_t_] +table
+[_o_] export html   [_l_] +list   [_L_] +link
+[_i_] meta return   [_r_] +roam   [_b_] +block
+[_g_] set tags      [_c_] +clock  ^^
+"
   ("T"   org-toggle-inline-images nil :color blue)
   ("o"   org-html-export-to-html nil :color blue)
   ("i"   org-meta-return nil :color blue)
@@ -134,11 +134,11 @@
 ;;-------------------------------------------------------end org
 (defhydra hydra-misc (:hint nil )
   "
-  [_c_] comment-line        [_d_] dired               [_i_] aggressive-indent-indent-defun           
-  [_e_] switch-theme        [_u_] undo-tree-visualize [_S_] counsel-rg-at-point
-  [_j_] avy-goto-char-timer [_v_] valign-mode         [_s_] rgrep 
-  [_m_] counsel-imenu       [_r_] recentf                    
-  "
+[_c_] comment    [_d_] dired     [_i_] indent lisp at point           
+[_e_] theme      [_u_] undo tree [_S_] rg-at-point
+[_j_] easymotion [_v_] valign    [_s_] rg 
+[_m_] imenu      [_r_] recentf   ^^                    
+"
   ("d"   dired nil :color blue)
   ("s"   rgrep nil :color blue)
   ("S"   user/counsel-rg-at-point nil :color blue)
@@ -158,9 +158,9 @@
     :keymaps '(normal visual)
     :prefix "SPC")
   (user/leader-keys
-    "x" '(hydra-misc/body :which-key "+misc")
+    "m" '(hydra-misc/body :which-key "+misc")
     "o" '(hydra-org/body :which-key "+org")
     "w" '(hydra-window/body :which-key "+window")
-    "m" '(hydra-bookmark/body :which-key "+bookmark")))
-
+    "b" '(hydra-bookmark/body :which-key "+bookmark")))
+;;
 (provide 'user-keybind)
