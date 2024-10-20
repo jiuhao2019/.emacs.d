@@ -69,7 +69,7 @@
 (set-keyboard-coding-system 'utf-8)
 ;;———————————————————————————————————————————————font
 ;;默认字体
-(set-face-attribute 'default nil :family "Fira Code Nerd Font Mono" :height 123)
+(set-face-attribute 'default nil :family "Fira Code Nerd Font Mono" :height 143)
 
 ;; Unicode
 ;; `set-fontset-font' 用于指定某些字符集使用特定的字体
@@ -111,10 +111,6 @@
 ;;———————————————————————————————————————————————end use-package
 
 ;;———————————————————————————————————————————————plugin
-;;记住每个buffer离开时光标位置
-(use-package saveplace
-  :hook (after-init . save-place-mode))
-
 ;;doom themes
 (use-package doom-themes
   :config
@@ -186,6 +182,9 @@
   (setq-default format-all-formatters
                 '(("C"     (astyle "--mode=c"))
                   ("Shell" (shfmt "-i" "4" "-ci")))))
+;;dired
+(setq dired-recursive-deletes 'always)
+(setq dired-recursive-copies 'always)
 
 ;;———————————————————————————————————————————————
 ;;put this at end of plugin
