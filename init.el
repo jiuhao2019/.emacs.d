@@ -1,6 +1,5 @@
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory)) ; 设定用户源码加载路径
 
-
 (setopt
  inhibit-startup-screen t
  use-file-dialog nil
@@ -116,8 +115,26 @@
 (use-package saveplace
   :hook (after-init . save-place-mode))
 
-(use-package spacemacs-theme)
-(load-theme 'spacemacs-dark t)
+;;doom themes
+(use-package doom-themes
+  :config
+  ;; Global settings (defaults)
+  (setq doom-themes-enable-bold nil    ; if nil, bold is universally disabled
+        doom-themes-enable-italic nil) ; if nil, italics is universally disabled
+  (load-theme 'doom-moonlight t)
+
+  ;; Enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
+  ;; Enable custom neotree theme (all-the-icons must be installed!)
+  (doom-themes-neotree-config)
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config))
+
+(use-package doom-modeline
+  :init 
+  (doom-modeline-mode 1)
+  :custom 
+  ((doom-modeline-height 15)))
 
 (setq evil-want-C-u-scroll t)
 (require 'user-evil)
