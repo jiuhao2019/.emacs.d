@@ -1,6 +1,5 @@
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory)) ; 设定用户源码加载路径
 
-(load-theme 'wombat t)
 
 (setopt
  inhibit-startup-screen t
@@ -113,6 +112,13 @@
 ;;———————————————————————————————————————————————end use-package
 
 ;;———————————————————————————————————————————————plugin
+;;记住每个buffer离开时光标位置
+(use-package saveplace
+  :hook (after-init . save-place-mode))
+
+(use-package spacemacs-theme)
+(load-theme 'spacemacs-dark t)
+
 (setq evil-want-C-u-scroll t)
 (require 'user-evil)
 (require 'user-ivy)
